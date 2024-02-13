@@ -156,6 +156,7 @@ button.sign-up {
     --card-width: 165px;
     --card-gap: 40px;
     --card-border: 4px solid #3882F6;
+    --content-gap: 100px;
  }
 
 body {
@@ -173,7 +174,7 @@ body {
     flex: 1 1 400px;
     display: flex;
     flex-direction: column;
-    gap: 100px;
+    gap: var(--content-gap);
 }
 
 .footer {
@@ -291,4 +292,9 @@ body {
     text-align: center;
     padding-top: var(--main-padding);
     padding-bottom: var(--main-padding);
+}
+
+.quote .container {
+    padding-top: var(--content-gap);
+    padding-bottom: var(--content-gap);
 }
