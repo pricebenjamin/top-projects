@@ -77,7 +77,8 @@
  */
 
  :root {
-    --main-content-width: 85%;
+    --main-content-width: 75%;
+    --main-content-min-width: 620px;
     --main-content-max-width: 1000px;
  }
 
@@ -138,21 +139,23 @@ body {
 .centering {
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .with-max-width {
     width: var(--main-content-width);
+    min-width: var(--main-content-min-width);
     max-width: var(--main-content-max-width);
 }
 
 .header .container {
-    flex: 1 1 auto;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
 
 .header nav {
     display: flex;
     align-items: center;
+    padding: 10px;
 }
 
 .header ul {
@@ -161,6 +164,8 @@ body {
     justify-content: right;
     gap: 20px;
     margin-left: auto;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .header a {
