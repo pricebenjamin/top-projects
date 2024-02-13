@@ -118,9 +118,9 @@ button.sign-up {
 /* main layout */
 
  :root {
-    --main-content-width: 75%;
+    --main-content-width: 85%;
     --main-content-min-width: 620px;
-    --main-content-max-width: 1000px;
+    --main-content-max-width: 1200px;
     --main-padding: 10px;
     --main-gap: 50px;
  }
@@ -133,7 +133,7 @@ body {
 }
 
 .header {
-    flex: 0 0 400px;
+    flex: 0 0 550px;
 }
 
 .content {
@@ -215,8 +215,8 @@ body {
 }
 
 .hero .image {
-    flex: 1 1 200px;
-    height: 200px;
+    flex: 1 1 300px;
+    height: 100%;
     background-color: gray;
     display: flex;
     justify-content: center;
