@@ -111,8 +111,6 @@ button.sign-up {
     background-color: #3882F6;
     padding: 8px 40px;
     border-radius: 8px;
-    display: flex;
-    align-items: center;
 }
 
 /* main layout */
