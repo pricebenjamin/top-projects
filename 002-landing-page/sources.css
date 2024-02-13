@@ -149,3 +149,20 @@ body {
 .header .container {
     flex: 1 1 auto;
 }
+
+.header nav {
+    display: flex;
+    align-items: center;
+}
+
+.header ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: right;
+    gap: 20px;
+    margin-left: auto;
+}
+
+.header a {
+    text-decoration: none;
+}
