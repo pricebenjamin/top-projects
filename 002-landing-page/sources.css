@@ -195,13 +195,11 @@ body {
     max-width: var(--main-content-max-width);
 }
 
-.header .container,
-.feature .container {
+.header .container {
     flex-grow: 0;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .header nav {
@@ -255,6 +253,14 @@ body {
     background-color: gray;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.feature .container {
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
