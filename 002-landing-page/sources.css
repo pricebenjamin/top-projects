@@ -70,3 +70,35 @@
   font-weight: 900;
   font-style: italic;
 }
+
+/*
+ *  The following font / color specifications are provided on the project page
+ *  https://www.theodinproject.com/lessons/foundations-landing-page
+ */
+
+.header-dark-bg,
+.footer-dark-bg {
+    background-color: #1F2937;
+}
+
+/* main layout */
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.header {
+    flex: 0 0 300px;
+}
+
+.content {
+    flex: 1 1 400px;
+}
+
+.footer {
+    flex: 0 0 50px;
+    margin-top: auto;
+}
