@@ -155,7 +155,9 @@ body {
 .header nav {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .header ul {
