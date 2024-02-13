@@ -203,6 +203,15 @@ body {
 
 .hero .text {
     flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero button {
+    flex: 0 0 auto;
+    align-self: flex-start;
+    margin-top: 10px;
 }
 
 .hero .image {
