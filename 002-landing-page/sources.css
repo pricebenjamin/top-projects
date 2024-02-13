@@ -160,7 +160,6 @@ button.sign-up {
  }
 
 body {
-    height: 100vh;
     display: flex;
     flex-direction: column;
     margin: 0;
@@ -171,7 +170,7 @@ body {
 }
 
 .content {
-    flex: 1 1 400px;
+    flex: 1 1 1000px;
     display: flex;
     flex-direction: column;
     gap: var(--content-gap);
