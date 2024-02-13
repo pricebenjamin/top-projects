@@ -76,12 +76,6 @@
  *  https://www.theodinproject.com/lessons/foundations-landing-page
  */
 
- :root {
-    --main-content-width: 75%;
-    --main-content-min-width: 620px;
-    --main-content-max-width: 1000px;
- }
-
 .header-dark-bg,
 .footer-dark-bg {
     background-color: #1F2937;
@@ -111,6 +105,14 @@
 
 /* main layout */
 
+ :root {
+    --main-content-width: 75%;
+    --main-content-min-width: 620px;
+    --main-content-max-width: 1000px;
+    --main-padding: 10px;
+    --main-gap: 50px;
+ }
+
 body {
     height: 100vh;
     display: flex;
@@ -119,7 +121,7 @@ body {
 }
 
 .header {
-    flex: 0 0 300px;
+    flex: 0 0 400px;
 }
 
 .content {
@@ -136,6 +138,7 @@ body {
  * from there, I would like the content to be dynamic but have a fixed
  * max-width.
  */
+
 .centering {
     display: flex;
     justify-content: center;
@@ -150,14 +153,16 @@ body {
 .header .container {
     flex-grow: 0;
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .header nav {
     display: flex;
     align-items: center;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-top: var(--main-padding);
+    padding-left: var(--main-padding);
+    padding-right: var(--main-padding);
 }
 
 .header ul {
@@ -172,4 +177,27 @@ body {
 
 .header a {
     text-decoration: none;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    gap: var(--main-gap);
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-left: var(--main-padding);
+    padding-right: var(--main-padding);
+}
+
+.hero .text {
+    flex: 1 1 200px;
+}
+
+.hero .image {
+    flex: 1 1 200px;
+    height: 200px;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
