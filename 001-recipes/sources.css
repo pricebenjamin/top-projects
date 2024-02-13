@@ -2,6 +2,7 @@
     --main-color: hsl(240deg 20% 90%);
     --main-bg-color: hsl(240deg 10% 20%);
     --main-content-width: 85%;
+    --main-content-max-width: 1000px;
     --main-border-radius: 15px;
     --main-gap-size: 25px;
     --main-padding: 20px;
@@ -26,6 +27,7 @@ body {
     display: flex;
     align-items: center;
     width: var(--main-content-width);
+    max-width: var(--main-content-max-width);
     padding-top: var(--main-padding);
 }
 
@@ -62,6 +64,7 @@ body {
     border-radius: var(--main-border-radius);
     height: 200px;
     width: var(--main-content-width);
+    max-width: var(--main-content-max-width);
     overflow: hidden;
 }
 
@@ -72,6 +75,7 @@ body {
 
 .description {
     width: var(--main-content-width);
+    max-width: var(--main-content-max-width);
 }
 
 h3 {
@@ -80,14 +84,11 @@ h3 {
 
 .recipe {
     width: var(--main-content-width);
+    max-width: var(--main-content-max-width);
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     gap: var(--main-gap-size);
-}
-
-.recipe ul {
-    list-style-position: inside;
 }
 
 .recipe .ingredients {
