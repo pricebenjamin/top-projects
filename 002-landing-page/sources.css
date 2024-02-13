@@ -135,6 +135,9 @@ button.sign-up {
     --main-content-max-width: 1200px;
     --main-padding: 10px;
     --main-gap: 50px;
+    --card-width: 165px;
+    --card-gap: 40px;
+    --card-border: 4px solid #3882F6;
  }
 
 body {
@@ -174,11 +177,13 @@ body {
     max-width: var(--main-content-max-width);
 }
 
-.header .container {
+.header .container,
+.feature .container {
     flex-grow: 0;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .header nav {
@@ -233,4 +238,30 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.feature .cards {
+    display: flex;
+    justify-content: center;
+    gap: var(--card-gap);
+}
+
+.feature .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feature .card-image {
+    border: var(--card-border);
+    border-radius: 20px;
+    width: var(--card-width);
+    height: var(--card-width);
+}
+
+.feature .card-text {
+    width: var(--card-width);
+    text-align: center;
+    padding-top: var(--main-padding);
+    padding-bottom: var(--main-padding);
 }
