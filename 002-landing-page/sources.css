@@ -127,8 +127,22 @@ button.sign-up {
     color: #1F2937;
 }
 
-.quote-light-bg {
+.content .quote-light-bg {
     background-color: #E5E7EB;
+}
+
+.content .quote-text {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 36px;
+    font-style: italic;
+}
+
+.content .quote-attribution {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #1F2937;
 }
 
 /* main layout */
