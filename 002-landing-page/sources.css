@@ -113,6 +113,20 @@ button.sign-up {
     border-radius: 8px;
 }
 
+.content .information {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-size: 36px;
+    color: #1F2937;
+}
+
+.content .card-text {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: #1F2937;
+}
+
 /* main layout */
 
  :root {
