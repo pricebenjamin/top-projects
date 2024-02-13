@@ -170,7 +170,7 @@ body {
 }
 
 .content {
-    flex: 1 1 1000px;
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     gap: var(--content-gap);
