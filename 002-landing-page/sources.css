@@ -103,6 +103,18 @@
     color: #F9FAF8;
 }
 
+button.sign-up {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #F9FAF8;
+    background-color: #3882F6;
+    padding: 8px 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
 /* main layout */
 
  :root {
