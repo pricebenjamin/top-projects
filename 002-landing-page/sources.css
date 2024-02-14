@@ -145,6 +145,25 @@ button.sign-up {
     color: #1F2937;
 }
 
+.call-to-action .text {
+    font-family: "Roboto", sans-serif;
+    color: #F9FAF8;
+}
+
+.call-to-action h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.call-to-action p {
+    font-size: 18px;
+    font-weight: 300;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 /* main layout */
 
  :root {
