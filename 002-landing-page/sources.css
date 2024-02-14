@@ -316,3 +316,22 @@ body {
     padding-top: var(--content-gap);
     padding-bottom: var(--content-gap);
 }
+
+.call-to-action {
+    margin-bottom: var(--content-gap);
+}
+
+.call-to-action .container {
+    background-color: #3882F6;
+    border-radius: 8px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--main-gap);
+}
+
+.call-to-action button {
+    flex: 0 0 auto;
+}
