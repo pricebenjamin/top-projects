@@ -99,6 +99,13 @@ button.sign-up {
     margin-bottom: 0;
 }
 
+.footer p {
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: #F9FAF8;
+}
+
 /* main layout */
 
  :root {
@@ -289,4 +296,9 @@ body {
 
 .call-to-action button {
     flex: 0 0 auto;
+}
+
+.footer p {
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
