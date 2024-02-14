@@ -1,0 +1,107 @@
+:root {
+    --main-color: hsl(240deg 20% 90%);
+    --main-bg-color: hsl(240deg 10% 20%);
+    --main-content-width: 85%;
+    --main-content-max-width: 1000px;
+    --main-border-radius: 15px;
+    --main-gap-size: 25px;
+    --main-padding: 20px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--main-gap-size);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--main-bg-color);
+    color: var(--main-color);
+}
+
+.title {
+    text-align: center;
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    width: var(--main-content-width);
+    max-width: var(--main-content-max-width);
+    padding-top: var(--main-padding);
+}
+
+.back-button {
+    margin-left: auto;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.link {
+    text-decoration: none;
+    color: var(--main-color);
+    padding: 10px 20px;
+    border: 1px solid var(--main-color);
+    border-radius: 5px;
+}
+
+.link:hover {
+    color: var(--main-bg-color);
+    background-color: var(--main-color);
+}
+
+.crop-container {
+    border-radius: var(--main-border-radius);
+    height: 200px;
+    width: var(--main-content-width);
+    max-width: var(--main-content-max-width);
+    overflow: hidden;
+}
+
+.crop-container img {
+    margin-top: -50%;
+    width: 100%;
+}
+
+.description {
+    width: var(--main-content-width);
+    max-width: var(--main-content-max-width);
+}
+
+h3 {
+    margin: 0;
+}
+
+.recipe {
+    width: var(--main-content-width);
+    max-width: var(--main-content-max-width);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--main-gap-size);
+}
+
+.recipe .ingredients {
+    flex: 1 0 300px;
+    border: 1px solid var(--main-color);
+    border-radius: var(--main-border-radius);
+    padding: var(--main-padding);
+    margin: 0;
+}
+
+.recipe .instructions {
+    flex: 1 1 300px;
+    border: 1px solid var(--main-color);
+    border-radius: var(--main-border-radius);
+    padding: var(--main-padding);
+}
