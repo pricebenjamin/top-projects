@@ -113,6 +113,14 @@ button.sign-up {
     border-radius: 8px;
 }
 
+.header button.sign-up {
+    border: 2px solid #3882F6;
+}
+
+.call-to-action button.sign-up {
+    border: 2px solid #F9FAF8;
+}
+
 .content .information {
     font-family: "Roboto", sans-serif;
     font-weight: 900;
