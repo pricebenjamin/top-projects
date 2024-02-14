@@ -107,6 +107,9 @@ button.sign-up {
     --main-content-max-width: 1200px;
     --main-padding: 10px;
     --main-gap: 50px;
+    --section-content-width: 70%;
+    --section-content-min-width: 620px;
+    --section-content-max-width: 1000px;
     --card-width: 165px;
     --card-gap: 40px;
     --card-border: 4px solid #3882F6;
@@ -150,6 +153,12 @@ body {
     width: var(--main-content-width);
     min-width: var(--main-content-min-width);
     max-width: var(--main-content-max-width);
+}
+
+.with-section-width {
+    width: var(--section-content-width);
+    min-width: var(--section-content-min-width);
+    max-width: var(--section-content-max-width);
 }
 
 .header .container {
@@ -222,9 +231,10 @@ body {
 }
 
 .feature .cards {
+    flex: 1 1 auto;
     display: flex;
-    justify-content: center;
-    gap: var(--card-gap);
+    justify-content: space-between;
+    width: 100%;
 }
 
 .feature .card {
