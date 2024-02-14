@@ -223,7 +223,7 @@ body {
 .hero .image {
     flex: 1 1 300px;
     height: 100%;
-    background-color: gray;
+    background-color: hsl(220deg 5% 50%);
     display: flex;
     justify-content: center;
     align-items: center;
