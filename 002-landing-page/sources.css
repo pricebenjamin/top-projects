@@ -325,6 +325,10 @@ body {
     padding-bottom: var(--content-gap);
 }
 
+.quote-attribution {
+    text-align: right;
+}
+
 .call-to-action {
     margin-bottom: var(--content-gap);
 }
