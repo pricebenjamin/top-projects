@@ -102,12 +102,12 @@ button.sign-up {
 /* main layout */
 
  :root {
-    --main-content-width: 85%;
+    --main-content-width: 85vw;
     --main-content-min-width: 620px;
     --main-content-max-width: 1200px;
     --main-padding: 10px;
     --main-gap: 50px;
-    --section-content-width: 70%;
+    --section-content-width: 65vw;
     --section-content-min-width: 620px;
     --section-content-max-width: 1000px;
     --card-width: 165px;
@@ -270,7 +270,7 @@ body {
     margin-bottom: var(--content-gap);
 }
 
-.call-to-action .container {
+.call-to-action .background {
     background-color: #3882F6;
     border-radius: 8px;
     padding-top: 50px;
@@ -279,6 +279,12 @@ body {
     justify-content: center;
     align-items: center;
     gap: var(--main-gap);
+}
+
+.call-to-action .with-section-width {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .call-to-action button {
