@@ -1,8 +1,8 @@
 main();
 
 function main() {
-    // Define valid choices
-    // Greet user, explain input criteria
+    const choices = ["rock", "paper", "scissors"];
+    greet_user();
 
     // Begin game loop
         // Generate computer's choice
@@ -13,4 +13,16 @@ function main() {
         // End user input loop
         // Determine outcome for this round
     // End game loop
+
+    function greet_user() {
+        const msg = (
+`Welcome!
+
+To play, you must type your choice when prompted then press Enter.
+The valid choices are: ${choices.join(", ")}
+
+Note: spelling matters but capitalization will be ignored.`
+        );
+        console.log(msg);
+    }
 }
