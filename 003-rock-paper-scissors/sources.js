@@ -23,9 +23,39 @@ Note: spelling matters but capitalization will be ignored.`
     function play_round() {
         const computer_choice = computer_pick_random_choice();
         const user_choice = get_user_choice();
-        // TODO: Determine outcome for this round
-        console.log(`Computer: ${computer_choice}`);
-        console.log(`User: ${user_choice}`);
+        display_winner(computer_choice, user_choice);
+    }
+
+    function display_winner(computer_choice, user_choice) {
+        const user_choice_idx = choices.findIndex(x => x === user_choice);
+        const computer_choice_idx = choices.findIndex(x => x === computer_choice);
+
+        // To determine if the user won, we lookup the result from this matrix.
+        // note: null => tied game
+
+        const user_win_matrix = [
+            // computer choice:
+            // [ rock, paper, scissors]
+            [    null, false,  true   ], // user choice: rock
+            [    true,  null, false   ], // user choice: paper
+            [   false,  true,  null   ], // user choice: scissors
+        ];
+        const user_won = user_win_matrix[user_choice_idx][computer_choice_idx];
+
+        // Win or lose, the reason can stay the same.
+        const win_or_loss_reason = {
+            1: "Paper covers rock!",
+            2: "Rock breaks scissors!",
+            3: "Scissors cuts paper!",
+        }
+        const reason = win_or_loss_reason[user_choice_idx + computer_choice_idx];
+
+        console.log(`User chose ${user_choice}`);
+        console.log(`Computer chose ${computer_choice}`);
+        console.log(
+            user_won === null ? "You tied!" :
+            (user_won ? `You won! ${reason}` : `You lost! ${reason}`)
+        );
     }
 
     function computer_pick_random_choice() {
