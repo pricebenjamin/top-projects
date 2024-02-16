@@ -6,8 +6,10 @@ function main() {
     greet_user();
 
     while (true) {
-        play_round();
-        if (!confirm("Play again?")) break;
+        const computer_choice = computer_pick_random_choice();
+        const user_choice = get_user_choice();
+        if (!user_choice) break;
+        display_winner(computer_choice, user_choice);
     }
 
     function greet_user() {
@@ -20,12 +22,6 @@ The valid choices are: ${choices.join(", ")}
 Note: spelling matters but capitalization will be ignored.`
         );
         console.log(msg);
-    }
-
-    function play_round() {
-        const computer_choice = computer_pick_random_choice();
-        const user_choice = get_user_choice();
-        display_winner(computer_choice, user_choice);
     }
 
     function display_winner(computer_choice, user_choice) {
@@ -68,6 +64,10 @@ Note: spelling matters but capitalization will be ignored.`
     function get_user_choice() {
         while (true) {
             const raw_input = prompt(`Your choice:`)
+
+            if (raw_input === null)
+                return undefined;
+
             const sanitized = raw_input.toLowerCase();
 
             // validate user input
