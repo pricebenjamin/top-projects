@@ -4,9 +4,10 @@ function main() {
     const choices = ["rock", "paper", "scissors"];
     greet_user();
 
-    // Begin game loop
+    while (true) {
         play_round();
-    // End game loop
+        if (!confirm("Play again?")) break;
+    }
 
     function greet_user() {
         const msg = (
