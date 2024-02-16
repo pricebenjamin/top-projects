@@ -1,4 +1,6 @@
-main();
+window.addEventListener("DOMContentLoaded",
+    () => main()
+);
 
 function main() {
     const choices = ["rock", "paper", "scissors"];
