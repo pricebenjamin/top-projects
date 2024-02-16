@@ -1,6 +1,5 @@
-window.addEventListener("DOMContentLoaded",
-    () => main()
-);
+const start_button = document.querySelector("button");
+start_button.addEventListener("click", main);
 
 function main() {
     const choices = ["rock", "paper", "scissors"];
