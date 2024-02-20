@@ -13,9 +13,10 @@ function play_round(user_choice) {
     }
 
     const computer_choice = computer_pick_random_choice();
-    display_winner(computer_choice, user_choice);
+    const [user_win, reason] = determine_outcome(computer_choice, user_choice);
+    display_outcome(user_win, reason);
 
-    function display_winner(computer_choice, user_choice) {
+    function determine_outcome(computer_choice, user_choice) {
         const user_choice_idx = choices.findIndex(x => x === user_choice);
         const computer_choice_idx = choices.findIndex(x => x === computer_choice);
 
@@ -38,17 +39,21 @@ function play_round(user_choice) {
             3: "Scissors cuts paper!",
         }
         const reason = win_or_loss_reason[user_choice_idx + computer_choice_idx];
+        // note: reason will be 'undefined' for ties
 
-        console.log(`User chose ${user_choice}`);
-        console.log(`Computer chose ${computer_choice}`);
-        console.log(
-            user_won === null ? "You tied!" :
-            (user_won ? `You won! ${reason}` : `You lost! ${reason}`)
-        );
+        return [user_won, reason];
     }
 
     function computer_pick_random_choice() {
         const random_idx = Math.floor(Math.random() * choices.length);
         return choices[random_idx];
+    }
+
+    function display_outcome(outcome, reason) {
+        const outcome_msg = (
+            outcome === null ? `You tied!` :
+            outcome ? `You won! ${reason}` : `You lost! ${reason}`
+        );
+        console.log(outcome_msg);
     }
 }
