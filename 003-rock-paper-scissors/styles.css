@@ -1,24 +1,38 @@
 :root {
     --main-background-color: hsl(240deg 10% 20%);
     --main-color: hsl(240deg 10% 90%);
+    --bg-lighter: hsl(240deg 10% 25%);
+    --page-min-width: 800px;
+    --content-width: 60%;
+    --large-border-radius: 10px;
+    --vertical-margin: 20px;
+}
+
+.flex,
+.flex-column {
+    display: flex;
+    align-items: center;
+}
+
+.flex-column {
+    flex-direction: column;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--main-background-color);
     color: var(--main-color);
+    min-width: var(--page-min-width);
 }
 
-kbd > kbd {
-    border-radius: 3px;
-    padding: 1px 2px 0;
-    border: 1px solid var(--main-color);
+.buttons {
+    gap: 10px;
+    width: var(--content-width);
+    margin-bottom: var(--vertical-margin);
 }
 
 button {
+    flex: 1 0 150px;
     font-size: 24px;
     padding: 5px 20px;
     background-color: var(--main-background-color);
@@ -30,4 +44,18 @@ button {
 button:hover {
     background-color: var(--main-color);
     color: var(--main-background-color);
+}
+
+.results {
+    justify-content: center;
+    background-color: var(--bg-lighter);
+    height: 100px;
+    border-radius: var(--large-border-radius);
+    width: calc(var(--content-width) + 2%);
+}
+
+.stats {
+    font-family: monospace;
+    font-weight: 300;
+    text-align: center;
 }
