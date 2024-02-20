@@ -54,7 +54,7 @@ button:hover {
     width: calc(var(--content-width) + 2%);
 }
 
-.stats {
+.round-result {
     font-family: monospace;
     font-weight: 300;
     text-align: center;
