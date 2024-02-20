@@ -2,8 +2,9 @@
     --main-background-color: hsl(240deg 10% 20%);
     --main-color: hsl(240deg 10% 90%);
     --bg-lighter: hsl(240deg 10% 25%);
-    --page-min-width: 800px;
-    --content-width: 60%;
+    --page-min-width: 450px;
+    --page-max-width: 600px;
+    --content-width: 90%;
     --large-border-radius: 10px;
     --vertical-margin: 20px;
 }
@@ -29,12 +30,13 @@ body {
     gap: 10px;
     width: var(--content-width);
     margin-bottom: var(--vertical-margin);
+    max-width: var(--page-max-width);
 }
 
 button {
-    flex: 1 0 150px;
+    flex: 1 0 120px;
     font-size: 24px;
-    padding: 5px 20px;
+    padding: 5px 0;
     background-color: var(--main-background-color);
     color: var(--main-color);
     border: 2px solid var(--main-color);
@@ -53,11 +55,13 @@ button:hover {
     border-radius: var(--large-border-radius);
     width: calc(var(--content-width) + 2%);
     margin-bottom: var(--vertical-margin);
+    max-width: var(--page-max-width);
 }
 
 .history {
     justify-content: left;
     width: var(--content-width);
+    max-width: var(--page-max-width);
 }
 
 .outcome-history {
