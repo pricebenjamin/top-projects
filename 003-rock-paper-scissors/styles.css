@@ -52,9 +52,19 @@ button:hover {
     height: 100px;
     border-radius: var(--large-border-radius);
     width: calc(var(--content-width) + 2%);
+    margin-bottom: var(--vertical-margin);
 }
 
-.round-result {
+.history {
+    justify-content: left;
+    width: var(--content-width);
+}
+
+.outcome-history {
+    margin-left: auto;
+}
+
+.monospace {
     font-family: monospace;
     font-weight: 300;
     text-align: center;

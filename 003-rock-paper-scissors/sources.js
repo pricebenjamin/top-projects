@@ -14,7 +14,9 @@ function play_round(user_choice) {
 
     const computer_choice = computer_pick_random_choice();
     const [user_win, reason] = determine_outcome(computer_choice, user_choice);
-    display_outcome(user_win, reason);
+    update_metrics(user_win);
+    update_results_display(user_win, reason);
+    update_history_display();
 
     function determine_outcome(computer_choice, user_choice) {
         const user_choice_idx = choices.findIndex(x => x === user_choice);
@@ -48,12 +50,44 @@ function play_round(user_choice) {
         const random_idx = Math.floor(Math.random() * choices.length);
         return choices[random_idx];
     }
+}
 
-    function display_outcome(outcome, reason) {
-        const outcome_msg = (
-            outcome === null ? `You tied!` :
-            outcome ? `You won! ${reason}` : `You lost! ${reason}`
-        );
-        console.log(outcome_msg);
+let played_rounds = 0;
+let user_win_counts = {
+    true: 0,
+    false: 0,
+    null: 0, // tie
+};
+
+function update_metrics(user_win) {
+    user_win_counts[user_win]++;
+    played_rounds++;
+}
+
+const round_result = document.querySelector('.round-result');
+
+function update_results_display(outcome, reason) {
+    const outcome_msg = (
+        outcome === null ? `You tied!` :
+        outcome ? `You won! ${reason}` : `You lost! ${reason}`
+    );
+    round_result.textContent = outcome_msg;
+}
+
+const round_number = document.querySelector('.round-number');
+const history = document.querySelector('.outcome-history');
+
+function update_history_display() {
+    round_number.textContent = `Round: ${played_rounds}`;
+
+    const separator = " | ";
+    history.textContent = (
+        `wins: ${pad(user_win_counts[true])}` + separator +
+        `losses: ${pad(user_win_counts[false])}` + separator +
+        `ties: ${pad(user_win_counts[null])}`
+    );
+
+    function pad(n, width=6) {
+        return n.toFixed().padStart(width);
     }
 }
