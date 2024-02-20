@@ -1,28 +1,19 @@
-const start_button = document.querySelector("button");
-start_button.addEventListener("click", main);
+const buttons = document.querySelector('.buttons');
+buttons.addEventListener('click', (e) => {
+    if (!e.target.id) return;
+    play_round(e.target.id);
+});
 
-function main() {
+function play_round(user_choice) {
     const choices = ["rock", "paper", "scissors"];
-    greet_user();
 
-    while (true) {
-        const computer_choice = computer_pick_random_choice();
-        const user_choice = get_user_choice();
-        if (!user_choice) break;
-        display_winner(computer_choice, user_choice);
+    if (!choices.includes(user_choice)) {
+        console.log(`info: invalid choice: '${user_choice}'`);
+        return;
     }
 
-    function greet_user() {
-        const msg = (
-`Welcome!
-
-To play, you must type your choice when prompted then press Enter.
-The valid choices are: ${choices.join(", ")}
-
-Note: spelling matters but capitalization will be ignored.`
-        );
-        console.log(msg);
-    }
+    const computer_choice = computer_pick_random_choice();
+    display_winner(computer_choice, user_choice);
 
     function display_winner(computer_choice, user_choice) {
         const user_choice_idx = choices.findIndex(x => x === user_choice);
@@ -59,24 +50,5 @@ Note: spelling matters but capitalization will be ignored.`
     function computer_pick_random_choice() {
         const random_idx = Math.floor(Math.random() * choices.length);
         return choices[random_idx];
-    }
-
-    function get_user_choice() {
-        while (true) {
-            const raw_input = prompt(`Your choice:`)
-
-            if (raw_input === null)
-                return undefined;
-
-            const sanitized = raw_input.toLowerCase();
-
-            // validate user input
-            if (choices.includes(sanitized)) {
-                return sanitized;
-            } else {
-                console.log(`Info: invalid choice: ${raw_input}`);
-                console.log(`valid choices: ${choices.join(", ")}`);
-            }
-        }
     }
 }
