@@ -1,0 +1,51 @@
+:root {
+    --content-width: 90%;
+    --content-max-width: 800px;
+}
+
+/* shared classes */
+.flex,
+.flex-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.managed-width {
+    width: var(--content-width);
+    max-width: var(--content-max-width);
+}
+
+.no-shrink {
+    flex-shrink: 0;
+}
+
+/* main layout */
+.page {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+    align-items: baseline;
+    gap: 50px;
+}
+
+.title {
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: 42px;
+    color: hsl(0deg 0% 20%);
+}
+
+.header .input {
+    margin-left: auto;
+}
+
+.input>input {
+    width: 6ch;
+    text-align: right;
+}
