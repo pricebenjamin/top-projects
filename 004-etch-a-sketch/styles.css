@@ -1,5 +1,5 @@
 :root {
-    --content-width: 90%;
+    --content-width: min(90vw, 90vh);
     --content-max-width: 800px;
 }
 
@@ -48,4 +48,18 @@
 .input>input {
     width: 6ch;
     text-align: right;
+}
+
+.grid {
+    height: var(--content-width); /* square grid */
+}
+
+.grid-row {
+    flex: 1 1 auto;
+    display: flex;
+    width: var(--content-width);
+}
+
+.grid-cell {
+    flex: 1 1 auto;
 }
