@@ -30,6 +30,8 @@ function createGridRow(size, row_idx) {
 grid_root.addEventListener('mouseover', decreaseBrightness);
 
 function decreaseBrightness(event) {
+    // grid cells have ids but grid root does not
+    if (!event.target.id) return;
     const init_color = (window
         .getComputedStyle(event.target)
         .getPropertyValue('background-color')
