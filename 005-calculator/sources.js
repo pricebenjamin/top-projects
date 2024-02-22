@@ -176,13 +176,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const OPERAND_PLACEHOLDER_TEXT = ' ';
     const lower_display = app_root.querySelector('#display>#lower');
+    const upper_display = app_root.querySelector('#display>#upper');
 
     function updateDisplay() {
-        const operand = calculator_state.operand_1.value.join('');
-        lower_display.textContent = (
-            operand == '' ?
-                OPERAND_PLACEHOLDER_TEXT :
-                operand
-        );
+        const a = calculator_state.operand_1.value.join('');
+        const b = calculator_state.operand_2.value.join('');
+        const operator = calculator_state.operation;
+
+        if (operator) {
+            upper_display.textContent = `${a} ${operator}`
+            lower_display.textContent = nonempty(b);
+        } else {
+            upper_display.textContent = nonempty('');
+            lower_display.textContent = nonempty(a);
+        }
+
+        function nonempty(str) {
+            return str == '' ? OPERAND_PLACEHOLDER_TEXT : str;
+        }
     }
+
 });
