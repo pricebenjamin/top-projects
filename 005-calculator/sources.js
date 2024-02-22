@@ -104,10 +104,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function applyOperatorToCalculatorState(op_char) {
-        if (op_char == 'C') {
-            clearCalculatorState();
-            return;
-        }
+        const operations = {
+            'C': clearCalculatorState,
+            '←': null,
+            '÷': null,
+            '×': null,
+            '-': null,
+            '+': null,
+            '=': null,
+        };
+        operations[op_char]?.();
     }
 
     function clearCalculatorState() {
