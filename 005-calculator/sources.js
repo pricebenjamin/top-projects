@@ -108,10 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'C': clearCalculatorState,
             '←': applyBackspace,
             '=': calculate,
-            '+': applyAddition,
-            '÷': null,
-            '×': null,
-            '-': null,
+            '+': applyOperation,
+            '-': applyOperation,
+            '÷': applyOperation,
+            '×': applyOperation,
         };
         operations[op_char]?.(op_char);
     }
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         calculator_state.operand_1 = {value, has_decimal};
     }
 
-    function applyAddition(op_char) {
+    function applyOperation(op_char) {
         if (calculator_state.operation) {
             calculate();
         }
