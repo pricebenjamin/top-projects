@@ -66,6 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // do not allow more than one decimal point
             if (operand.has_decimal) return;
             operand.has_decimal = true;
+
+            // first char should not be '.'
+            if (operand.value.length == 0) {
+                operand.value.push('0');
+            }
         }
         if (operand.value.length == MAX_OPERAND_LENGTH) {
             return;
