@@ -130,6 +130,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function calculate() {
+        if (empty(calculator_state.operand_1)) return;
+        if (empty(calculator_state.operand_2)) return;
+        if (calculator_state.operation == '') return;
+
         const a = Number(calculator_state.operand_1.value.join(''));
         const b = Number(calculator_state.operand_2.value.join(''));
         
