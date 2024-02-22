@@ -107,13 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const operations = {
             'C': clearCalculatorState,
             '←': applyBackspace,
+            '=': calculate,
+            '+': applyAddition,
             '÷': null,
             '×': null,
             '-': null,
-            '+': null,
-            '=': null,
         };
-        operations[op_char]?.();
+        operations[op_char]?.(op_char);
     }
 
     function clearCalculatorState() {
@@ -127,6 +127,39 @@ document.addEventListener('DOMContentLoaded', () => {
     function applyBackspace() {
         const operand = getActiveOperand();
         operand.value.pop();
+    }
+
+    function calculate() {
+        const a = Number(calculator_state.operand_1.value.join(''));
+        const b = Number(calculator_state.operand_2.value.join(''));
+        
+        const op_lookup = {
+            '+': (a, b) => a + b,
+            '-': (a, b) => a - b,
+            '×': (a, b) => a * b,
+            '÷': (a, b) => a / b,
+        };
+
+        const res = op_lookup[calculator_state.operation](a, b);
+        clearCalculatorState();
+        calculator_state.operand_1.value = (
+            Array.from(String(res)).splice(0, MAX_OPERAND_LENGTH)
+            // note: this will truncate very long numbers
+        );
+    }
+
+    function applyAddition(op_char) {
+        if (calculator_state.operation) {
+            calculate();
+        }
+        if (!empty(calculator_state.operand_1)) {
+            calculator_state.operation = op_char;
+        }
+    }
+
+    function empty(operand) {
+        const {value} = operand;
+        return value.join('') == '';
     }
 
     function isOperator(btn) {
