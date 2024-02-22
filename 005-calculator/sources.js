@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function applyOperatorToCalculatorState(op_char) {
         const operations = {
             'C': clearCalculatorState,
-            '←': null,
+            '←': applyBackspace,
             '÷': null,
             '×': null,
             '-': null,
@@ -122,6 +122,11 @@ document.addEventListener('DOMContentLoaded', () => {
         calculator_state.operand_1.has_decimal = false;
         calculator_state.operand_2.value = [];
         calculator_state.operand_2.has_decimal = false;
+    }
+
+    function applyBackspace() {
+        const operand = getActiveOperand();
+        operand.value.pop();
     }
 
     function isOperator(btn) {
