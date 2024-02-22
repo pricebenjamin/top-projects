@@ -146,10 +146,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const res = op_lookup[calculator_state.operation](a, b);
         clearCalculatorState();
-        calculator_state.operand_1.value = (
+        let value = (
             Array.from(String(res)).splice(0, MAX_OPERAND_LENGTH)
             // note: this will truncate very long numbers
         );
+        let has_decimal = value.includes('.');
+
+        while (has_decimal && value.at(-1) == '0') {
+            value.pop();
+        }
+
+        calculator_state.operand_1 = {value, has_decimal};
     }
 
     function applyAddition(op_char) {
