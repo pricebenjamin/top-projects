@@ -55,6 +55,10 @@ body {
     gap: var(--button-gap-size);
 }
 
+.button-row {
+    user-select: none;
+}
+
 #display,
 .button {
     font-size: var(--button-font-size);
