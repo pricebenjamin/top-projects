@@ -5,7 +5,7 @@
     --display-color: hsl(240deg 10% 80%);
     --operator-hue: 180deg;
 
-    --num-rows: 5.5;
+    --num-rows: 6.5;
     --num-cols: 4;
     --basis-qty: max(var(--num-rows), var(--num-cols));
     --basis-dimension: min(100vh, 100vw);
