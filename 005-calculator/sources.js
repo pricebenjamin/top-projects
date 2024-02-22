@@ -92,8 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lower_display = app_root.querySelector('#display>#lower');
 
     function updateDisplay() {
-        const operand = calculator_state.operand_1.value.join("");
-        const operator = calculator_state.operation;
-        lower_display.textContent = `${operand} ${operator}`;
+        const operand = calculator_state.operand_1.value.join('');
+        lower_display.textContent = operand;
     }
 });
