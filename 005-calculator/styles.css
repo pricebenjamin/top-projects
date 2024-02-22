@@ -44,7 +44,6 @@ body {
 }
 
 #root {
-    height: calc(var(--num-rows) * var(--main-size-basis));
     gap: var(--button-gap-size);
 }
 
@@ -67,7 +66,6 @@ body {
     justify-content: space-around;
     color: var(--display-color);
     background-color: var(--display-background-color);
-    height: var(--display-height);
 }
 
 .display-text {
