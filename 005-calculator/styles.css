@@ -1,0 +1,58 @@
+:root {
+    --main-color: hsl(240deg 10% 90%);
+    --main-background-color: hsl(240deg 10% 20%);
+    --main-size-basis: max(40px, min(18vh, 18vw));
+    --button-border: 2px solid var(--main-color);
+    --button-border-radius: 5px;
+    --button-size-basis: calc(0.9 * var(--main-size-basis));
+    --button-gap-size: calc(0.1 * var(--main-size-basis));
+    --button-font-size: calc(0.5 * var(--button-size-basis));
+    --num-rows: 5;
+    --num-cols: 4;
+}
+
+/* shared classes */
+.flex,
+.flex-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+/* main layout */
+body {
+    color: var(--main-color);
+    background-color: var(--main-background-color);
+    font-family: sans-serif;
+    margin: 0;
+    height: 100vh;
+    min-height: 200px;
+}
+
+#root {
+    height: calc(var(--num-rows) * var(--main-size-basis));
+}
+
+.button-row {
+    flex: 1 0 auto;
+    width: calc(var(--num-cols) * var(--main-size-basis));
+    gap: var(--button-gap-size);
+}
+
+.button {
+    flex: 1 1 var(--button-size-basis);
+    height: var(--button-size-basis);
+    font-size: var(--button-font-size);
+    font-weight: 300;
+    border: var(--button-border);
+    border-radius: var(--button-border-radius);
+}
+
+.button:hover {
+    color: var(--main-background-color);
+    background-color: var(--main-color);
+}
