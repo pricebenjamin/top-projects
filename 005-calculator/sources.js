@@ -58,12 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(calculator_state);
     }
 
+    const MAX_OPERAND_LENGTH = 12;
+
     function updateCalculatorOperands(char) {
         let operand = getActiveOperand();
         if (char == '.') {
             // do not allow more than one decimal point
             if (operand.has_decimal) return;
             operand.has_decimal = true;
+        }
+        if (operand.value.length == MAX_OPERAND_LENGTH) {
+            return;
         }
         operand.value.push(char);
     }
