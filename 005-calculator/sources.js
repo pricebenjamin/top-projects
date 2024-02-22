@@ -72,9 +72,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 operand.value.push('0');
             }
         }
+
+        if (operand.value.join('') == '0') {
+            // only allow leading zero on decimal
+            if (char != '.') {
+                operand.value.pop();
+            }
+        }
+
         if (operand.value.length == MAX_OPERAND_LENGTH) {
             return;
         }
+
         operand.value.push(char);
     }
 
