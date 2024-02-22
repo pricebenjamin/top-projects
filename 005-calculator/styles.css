@@ -3,6 +3,7 @@
     --main-background-color: hsl(240deg 10% 20%);
     --display-background-color: hsl(240deg 10% 30%);
     --display-color: hsl(240deg 10% 80%);
+    --operator-hue: 180deg;
 
     --num-rows: 5.5;
     --num-cols: 4;
@@ -76,11 +77,21 @@ body {
 
 .button {
     flex: 1 1 var(--button-size-basis);
-    border: var(--button-border);
     height: var(--button-size-basis);
 }
 
-.button:hover {
-    color: var(--main-background-color);
-    background-color: var(--main-color);
+.button.numeric {
+    border: 1px solid var(--display-background-color);
+}
+
+.button.numeric:hover {
+    background-color: var(--display-background-color);
+}
+
+.button.operator {
+    background-color: hsl(var(--operator-hue) 100% 50% / 0.1)
+}
+
+.button.operator:hover {
+    background-color: hsl(var(--operator-hue) 100% 50% / 0.2);
 }
