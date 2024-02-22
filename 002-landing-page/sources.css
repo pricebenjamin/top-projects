@@ -1,0 +1,305 @@
+/*
+ *  The following font / color specifications are provided on the project page
+ *  https://www.theodinproject.com/lessons/foundations-landing-page
+ */
+
+.header-dark-bg,
+.footer-dark-bg {
+    background-color: #1F2937;
+}
+
+.hero-main-text {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-size: 48px;
+    color: #F9FAF8;
+}
+
+.hero-secondary-text,
+.header-link-text {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: #E5E7EB;
+}
+
+.header-logo-text {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #F9FAF8;
+}
+
+button.sign-up {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #F9FAF8;
+    background-color: #3882F6;
+    padding: 8px 40px;
+    border-radius: 8px;
+}
+
+.header button.sign-up {
+    border: 2px solid #3882F6;
+}
+
+.call-to-action button.sign-up {
+    border: 2px solid #F9FAF8;
+}
+
+.content .information {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-size: 36px;
+    color: #1F2937;
+}
+
+.content .card-text {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: #1F2937;
+}
+
+.content .quote-light-bg {
+    background-color: #E5E7EB;
+}
+
+.content .quote-text {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 36px;
+    font-style: italic;
+}
+
+.content .quote-attribution {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #1F2937;
+}
+
+.call-to-action .text {
+    font-family: "Roboto", sans-serif;
+    color: #F9FAF8;
+}
+
+.call-to-action h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.call-to-action p {
+    font-size: 18px;
+    font-weight: 300;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.footer p {
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: #F9FAF8;
+}
+
+/* main layout */
+
+ :root {
+    --main-content-width: 85vw;
+    --main-content-min-width: 620px;
+    --main-content-max-width: 1200px;
+    --main-padding: 10px;
+    --main-gap: 50px;
+    --section-content-width: 65vw;
+    --section-content-min-width: 620px;
+    --section-content-max-width: 1000px;
+    --card-width: 165px;
+    --card-gap: 40px;
+    --card-border: 4px solid #3882F6;
+    --content-gap: 100px;
+ }
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.header {
+    flex: 0 0 550px;
+}
+
+.content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--content-gap);
+}
+
+.footer {
+    flex: 0 0 50px;
+    margin-top: auto;
+}
+
+/*
+ * From the design, content should be centered in the page. Extrapolating
+ * from there, I would like the content to be dynamic but have a fixed
+ * max-width.
+ */
+
+.centering {
+    display: flex;
+    justify-content: center;
+}
+
+.with-max-width {
+    width: var(--main-content-width);
+    min-width: var(--main-content-min-width);
+    max-width: var(--main-content-max-width);
+}
+
+.with-section-width {
+    width: var(--section-content-width);
+    min-width: var(--section-content-min-width);
+    max-width: var(--section-content-max-width);
+}
+
+.header .container {
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.header nav {
+    display: flex;
+    align-items: center;
+    padding-top: var(--main-padding);
+    padding-left: var(--main-padding);
+    padding-right: var(--main-padding);
+}
+
+.header ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: right;
+    gap: 20px;
+    margin-left: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.header a {
+    text-decoration: none;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    gap: var(--main-gap);
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-left: var(--main-padding);
+    padding-right: var(--main-padding);
+}
+
+.hero .text {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero button {
+    flex: 0 0 auto;
+    align-self: flex-start;
+    margin-top: 10px;
+}
+
+.hero .image {
+    flex: 1 1 300px;
+    height: 100%;
+    background-color: hsl(220deg 5% 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature .container {
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feature .cards {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.feature .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feature .card-image {
+    border: var(--card-border);
+    border-radius: 20px;
+    width: var(--card-width);
+    height: var(--card-width);
+}
+
+.feature .card-text {
+    width: var(--card-width);
+    text-align: center;
+    padding-top: var(--main-padding);
+    padding-bottom: var(--main-padding);
+}
+
+.quote .container {
+    padding-top: var(--content-gap);
+    padding-bottom: var(--content-gap);
+}
+
+.quote-attribution {
+    text-align: right;
+    padding-right: 50px;
+}
+
+.call-to-action {
+    margin-bottom: var(--content-gap);
+}
+
+.call-to-action .background {
+    background-color: #3882F6;
+    border-radius: 8px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--main-gap);
+}
+
+.call-to-action .with-section-width {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.call-to-action button {
+    flex: 0 0 auto;
+}
+
+.footer p {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
