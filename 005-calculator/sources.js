@@ -89,10 +89,15 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDisplay();
     }
 
+    const OPERAND_PLACEHOLDER_TEXT = ' ';
     const lower_display = app_root.querySelector('#display>#lower');
 
     function updateDisplay() {
         const operand = calculator_state.operand_1.value.join('');
-        lower_display.textContent = operand;
+        lower_display.textContent = (
+            operand == '' ?
+                OPERAND_PLACEHOLDER_TEXT :
+                operand
+        );
     }
 });
