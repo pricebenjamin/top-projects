@@ -55,6 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
             updateCalculatorOperands(btn.textContent);
         }
 
+        if (isOperator(btn)) {
+            applyOperatorToCalculatorState(btn.textContent);
+        }
+
         console.log(calculator_state);
     }
 
@@ -97,6 +101,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function isNumeric(btn) {
         return btn.classList.contains('numeric');
+    }
+
+    function applyOperatorToCalculatorState(op_char) {
+        if (op_char == 'C') {
+            clearCalculatorState();
+            return;
+        }
+    }
+
+    function clearCalculatorState() {
+        calculator_state.operation = '';
+        calculator_state.operand_1.value = [];
+        calculator_state.operand_1.has_decimal = false;
+        calculator_state.operand_2.value = [];
+        calculator_state.operand_2.has_decimal = false;
+    }
+
+    function isOperator(btn) {
+        return btn.classList.contains('operator');
     }
 
     function updateUserInterface() {
