@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function clickHandler(event) {
         const target = event.target;
         if (!target.classList.contains('button')) return;
-        console.log(target.textContent);
+        updateCalculatorState(target);
+        updateUserInterface();
     }
 
     function keyboardHandler(event) {
@@ -35,5 +36,59 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         return null;
+    }
+
+    const calculator_state = {
+        operand_1: {
+            value: [],
+            has_decimal: false,
+        },
+        operand_2: {
+            value: [],
+            has_decimal: false,
+        },
+        operation: '',
+    };
+
+    function updateCalculatorState(btn) {
+        if (isNumeric(btn)) {
+            updateCalculatorOperands(btn.textContent);
+        }
+
+        console.log(calculator_state);
+    }
+
+    function updateCalculatorOperands(char) {
+        let operand = getActiveOperand();
+        if (char == '.') {
+            // do not allow more than one decimal point
+            if (operand.has_decimal) return;
+            operand.has_decimal = true;
+        }
+        operand.value.push(char);
+    }
+
+    function getActiveOperand() {
+        return (
+            calculator_state.operation == '' ?
+                calculator_state.operand_1 :
+                calculator_state.operand_2
+        );
+    }
+
+    function isNumeric(btn) {
+        return btn.classList.contains('numeric');
+    }
+
+    function updateUserInterface() {
+        updateDisplay();
+    }
+
+    const lower_display = app_root.querySelector('#display>#lower');
+
+    function updateDisplay() {
+        const operand = calculator_state.operand_1.value.join("");
+        const operator = calculator_state.operation;
+        lower_display.textContent = `${operand} ${operator}`;
     }
 });
