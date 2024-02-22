@@ -67,6 +67,7 @@ body {
 #display {
     align-items: flex-end;
     justify-content: space-around;
+    font-family: "Kode Mono", monospace;
     color: var(--display-color);
     background-color: var(--display-background-color);
     border: none;
