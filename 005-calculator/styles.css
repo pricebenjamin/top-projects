@@ -66,8 +66,6 @@ body {
     align-items: flex-end;
     color: var(--display-color);
     background-color: var(--display-background-color);
-    /* double the gap between display and first button-row */
-    margin-bottom: var(--button-gap-size);
 }
 
 .display-text {
