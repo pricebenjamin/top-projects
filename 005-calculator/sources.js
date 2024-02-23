@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const app_root = document.querySelector('#root');
+    const appRoot = document.querySelector('#root');
     const buttons = document.querySelectorAll('.button');
 
-    app_root.addEventListener('click', clickHandler);
+    appRoot.addEventListener('click', clickHandler);
     document.addEventListener('keydown', keyboardHandler);
 
     function clickHandler(event) {
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function keyboardHandler(event) {
-        const translate_key = {
+        const keyMap = {
             'c': 'C',
             'Backspace': '←',
             '/': '÷',
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Enter': '=',
         };
 
-        const btn = findButtonByTextContent(translate_key[event.key] ?? event.key);
+        const btn = findButtonByTextContent(keyMap[event.key] ?? event.key);
         if (!btn) return;
 
         // redirect to click handler
@@ -38,14 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return null;
     }
 
-    const calculator_state = {
-        operand_1: {
+    const calculatorState = {
+        operandLeft: {
             value: [],
-            has_decimal: false,
+            hasDecimal: false,
         },
-        operand_2: {
+        operandRight: {
             value: [],
-            has_decimal: false,
+            hasDecimal: false,
         },
         operation: '',
     };
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             applyOperatorToCalculatorState(btn.textContent);
         }
 
-        console.log(calculator_state);
+        console.log(calculatorState);
     }
 
     const MAX_OPERAND_LENGTH = 12;
@@ -68,8 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let operand = getActiveOperand();
         if (char == '.') {
             // do not allow more than one decimal point
-            if (operand.has_decimal) return;
-            operand.has_decimal = true;
+            if (operand.hasDecimal) return;
+            operand.hasDecimal = true;
 
             // first char should not be '.'
             if (operand.value.length == 0) {
@@ -93,9 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getActiveOperand() {
         return (
-            calculator_state.operation == '' ?
-                calculator_state.operand_1 :
-                calculator_state.operand_2
+            calculatorState.operation == '' ?
+                calculatorState.operandLeft :
+                calculatorState.operandRight
         );
     }
 
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return btn.classList.contains('numeric');
     }
 
-    function applyOperatorToCalculatorState(op_char) {
+    function applyOperatorToCalculatorState(opChar) {
         const operations = {
             'C': clearCalculatorState,
             '←': applyBackspace,
@@ -113,15 +113,15 @@ document.addEventListener('DOMContentLoaded', () => {
             '÷': applyOperation,
             '×': applyOperation,
         };
-        operations[op_char]?.(op_char);
+        operations[opChar]?.(opChar);
     }
 
     function clearCalculatorState() {
-        calculator_state.operation = '';
-        calculator_state.operand_1.value = [];
-        calculator_state.operand_1.has_decimal = false;
-        calculator_state.operand_2.value = [];
-        calculator_state.operand_2.has_decimal = false;
+        calculatorState.operation = '';
+        calculatorState.operandLeft.value = [];
+        calculatorState.operandLeft.hasDecimal = false;
+        calculatorState.operandRight.value = [];
+        calculatorState.operandRight.hasDecimal = false;
     }
 
     function applyBackspace() {
@@ -130,41 +130,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function calculate() {
-        if (empty(calculator_state.operand_1)) return;
-        if (empty(calculator_state.operand_2)) return;
-        if (calculator_state.operation == '') return;
+        if (empty(calculatorState.operandLeft)) return;
+        if (empty(calculatorState.operandRight)) return;
+        if (calculatorState.operation == '') return;
 
-        const a = Number(calculator_state.operand_1.value.join(''));
-        const b = Number(calculator_state.operand_2.value.join(''));
+        const a = Number(calculatorState.operandLeft.value.join(''));
+        const b = Number(calculatorState.operandRight.value.join(''));
         
-        const op_lookup = {
+        const opLookup = {
             '+': (a, b) => a + b,
             '-': (a, b) => a - b,
             '×': (a, b) => a * b,
             '÷': (a, b) => a / b,
         };
 
-        const res = op_lookup[calculator_state.operation](a, b);
+        const res = opLookup[calculatorState.operation](a, b);
         clearCalculatorState();
         let value = (
             Array.from(String(res)).splice(0, MAX_OPERAND_LENGTH)
             // note: this will truncate very long numbers
         );
-        let has_decimal = value.includes('.');
+        let hasDecimal = value.includes('.');
 
-        while (has_decimal && value.at(-1) == '0') {
+        while (hasDecimal && value.at(-1) == '0') {
             value.pop();
         }
 
-        calculator_state.operand_1 = {value, has_decimal};
+        calculatorState.operandLeft = {value, hasDecimal};
     }
 
-    function applyOperation(op_char) {
-        if (calculator_state.operation) {
+    function applyOperation(opChar) {
+        if (calculatorState.operation) {
             calculate();
         }
-        if (!empty(calculator_state.operand_1)) {
-            calculator_state.operation = op_char;
+        if (!empty(calculatorState.operandLeft)) {
+            calculatorState.operation = opChar;
         }
     }
 
@@ -182,20 +182,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const OPERAND_PLACEHOLDER_TEXT = ' ';
-    const lower_display = app_root.querySelector('#display>#lower');
-    const upper_display = app_root.querySelector('#display>#upper');
+    const lowerDisplay = appRoot.querySelector('#display>#lower');
+    const upperDisplay = appRoot.querySelector('#display>#upper');
 
     function updateDisplay() {
-        const a = calculator_state.operand_1.value.join('');
-        const b = calculator_state.operand_2.value.join('');
-        const operator = calculator_state.operation;
+        const a = calculatorState.operandLeft.value.join('');
+        const b = calculatorState.operandRight.value.join('');
+        const operator = calculatorState.operation;
 
         if (operator) {
-            upper_display.textContent = `${a} ${operator}`
-            lower_display.textContent = nonempty(b);
+            upperDisplay.textContent = `${a} ${operator}`
+            lowerDisplay.textContent = nonempty(b);
         } else {
-            upper_display.textContent = nonempty('');
-            lower_display.textContent = nonempty(a);
+            upperDisplay.textContent = nonempty('');
+            lowerDisplay.textContent = nonempty(a);
         }
 
         function nonempty(str) {
