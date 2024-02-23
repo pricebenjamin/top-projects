@@ -87,6 +87,7 @@ body {
     border: 1px solid var(--display-background-color);
 }
 
+.button.numeric.hover,
 .button.numeric:hover {
     background-color: var(--display-background-color);
 }
@@ -95,6 +96,7 @@ body {
     background-color: hsl(var(--operator-hue) 100% 50% / 0.1)
 }
 
+.button.operator.hover,
 .button.operator:hover {
     background-color: hsl(var(--operator-hue) 100% 50% / 0.2);
 }

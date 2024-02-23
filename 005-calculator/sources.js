@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     appRoot.addEventListener('click', clickHandler);
     document.addEventListener('keydown', keyboardHandler);
+    document.addEventListener('keydown', simulateHover);
+    document.addEventListener('keyup', simulateHover);
 
     function clickHandler(event) {
         const target = event.target;
@@ -13,6 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function keyboardHandler(event) {
+        const btn = buttonFilter(event);
+        if (!btn) return;
+
+        // redirect to click handler
+        btn.click();
+    }
+
+    function simulateHover(event) {
+        const btn = buttonFilter(event);
+        if (!btn) return;
+        btn.classList.toggle('hover');
+    }
+
+    function buttonFilter(event) {
         const keyMap = {
             'c': 'C',
             'Backspace': '←',
@@ -22,11 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Enter': '=',
         };
 
-        const btn = findButtonByTextContent(keyMap[event.key] ?? event.key);
-        if (!btn) return;
-
-        // redirect to click handler
-        btn.click();
+        return findButtonByTextContent(keyMap[event.key] ?? event.key);
     }
 
     function findButtonByTextContent(content) {
