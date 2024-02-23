@@ -55,14 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const calculatorState = {
-        operandLeft: {
-            value: [],
-            hasDecimal: false,
-        },
-        operandRight: {
-            value: [],
-            hasDecimal: false,
-        },
+        operandLeft: [],
+        operandRight: [],
         operation: '',
     };
 
@@ -82,29 +76,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateCalculatorOperands(char) {
         let operand = getActiveOperand();
-        if (char == '.') {
+        if (char == '.' && operand.includes('.')) {
             // do not allow more than one decimal point
-            if (operand.hasDecimal) return;
-            operand.hasDecimal = true;
-
-            // first char should not be '.'
-            if (operand.value.length == 0) {
-                operand.value.push('0');
-            }
-        }
-
-        if (operand.value.join('') == '0') {
-            // only allow leading zero on decimal
-            if (char != '.') {
-                operand.value.pop();
-            }
-        }
-
-        if (operand.value.length == MAX_OPERAND_LENGTH) {
             return;
         }
 
-        operand.value.push(char);
+        if (char == '.' && operand.length == 0) {
+            // leading char should not be '.'
+            operand.push('0');
+        }
+
+        if (operand.join('') == '0' && char != '.') {
+            // only allow leading zero on decimal
+            operand.pop();
+        }
+
+        if (operand.length == MAX_OPERAND_LENGTH) {
+            return;
+        }
+
+        operand.push(char);
     }
 
     function getActiveOperand() {
@@ -134,24 +125,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function clearCalculatorState() {
         calculatorState.operation = '';
-        calculatorState.operandLeft.value = [];
-        calculatorState.operandLeft.hasDecimal = false;
-        calculatorState.operandRight.value = [];
-        calculatorState.operandRight.hasDecimal = false;
+        calculatorState.operandLeft = [];
+        calculatorState.operandRight = [];
     }
 
     function applyBackspace() {
         const operand = getActiveOperand();
-        operand.value.pop();
+        operand.pop();
     }
 
     function calculate() {
-        if (empty(calculatorState.operandLeft)) return;
-        if (empty(calculatorState.operandRight)) return;
+        if (calculatorState.operandLeft.length == 0) return;
+        if (calculatorState.operandRight.length == 0) return;
         if (calculatorState.operation == '') return;
 
-        const a = Number(calculatorState.operandLeft.value.join(''));
-        const b = Number(calculatorState.operandRight.value.join(''));
+        const a = Number(calculatorState.operandLeft.join(''));
+        const b = Number(calculatorState.operandRight.join(''));
         
         const opLookup = {
             '+': (a, b) => a + b,
@@ -166,27 +155,24 @@ document.addEventListener('DOMContentLoaded', () => {
             Array.from(String(res)).splice(0, MAX_OPERAND_LENGTH)
             // note: this will truncate very long numbers
         );
-        let hasDecimal = value.includes('.');
 
-        while (hasDecimal && value.at(-1) == '0') {
-            value.pop();
+        // if decimal number, strip trailing zeros
+        if (value.includes('.')) {
+            while (value.at(-1) == '0') {
+                value.pop();
+            }
         }
 
-        calculatorState.operandLeft = {value, hasDecimal};
+        calculatorState.operandLeft = value;
     }
 
     function applyOperation(opChar) {
         if (calculatorState.operation) {
             calculate();
         }
-        if (!empty(calculatorState.operandLeft)) {
+        if (calculatorState.operandLeft.length != 0) {
             calculatorState.operation = opChar;
         }
-    }
-
-    function empty(operand) {
-        const {value} = operand;
-        return value.join('') == '';
     }
 
     function isOperator(btn) {
@@ -202,8 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const upperDisplay = appRoot.querySelector('#display>#upper');
 
     function updateDisplay() {
-        const a = calculatorState.operandLeft.value.join('');
-        const b = calculatorState.operandRight.value.join('');
+        const a = calculatorState.operandLeft.join('');
+        const b = calculatorState.operandRight.join('');
         const operator = calculatorState.operation;
 
         if (operator) {
