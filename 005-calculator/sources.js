@@ -25,7 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function simulateHover(event) {
         const btn = buttonFilter(event);
         if (!btn) return;
-        btn.classList.toggle('hover');
+        if (event.type == 'keydown') {
+            btn.classList.add('hover');
+        } else if (event.type == 'keyup') {
+            btn.classList.remove('hover');
+        }
     }
 
     function buttonFilter(event) {
