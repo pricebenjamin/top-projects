@@ -149,21 +149,26 @@ document.addEventListener('DOMContentLoaded', () => {
             '÷': (a, b) => a / b,
         };
 
-        const res = opLookup[calculatorState.operation](a, b);
-        clearCalculatorState();
-        let value = (
-            Array.from(String(res)).splice(0, MAX_OPERAND_LENGTH)
-            // note: this will truncate very long numbers
-        );
+        let result = opLookup[calculatorState.operation](a, b);
+        const resultStr = createStringToFitDisplay(result);
 
-        // if decimal number, strip trailing zeros
-        if (value.includes('.')) {
-            while (value.at(-1) == '0') {
-                value.pop();
+        clearCalculatorState();
+        calculatorState.operandLeft = resultStr.split('');
+    }
+
+    function createStringToFitDisplay(result) {
+        let resultStr = result.toString();
+
+        if (resultStr.length > MAX_OPERAND_LENGTH) {
+            resultStr = result.toExponential(MAX_OPERAND_LENGTH);
+
+            const overflow = resultStr.length - MAX_OPERAND_LENGTH;
+            if (overflow > 0) {
+                resultStr = result.toExponential(MAX_OPERAND_LENGTH - overflow);
             }
         }
 
-        calculatorState.operandLeft = value;
+        return resultStr;
     }
 
     function applyOperation(opChar) {
