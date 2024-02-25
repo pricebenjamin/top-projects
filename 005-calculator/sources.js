@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         operandLeft: [],
         operandRight: [],
         operation: '',
+        isFinished: false,
     };
 
     function updateCalculatorState(btn) {
@@ -75,6 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const MAX_OPERAND_LENGTH = 12;
 
     function updateCalculatorOperands(char) {
+        if (calculatorState.isFinished) {
+            clearCalculatorState();
+        }
+
         let operand = getActiveOperand();
         if (char == '.' && operand.includes('.')) {
             // do not allow more than one decimal point
@@ -124,12 +129,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function clearCalculatorState() {
-        calculatorState.operation = '';
         calculatorState.operandLeft = [];
         calculatorState.operandRight = [];
+        calculatorState.operation = '';
+        calculatorState.isFinished = false;
     }
 
     function applyBackspace() {
+        if (calculatorState.isFinished) {
+            clearCalculatorState();
+        }
         const operand = getActiveOperand();
         operand.pop();
     }
@@ -154,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         clearCalculatorState();
         calculatorState.operandLeft = resultStr.split('');
+        calculatorState.isFinished = true;
     }
 
     function createStringToFitDisplay(result) {
@@ -177,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (calculatorState.operandLeft.length != 0) {
             calculatorState.operation = opChar;
+            calculatorState.isFinished = false;
         }
     }
 
