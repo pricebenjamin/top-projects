@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     appRoot.addEventListener('click', clickHandler);
     document.addEventListener('keydown', keyboardHandler);
     document.addEventListener('keydown', simulateHover);
-    document.addEventListener('keyup', simulateHover);
 
     function clickHandler(event) {
         const target = event.target;
@@ -24,14 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.click();
     }
 
+    const buttonTimers = {};
+    const SIMULATED_HOVER_DELAY_MS = 100;
+
     function simulateHover(event) {
         const btn = buttonFilter(event);
         if (!btn) return;
-        if (event.type == 'keydown') {
-            btn.classList.add('hover');
-        } else if (event.type == 'keyup') {
-            btn.classList.remove('hover');
+
+        btn.classList.add('hover');
+        if (buttonTimers[event.key]) {
+            clearTimeout(buttonTimers[event.key]);
         }
+        buttonTimers[event.key] = setTimeout(() => {
+            btn.classList.remove('hover');
+        }, SIMULATED_HOVER_DELAY_MS);
     }
 
     function buttonFilter(event) {
