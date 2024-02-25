@@ -1,3 +1,5 @@
+let DEBUG_MODE = false;
+
 document.addEventListener('DOMContentLoaded', () => {
     const appRoot = document.querySelector('#root');
     const buttons = document.querySelectorAll('.button');
@@ -70,7 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
             applyOperatorToCalculatorState(btn.textContent);
         }
 
-        console.log(calculatorState);
+        if (DEBUG_MODE) {
+            console.log(calculatorState);
+        }
     }
 
     const MAX_OPERAND_LENGTH = 12;
