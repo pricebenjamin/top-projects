@@ -73,7 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (DEBUG_MODE) {
-            console.log(calculatorState);
+            console.table({
+                isFinished: calculatorState.isFinished,
+                left: calculatorState.operandLeft.join(''),
+                operator: calculatorState.operation,
+                right: calculatorState.operandRight.join(''),
+            });
         }
     }
 
