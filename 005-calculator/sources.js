@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '÷': (a, b) => a / b,
         };
 
-        let result = opLookup[calculatorState.operation](a, b);
+        const result = opLookup[calculatorState.operation](a, b);
         const resultStr = createStringToFitDisplay(result);
 
         clearCalculatorState();
