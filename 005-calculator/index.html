@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <!-- Kode Mono font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./sources.js" defer></script>
+</head>
+<body class="flex">
+    <div class="flex-column" id="root">
+        <div class="flex-column" id="display">
+            <pre class="display-text" id="upper"> </pre>
+            <pre class="display-text" id="lower"> </pre>
+        </div>
+        <div class="button-row flex">
+            <div class="button flex operator" id="clear">C</div>
+            <div class="button flex operator" id="backspace">←</div>
+        </div>
+        <div class="button-row flex">
+            <div class="button flex numeric" id="seven">7</div>
+            <div class="button flex numeric" id="eight">8</div>
+            <div class="button flex numeric" id="nine">9</div>
+            <div class="button flex operator" id="divide">÷</div>
+        </div>
+        <div class="button-row flex">
+            <div class="button flex numeric" id="four">4</div>
+            <div class="button flex numeric" id="five">5</div>
+            <div class="button flex numeric" id="six">6</div>
+            <div class="button flex operator" id="multiply">×</div>
+        </div>
+        <div class="button-row flex">
+            <div class="button flex numeric" id="one">1</div>
+            <div class="button flex numeric" id="two">2</div>
+            <div class="button flex numeric" id="three">3</div>
+            <div class="button flex operator" id="subtract">-</div>
+        </div>
+        <div class="button-row flex">
+            <div class="button flex operator" id="equals">=</div>
+            <div class="button flex numeric" id="zero">0</div>
+            <div class="button flex numeric" id="decimal">.</div>
+            <div class="button flex operator" id="add">+</div>
+        </div>
+    </div>
+</body>
+</html>
