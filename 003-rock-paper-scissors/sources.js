@@ -14,6 +14,7 @@ function play_round(user_choice) {
 
     const computer_choice = computer_pick_random_choice();
     const [user_win, reason] = determine_outcome(computer_choice, user_choice);
+
     update_metrics(user_win);
     update_results_display(user_win, reason);
     update_history_display();
