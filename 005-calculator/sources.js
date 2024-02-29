@@ -80,9 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateCalculatorState(btn) {
         if (isNumeric(btn)) {
             updateCalculatorOperands(btn.textContent);
-        }
-
-        if (isOperator(btn)) {
+        } else if (isOperator(btn)) {
             applyOperatorToCalculatorState(btn.textContent);
         }
 
