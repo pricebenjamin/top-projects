@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch-a-sketch</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./sources.js" defer></script>
+</head>
+<body>
+    <div class="page flex-column">
+        <div class="header flex managed-width">
+            <div class="title no-shrink">Etch-a-sketch</div>
+            <div class="input no-shrink">
+                <label for="grid-size">Grid size:</label>
+                <input type="number" name="grid-size" id="grid-size"
+                    min="10" max="100" value="10">
+            </div>
+        </div>
+        <div class="grid flex-column"></div>
+    </div>
+</body>
+</html>
