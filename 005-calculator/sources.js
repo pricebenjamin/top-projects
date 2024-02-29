@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function keyboardHandler(event) {
-        const btn = buttonFilter(event);
+        const btn = getButtonByKey(event.key);
         if (!btn) return;
 
         // redirect to click handler
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const SIMULATED_HOVER_DELAY_MS = 100;
 
     function simulateHover(event) {
-        const btn = buttonFilter(event);
+        const btn = getButtonByKey(event.key);
         if (!btn) return;
 
         btn.classList.add('hover');
@@ -39,26 +39,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }, SIMULATED_HOVER_DELAY_MS);
     }
 
-    function buttonFilter(event) {
-        const keyMap = {
-            'c': 'C',
-            'Backspace': '←',
-            '/': '÷',
-            'x': '×',
-            '*': '×',
-            'Enter': '=',
-        };
-
-        return findButtonByTextContent(keyMap[event.key] ?? event.key);
+    const keyToID = {
+        'c': '#clear',
+        'C': '#clear',
+        'Backspace': '#backspace',
+        '/': '#divide',
+        '*': '#multiply',
+        'x': '#multiply',
+        '-': '#subtract',
+        '+': '#add',
+        '=': '#equals',
+        'Enter': '#equals',
+        '0': '#zero',
+        '1': '#one',
+        '2': '#two',
+        '3': '#three',
+        '4': '#four',
+        '5': '#five',
+        '6': '#six',
+        '7': '#seven',
+        '8': '#eight',
+        '9': '#nine',
+        '.': '#decimal',
     }
 
-    function findButtonByTextContent(content) {
-        for (const btn of buttons) {
-            if (btn.textContent == content) {
-                return btn;
-            }
-        }
-        return null;
+    function getButtonByKey(key) {
+        const elementID = keyToID[key];
+        return (
+            elementID ? document.querySelector(elementID) : null
+        );
     }
 
     const calculatorState = {
