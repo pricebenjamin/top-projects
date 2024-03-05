@@ -16,8 +16,8 @@
     --content-font-weight: 500;
     --content-box-shadow: 0 4px 4px lightgray;
     --submit-button-background-color: #596D48;
-    --submit-button-background-color-hover: #6D815B;
-    --submit-button-background-color-active: #495C38;
+    --submit-button-background-color-on-hover: #6D815B;
+    --submit-button-background-color-on-active: #495C38;
     --input-border-color-on-focus: #1D4ED8;
 }
 
@@ -174,12 +174,12 @@ form > button[type="submit"] {
 }
 
 form > button[type="submit"]:hover {
-    background-color: var(--submit-button-background-color-hover);
+    background-color: var(--submit-button-background-color-on-hover);
     cursor: pointer;
 }
 
 form > button[type="submit"]:active {
-    background-color: var(--submit-button-background-color-active);
+    background-color: var(--submit-button-background-color-on-active);
 }
 
 .content-container > p {
@@ -194,9 +194,9 @@ form > button[type="submit"]:active {
 }
 
 .content-container > p a:hover {
-    color: var(--submit-button-background-color-hover);
+    color: var(--submit-button-background-color-on-hover);
 }
 
 .content-container > p a:active {
-    color: var(--submit-button-background-color-active);
+    color: var(--submit-button-background-color-on-active);
 }
