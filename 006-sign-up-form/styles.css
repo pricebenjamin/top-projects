@@ -19,6 +19,7 @@
     --submit-button-background-color-on-hover: #6D815B;
     --submit-button-background-color-on-active: #495C38;
     --input-border-color-on-focus: #1D4ED8;
+    --input-border-color-on-invalid: #B91C1C;
 }
 
 * {
@@ -160,6 +161,10 @@ form > button[type="submit"] {
     outline: none; /* remove default focus behavior */
     border: 1px solid var(--input-border-color-on-focus);
     box-shadow: var(--content-box-shadow);
+}
+
+.input-card input:invalid {
+    border: 1px solid var(--input-border-color-on-invalid);
 }
 
 form > button[type="submit"] {
