@@ -10,6 +10,11 @@
     --odin-banner-logo-height: 13vh;
     --content-background-white: #F9FAFB;
     --image-attribution-font-color: rgba(255, 255, 255, 0.8);
+    --content-section-margin-left: 3vw;
+    --content-section-margin-right: 10vw;
+    --content-font-stack: "Roboto", sans-serif;
+    --content-font-size: 1.2rem;
+    --content-font-weight: 500;
 }
 
 body {
@@ -59,7 +64,7 @@ body {
 .logo-container .image-attribution {
     margin-top: auto;
     color: var(--image-attribution-font-color);
-    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-family: var(--content-font-stack);
     font-size: 0.7rem;
     text-align: center;
 }
@@ -73,4 +78,20 @@ body {
     background-color: var(--content-background-white);
     height: 100vh;
     width: 60vw;
+    font-family: var(--content-font-stack);
+    font-size: var(--content-font-size);
+    font-weight: var(--content-font-weight);
+}
+
+.content-container .call-to-action {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: calc(var(--odin-banner-margin-top) + var(--odin-banner-height));
+}
+
+.call-to-action .text-content {
+    margin-bottom: 2rem;
+    margin-left: var(--content-section-margin-left);
+    margin-right: var(--content-section-margin-right);
 }
