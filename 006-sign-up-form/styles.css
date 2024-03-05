@@ -10,16 +10,22 @@
     --odin-banner-logo-height: 13vh;
     --content-background-white: #F9FAFB;
     --image-attribution-font-color: rgba(255, 255, 255, 0.8);
-    --content-section-margin-left: 3vw;
-    --content-section-margin-right: 10vw;
+    --content-padding-left: 5rch;
     --content-font-stack: "Roboto", sans-serif;
     --content-font-size: 1.2rem;
     --content-font-weight: 500;
+    --content-box-shadow: 0 4px 4px lightgray;
+    --submit-button-background-color: #596D48;
+    --submit-button-background-color-hover: #6D815B;
+    --submit-button-background-color-active: #495C38;
+}
+
+* {
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
-    padding: 0;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -37,6 +43,7 @@ body {
     background-position: center;
     height: 100vh;
     width: 40vw;
+    min-width: 300px;
 }
 
 .logo-container .odin-text {
@@ -50,8 +57,6 @@ body {
 }
 
 .logo-container h1 {
-    margin: 0;
-    padding: 0;
     font-family: "Norse Bold";
     font-size: var(--odin-banner-font-size);
     text-align: center;
@@ -78,6 +83,7 @@ body {
     background-color: var(--content-background-white);
     height: 100vh;
     width: 60vw;
+    min-width: 600px;
     font-family: var(--content-font-stack);
     font-size: var(--content-font-size);
     font-weight: var(--content-font-weight);
@@ -91,7 +97,99 @@ body {
 }
 
 .call-to-action .text-content {
-    margin-bottom: 2rem;
-    margin-left: var(--content-section-margin-left);
-    margin-right: var(--content-section-margin-right);
+    margin: 0 var(--content-padding-left);
+    min-width: 40rch;
+    max-width: 70rch;
+}
+
+.call-to-action .text-content > p:last-child {
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.content-container .input-card {
+    background-color: white;
+    box-shadow: var(--content-box-shadow);
+    padding: 1rem var(--content-padding-left);
+}
+
+.input-card > * {
+    margin-bottom: 1rem;
+}
+
+.input-card .input-row {
+    display: flex;
+    gap: calc(1.5 * var(--content-padding-left));
+}
+
+.input-card .input-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+}
+
+
+.input-card label,
+.input-card input,
+form > button[type="submit"] {
+    appearance: none;
+    font: inherit;
+}
+
+.input-card label {
+    color: #222;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.2rch;
+    text-transform: uppercase;
+}
+
+.input-card input {
+    color: black;
+    font-size: 0.8rem;
+    font-weight: 400;
+    padding: 5px 7px;
+    border: 1px solid #EAEAEA;
+    border-radius: 3px;
+    width: 25rch;
+}
+
+form > button[type="submit"] {
+    background-color: var(--submit-button-background-color);
+    color: white;
+    font-size: 0.9rem;
+    padding: 0.6rem 5rch;
+    border: none;
+    border-radius: 5px;
+    margin: 2rem var(--content-padding-left);
+    box-shadow: var(--content-box-shadow);
+}
+
+form > button[type="submit"]:hover {
+    background-color: var(--submit-button-background-color-hover);
+    cursor: pointer;
+}
+
+form > button[type="submit"]:active {
+    background-color: var(--submit-button-background-color-active);
+}
+
+.content-container > p {
+    padding-left: var(--content-padding-left);
+    font-size: 0.9rem;
+}
+
+.content-container > p a {
+    text-decoration: none;
+    color: var(--submit-button-background-color);
+    font-weight: bold;
+}
+
+.content-container > p a:hover {
+    color: var(--submit-button-background-color-hover);
+}
+
+.content-container > p a:active {
+    color: var(--submit-button-background-color-active);
 }
