@@ -10,7 +10,7 @@
     --odin-banner-logo-height: 13vh;
     --content-background-white: #F9FAFB;
     --image-attribution-font-color: rgba(255, 255, 255, 0.8);
-    --content-padding-left: 5rch;
+    --content-padding-left: 2.5rem;
     --content-font-stack: "Roboto", sans-serif;
     --content-font-size: 1.2rem;
     --content-font-weight: 500;
@@ -100,8 +100,8 @@ body {
 
 .call-to-action .text-content {
     margin: 0 var(--content-padding-left);
-    min-width: 40rch;
-    max-width: 70rch;
+    min-width: 30ch;
+    max-width: 50ch;
 }
 
 .call-to-action .text-content > p:last-child {
@@ -144,7 +144,7 @@ form > button[type="submit"] {
     color: #222;
     font-size: 0.6rem;
     font-weight: 600;
-    letter-spacing: 0.2rch;
+    letter-spacing: 1px;
     text-transform: uppercase;
 }
 
@@ -155,7 +155,7 @@ form > button[type="submit"] {
     padding: 5px 7px;
     border: 1px solid #EAEAEA;
     border-radius: 3px;
-    width: 25rch;
+    width: 30ch;
 }
 
 .input-card input:focus {
@@ -182,7 +182,7 @@ form > button[type="submit"] {
     background-color: var(--submit-button-background-color);
     color: white;
     font-size: 0.9rem;
-    padding: 0.6rem 5rch;
+    padding: 0.6rem 5ch;
     border: none;
     border-radius: 5px;
     margin: 2rem var(--content-padding-left);
