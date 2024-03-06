@@ -8,8 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageDiv = document.querySelector('#passwords-do-not-match');
 
     form.addEventListener('submit', (event) => {
-        if (password.value !== passwordConfirm.value) {
-            event.preventDefault();
+        event.preventDefault();  // do not submit the form
+        if (password.value === passwordConfirm.value) {
+            const data = Object.fromEntries(new FormData(form));
+            data.timestamp = Date.now();  // add some data that changes on every submission
+
+            console.table(data);
+            resetForm();
         }
     });
 
@@ -20,6 +25,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     password.addEventListener('input', displayPasswordMismatch);
     passwordConfirm.addEventListener('input', displayPasswordMismatch);
+
+    function resetForm() {
+        form.reset();
+        document.querySelectorAll('input').forEach(
+            (inputElement) => {
+                inputElement.classList.remove(TOUCHED_CLASS);
+                inputElement.classList.remove(INVALID_CLASS);
+            }
+        );
+    }
 
     function displayPasswordMismatch() {
         if (
