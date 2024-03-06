@@ -125,6 +125,7 @@ body {
 }
 
 .input-card .input-stack {
+    position: relative; /* used only by password input */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -163,8 +164,18 @@ form > button[type="submit"] {
     box-shadow: var(--content-box-shadow);
 }
 
-.input-card input:invalid {
+/* only display as invalid if element has been interacted with */
+/* note: 'touched' class is added by JavaScript */
+.input-card input.touched.invalid,
+.input-card input.touched:invalid {
     border: 1px solid var(--input-border-color-on-invalid);
+}
+
+#passwords-do-not-match {
+    position: absolute;
+    bottom: -0.9rem;
+    font-size: 0.6rem;
+    color: red;
 }
 
 form > button[type="submit"] {
