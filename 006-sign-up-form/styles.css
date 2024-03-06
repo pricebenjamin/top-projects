@@ -4,10 +4,10 @@
 }
 
 :root {
-    --odin-banner-height: 15vh;
+    --odin-banner-height: clamp(6rem, 15vh, 8rem);
     --odin-banner-margin-top: 22vh;
-    --odin-banner-font-size: 10vh;
-    --odin-banner-logo-height: 13vh;
+    --odin-banner-font-size: calc(0.8 * var(--odin-banner-height));
+    --odin-banner-logo-height: calc(0.9 * var(--odin-banner-height));
     --content-background-white: #F9FAFB;
     --image-attribution-font-color: rgba(255, 255, 255, 0.8);
     --content-padding-left: 2.5rem;
