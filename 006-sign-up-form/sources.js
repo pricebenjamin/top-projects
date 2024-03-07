@@ -37,19 +37,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayPasswordMismatch() {
-        if (
+        const touched = (
             password.classList.contains(TOUCHED_CLASS)
             && passwordConfirm.classList.contains(TOUCHED_CLASS)
-        ) {
-            if (password.value !== passwordConfirm.value) {
-                messageDiv.textContent = "* Passwords do not match";
-                password.classList.add(INVALID_CLASS);
-                passwordConfirm.classList.add(INVALID_CLASS);
-            } else {
-                messageDiv.textContent = "";
-                password.classList.remove(INVALID_CLASS);
-                passwordConfirm.classList.remove(INVALID_CLASS);
-            }
+        );
+
+        if (!touched) return;
+
+        if (password.value !== passwordConfirm.value) {
+            messageDiv.textContent = "* Passwords do not match";
+            password.classList.add(INVALID_CLASS);
+            passwordConfirm.classList.add(INVALID_CLASS);
+        } else {
+            messageDiv.textContent = "";
+            password.classList.remove(INVALID_CLASS);
+            passwordConfirm.classList.remove(INVALID_CLASS);
         }
     }
 });
