@@ -1,0 +1,60 @@
+:root {
+    --main-color: hsl(240deg 10% 90%);
+    --main-background-color: hsl(240deg 10% 20%);
+    --hover-background: hsl(240deg 10% 30%);
+
+    --content-width: 90vw;
+    --content-max-width: 500px;
+
+    --title-margin-bottom: 30px;
+    --main-gap-size: 10px;
+}
+
+/* shared classes */
+.flex,
+.flex-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.managed-width {
+    width: var(--content-width);
+    max-width: var(--content-max-width);
+}
+
+/* main layout */
+body {
+    color: var(--main-color);
+    background-color: var(--main-background-color);
+    font-family: sans-serif;
+}
+
+.title {
+    font-size: 32px;
+    margin-bottom: var(--title-margin-bottom);
+}
+
+.links {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--main-gap-size);
+}
+
+a {
+    flex: 1 0 auto;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 10px;
+    color: var(--main-color);
+    border: 1px solid var(--main-color);
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: var(--hover-background);
+}
