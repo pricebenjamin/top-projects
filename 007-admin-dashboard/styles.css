@@ -1,0 +1,82 @@
+:root {
+    --sidebar-background-color: #3E91D2;
+    --header-background-color: #FFFFFF;
+    --content-background-color: #E3E8F0;
+    --accent-color: #E9B636;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 6fr;
+    height: 100vh;
+}
+
+.sidebar {
+    background-color: var(--sidebar-background-color);
+    color: var(--header-background-color);
+    grid-row: 1 / -1;
+    grid-column: 1;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.sidebar .logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sidebar .logo img {
+    height: 50px;
+}
+
+.sidebar .logo p {
+    font-size: 1.7rem;
+    font-weight: 500;
+}
+
+.sidebar ul {
+    list-style: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.sidebar ul li {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    padding: 4px 0;
+}
+
+.sidebar ul .icon {
+    height: 1.5rem;
+}
+
+.header {
+    background-color: var(--header-background-color);
+    grid-row: 1;
+    grid-column: 2 / -1;
+}
+
+.content {
+    background-color: var(--content-background-color);
+}
+
+.icon {
+    /* Convert black svg fill to white */
+    filter: invert(100%);
+}
