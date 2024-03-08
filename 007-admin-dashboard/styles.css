@@ -175,6 +175,54 @@ body {
 
 .content {
     background-color: var(--content-background-color);
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 1rem;
+    padding: 0 1rem;
+    padding-bottom: 1rem;
+}
+
+.content h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+}
+
+.content > * {
+    display: flex;
+    flex-direction: column;
+}
+
+.content .projects {
+    grid-row: 1 / -1;
+    grid-column: 1;
+}
+
+.content .announcements {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.content .trending {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+.content .card-container {
+    flex: 1 1 auto;
+}
+
+.content .projects .card-container {
+    background-color: lightcoral;
+}
+
+.content .announcements .card-container {
+    background-color: lightblue;
+}
+
+.content .trending .card-container {
+    background-color: lightseagreen;
 }
 
 img.icon {
