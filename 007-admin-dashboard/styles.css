@@ -37,10 +37,11 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    gap: 1rem;
 }
 
 .sidebar .logo img {
-    height: 50px;
+    height: 3rem;
 }
 
 .sidebar .logo p {
@@ -70,13 +71,113 @@ body {
     background-color: var(--header-background-color);
     grid-row: 1;
     grid-column: 2 / -1;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 1rem 3rem;
+}
+
+.header .search {
+    grid-row: 1;
+    grid-column: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1ch;
+}
+
+.header .icon {
+    height: 1.5rem;
+    filter: none; /* override img.icon selector */
+}
+
+.header .search input[type="search"] {
+    flex: 1 0 auto;
+    appearance: none;
+    font: inherit;
+    background-color: var(--content-background-color);
+    --height: 1.7rem;
+    height: var(--height);
+    border-radius: calc(0.5 * var(--height));
+    border: none;
+    padding: 0 1rem;
+}
+
+.header .notifications {
+    grid-row: 1;
+    grid-column: 2;
+    justify-self: flex-end;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.header .notifications .profile-image {
+    background-color: var(--accent-color);
+    --radius: 1.2rem;
+    height: calc(2 * var(--radius));
+    width: calc(2 * var(--radius));
+    border-radius: var(--radius);
+}
+
+.header .notifications p {
+    font-weight: 500;
+}
+
+.header .welcome-banner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header .welcome-banner .profile-image {
+    flex: 0 0 auto;
+    --radius: 1.5rem;
+    height: calc(2 * var(--radius));
+    width: calc(2 * var(--radius));
+    background-color: var(--accent-color);
+    border-radius: var(--radius);
+}
+
+.header .welcome-banner .message .greeting {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.header .welcome-banner .message .username {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.header .actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.header .actions ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.header .actions .button {
+    background-color: var(--sidebar-background-color);
+    color: var(--header-background-color);
+    --height: 2rem;
+    height: var(--height);
+    width: 10ch;
+    border-radius: calc(0.5 * var(--height));
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content {
     background-color: var(--content-background-color);
 }
 
-.icon {
+img.icon {
     /* Convert black svg fill to white */
     filter: invert(100%);
 }
