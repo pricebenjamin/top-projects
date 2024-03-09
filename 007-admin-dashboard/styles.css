@@ -134,6 +134,10 @@ body {
     gap: 1.2rem;
 }
 
+.header .notifications > *:hover {
+    cursor: pointer;
+}
+
 .header .notifications .profile-image {
     background-color: var(--accent-color);
     --radius: 1.2rem;
