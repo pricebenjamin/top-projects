@@ -42,6 +42,10 @@ body {
     padding: 1rem;
 }
 
+.sidebar .logo:hover {
+    cursor: pointer;
+}
+
 .sidebar .logo img {
     height: 3rem;
 }
@@ -63,6 +67,11 @@ body {
     align-items: center;
     gap: 1rem;
     padding: 0.7rem 2rem;
+}
+
+.sidebar ul li:hover {
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
 }
 
 .sidebar ul .icon {
