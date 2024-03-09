@@ -94,7 +94,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1ch;
+    gap: 0.5ch;
+}
+
+.header .search .icon {
+    position: relative;
+    top: 0.1rem; /* slightly adjust position of magnifying glass */
 }
 
 .content .icon,
@@ -113,6 +118,11 @@ body {
     border-radius: calc(0.5 * var(--height));
     border: none;
     padding: 0 1rem;
+}
+
+.header .search input[type="search"]:focus {
+    outline: none;
+    border: 1px solid black;
 }
 
 .header .notifications {
