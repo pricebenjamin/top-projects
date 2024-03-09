@@ -199,6 +199,11 @@ body {
     align-items: center;
 }
 
+.header .actions .button:hover {
+    filter: brightness(110%);
+    cursor: pointer;
+}
+
 .content {
     background-color: var(--content-background-color);
     display: grid;
