@@ -258,8 +258,11 @@ body {
 }
 
 .content .announcements .card {
-    flex: 0 0 auto;
+    flex: 1 0 auto;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .content .announcements .announcement-card h3 {
@@ -281,12 +284,12 @@ body {
 }
 
 .content .trending .card {
-    flex: 0 0 auto;
+    flex: 1 0 auto;
     padding: 1rem;
     display: flex;
     gap: 1rem;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .content .trending .trending-project {
