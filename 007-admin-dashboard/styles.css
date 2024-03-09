@@ -279,10 +279,19 @@ body {
 
 .content .projects .card .project-actions {
     display: flex;
-    gap: 2rem;
     justify-content: flex-end;
     align-items: center;
     margin-top: auto;
+}
+
+.content .projects .card .project-actions .icon {
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.content .projects .card .project-actions .icon:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
 }
 
 .content .announcements .card {
