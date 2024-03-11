@@ -21,7 +21,7 @@ body {
 .container {
     display: grid;
     grid-template-columns: 1fr 4fr;
-    grid-template-rows: 1fr 6fr;
+    grid-template-rows: 1fr 5fr;
     height: 100vh;
 }
 
@@ -86,11 +86,12 @@ body {
     grid-column: 2 / -1;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1.5fr;
     gap: var(--card-gap);
     padding: 1rem 3rem;
     box-shadow: 0 5px 5px var(--card-box-shadow-color);
     z-index: 1;
+    font-weight: bold;
 }
 
 .header .search {
@@ -118,7 +119,7 @@ body {
     appearance: none;
     font: inherit;
     background-color: var(--content-background-color);
-    --height: 1.7rem;
+    --height: 2rem;
     height: var(--height);
     border-radius: calc(0.5 * var(--height));
     border: none;
@@ -151,10 +152,6 @@ body {
     border-radius: var(--radius);
 }
 
-.header .notifications p {
-    font-weight: 500;
-}
-
 .header .welcome-banner {
     display: flex;
     align-items: center;
@@ -163,7 +160,7 @@ body {
 
 .header .welcome-banner .profile-image {
     flex: 0 0 auto;
-    --radius: 1.5rem;
+    --radius: 1.9rem;
     height: calc(2 * var(--radius));
     width: calc(2 * var(--radius));
     background-color: var(--accent-color);
@@ -172,12 +169,10 @@ body {
 
 .header .welcome-banner .message .greeting {
     font-size: 0.8rem;
-    font-weight: 500;
 }
 
 .header .welcome-banner .message .username {
     font-size: 1.5rem;
-    font-weight: bold;
 }
 
 .header .actions {
@@ -189,15 +184,15 @@ body {
 .header .actions ul {
     list-style: none;
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .header .actions .button {
     background-color: var(--sidebar-background-color);
     color: var(--header-background-color);
-    --height: 2rem;
+    --height: 2.5rem;
     height: var(--height);
-    width: 10ch;
+    width: 11ch;
     border-radius: calc(0.5 * var(--height));
     display: flex;
     justify-content: center;
@@ -216,7 +211,7 @@ body {
     grid-template-rows: 1fr 1fr;
     column-gap: var(--card-gap);
     padding: 0 1rem;
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
 }
 
 .content h2 {
