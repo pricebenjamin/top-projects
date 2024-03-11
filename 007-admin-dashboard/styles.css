@@ -5,6 +5,7 @@
     --accent-color: #FACC15;
     --card-text-color-dark: #000000;
     --card-text-color-light: #636363;
+    --card-box-shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -86,6 +87,8 @@ body {
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr 1fr;
     padding: 1rem 3rem;
+    box-shadow: 0 5px 5px var(--card-box-shadow-color);
+    z-index: 1;
 }
 
 .header .search {
@@ -244,7 +247,7 @@ body {
 .content .card {
     background-color: var(--header-background-color);
     border-radius: 0.5rem;
-    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.1);
+    box-shadow: 5px 5px 5px var(--card-box-shadow-color);
 }
 
 .content .projects .card-container {
