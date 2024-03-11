@@ -245,6 +245,7 @@ body {
     background-color: var(--header-background-color);
     border-radius: 0.5rem;
     box-shadow: 5px 5px 5px var(--card-box-shadow-color);
+    padding: 2rem;
 }
 
 .content .projects .card-container {
@@ -261,16 +262,15 @@ body {
     background: linear-gradient(90deg,
             var(--accent-color) 0 var(--accent-color-length),
             var(--header-background-color) var(--accent-color-length) 100%);
-    padding: 1rem;
-    padding-left: 2rem;
     display: flex;
+    padding-bottom: 1rem;
     flex-direction: column;
 }
 
 .content .projects .card h3 {
     color: var(--card-text-color-dark);
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
 }
 
 .content .projects .card p {
@@ -296,7 +296,6 @@ body {
 
 .content .announcements .card {
     flex: 1 0 auto;
-    padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -304,11 +303,13 @@ body {
 
 .content .announcements .announcement-card h3 {
     color: var(--card-text-color-dark);
+    font-size: 1rem;
     font-weight: 600;
 }
 
 .content .announcements .announcement-card p {
     color: var(--card-text-color-light);
+    font-size: 0.9rem;
     border-bottom: 1px solid lightgrey;
     padding-bottom: 1rem;
     margin-bottom: 1rem;
@@ -322,11 +323,10 @@ body {
 
 .content .trending .card {
     flex: 1 0 auto;
-    padding: 1rem;
     display: flex;
     gap: 1rem;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .content .trending .trending-project {
