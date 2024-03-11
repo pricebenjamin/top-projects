@@ -171,8 +171,4 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     }
-
-    function randomHue() {
-        return Math.floor(Math.random() * 360);
-    }
 });
