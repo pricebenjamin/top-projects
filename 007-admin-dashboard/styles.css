@@ -361,11 +361,18 @@ body {
 }
 
 .content .trending .trending-project .profile-image {
-    background-color: var(--accent-color);
     --radius: 1.4rem;
     height: calc(2 * var(--radius));
     width: calc(2 * var(--radius));
     border-radius: var(--radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .trending .trending-project .profile-image img {
+    max-width: 80%;
+    max-height: 80%;
 }
 
 .content .trending .trending-project .user-tag {

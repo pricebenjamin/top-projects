@@ -84,10 +84,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function generateTrending() {
         const trendingProjects = [
-            { user: "@tegan", title: "World Peace Builder" },
-            { user: "@morgan", title: "Super Cool Project" },
-            { user: "@kendall", title: "Life Changing Project" },
-            { user: "@alex", title: "No Traffic Maker" },
+            {
+                user: "@tegan",
+                title: "World Peace Builder",
+                color: "#E0F2FE",
+                image: "images/Dog-Hearts-Silhouette.svg",
+            },
+            {
+                user: "@morgan",
+                title: "Super Cool Project",
+                color: "#FACC15",
+                image: "images/cat-4475583_640.png",
+            },
+            {
+                user: "@kendall",
+                title: "Life Changing Project",
+                color: "#A3A3A3",
+                image: "images/superhero-5981125_640.png",
+            },
+            {
+                user: "@alex",
+                title: "No Traffic Maker",
+                color: "#FDA4AF",
+                image: "images/hamburger.svg",
+            },
         ];
 
         for (const project of trendingProjects) {
@@ -95,13 +115,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function createTrendingProject({ user, title }) {
-        const img = document.createElement("div");
+    function createTrendingProject({ user, title, color, image }) {
+        const profileIcon = document.createElement("div");
         const userTag = document.createElement("p");
         const projectName = document.createElement("p");
 
-        img.classList.add("profile-image");
-        img.style.backgroundColor = `hsl(${randomHue()}, 80%, 60%)`;
+        profileIcon.classList.add("profile-image");
+        profileIcon.style.backgroundColor = color;
+
+        if (image) {
+            const img = document.createElement("img");
+            img.src = image;
+            profileIcon.appendChild(img);
+        }
 
         userTag.classList.add("user-tag");
         userTag.innerText = user;
@@ -115,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const card = document.createElement("div");
         card.classList.add("trending-project");
-        card.appendChild(img);
+        card.appendChild(profileIcon);
         card.appendChild(stack);
 
         return card;
