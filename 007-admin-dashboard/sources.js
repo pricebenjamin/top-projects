@@ -31,7 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
         description.innerText = generateLoremWords(30);
         actions.classList.add("project-actions");
 
-        const icons = ["icons/star-plus-outline.svg", "icons/eye-plus-outline.svg", "icons/source-fork.svg"];
+        const icons = [
+            "icons/star-plus-outline.svg",
+            "icons/eye-plus-outline.svg",
+            "icons/source-fork.svg"
+        ];
 
         for (const path of icons) {
             const img = document.createElement("img");
