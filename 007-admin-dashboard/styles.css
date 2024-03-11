@@ -311,7 +311,8 @@ body {
     cursor: pointer;
 }
 
-.content .announcements .card {
+.content .announcements .card,
+.content .trending .card {
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
@@ -319,24 +320,29 @@ body {
     padding: var(--card-outer-padding);
 }
 
-.content .announcements .announcement-card {
+.content .announcements .announcement-card,
+.content .trending .trending-project {
     border-radius: var(--card-border-radius);
     padding: var(--card-inner-padding);
     min-width: var(--trending-min-width);
 }
 
-.content .announcements .announcement-card:hover {
+.content .announcements .announcement-card:hover,
+.content .trending .trending-project:hover {
     background-color: var(--hover-darken-background);
     cursor: pointer;
 }
 
-.content .announcements .announcement-card h3 {
+.content .announcements .announcement-card h3,
+.content .trending .trending-project .user-tag {
     color: var(--card-text-color-dark);
     font-size: 1rem;
     font-weight: 600;
+    margin-bottom: 3px;
 }
 
-.content .announcements .announcement-card p {
+.content .announcements .announcement-card p,
+.content .trending .trending-project .project-name {
     color: var(--card-text-color-light);
     font-size: 0.9rem;
 }
@@ -345,27 +351,10 @@ body {
     border-bottom: 1px solid lightgray;
 }
 
-.content .trending .card {
-    flex: 1 0 auto;
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: var(--card-outer-padding);
-}
-
 .content .trending .trending-project {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: var(--card-inner-padding);
-    min-width: var(--trending-min-width);
-}
-
-.content .trending .trending-project:hover {
-    background-color: var(--hover-darken-background);
-    border-radius: var(--card-border-radius);
-    cursor: pointer;
 }
 
 .content .trending .trending-project .profile-image {
@@ -373,14 +362,7 @@ body {
 }
 
 .content .trending .trending-project .user-tag {
-    color: var(--card-text-color-dark);
     font-weight: 500;
-    margin-bottom: 3px;
-}
-
-.content .trending .trending-project .project-name {
-    color: var(--card-text-color-light);
-    font-size: 0.9rem;
 }
 
 img.icon {
