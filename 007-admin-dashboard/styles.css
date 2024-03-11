@@ -6,7 +6,12 @@
     --card-text-color-dark: #000000;
     --card-text-color-light: #636363;
     --card-box-shadow-color: rgba(0, 0, 0, 0.1);
+    --card-border-radius: 0.5rem;
     --card-gap: 1.5rem;
+    --card-inner-padding: 0.8rem;
+    --card-outer-padding: 1.2rem;
+    --card-padding: 2rem;
+    --hover-darken-background: rgba(0, 0, 0, 0.05);
 }
 
 * {
@@ -105,13 +110,15 @@ body {
 
 .header .search .icon {
     position: relative;
-    top: 0.1rem; /* slightly adjust position of magnifying glass */
+    top: 0.1rem;
+    /* slightly adjust position of magnifying glass */
 }
 
 .content .icon,
 .header .icon {
     height: 1.5rem;
-    filter: none; /* override img.icon selector */
+    filter: none;
+    /* override img.icon selector */
 }
 
 .header .search input[type="search"] {
@@ -140,7 +147,7 @@ body {
     gap: 1.2rem;
 }
 
-.header .notifications > *:hover {
+.header .notifications>*:hover {
     cursor: pointer;
 }
 
@@ -221,7 +228,7 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.content > * {
+.content>* {
     display: flex;
     flex-direction: column;
 }
@@ -243,9 +250,9 @@ body {
 
 .content .card {
     background-color: var(--header-background-color);
-    border-radius: 0.5rem;
+    border-radius: var(--card-border-radius);
     box-shadow: 5px 5px 5px var(--card-box-shadow-color);
-    padding: 2rem;
+    padding: var(--card-padding);
 }
 
 .content .projects .card-container {
@@ -290,7 +297,7 @@ body {
 }
 
 .content .projects .card .project-actions .icon:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--hover-darken-background);
     cursor: pointer;
 }
 
@@ -298,7 +305,18 @@ body {
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: var(--card-outer-padding);
+}
+
+.content .announcements .announcement-card {
+    border-radius: var(--card-border-radius);
+    padding: var(--card-inner-padding);
+}
+
+.content .announcements .announcement-card:hover {
+    background-color: var(--hover-darken-background);
+    cursor: pointer;
 }
 
 .content .announcements .announcement-card h3 {
@@ -310,15 +328,10 @@ body {
 .content .announcements .announcement-card p {
     color: var(--card-text-color-light);
     font-size: 0.9rem;
-    border-bottom: 1px solid lightgrey;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
 }
 
-.content .announcements .announcement-card:last-child p {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
+.content .announcements .divider {
+    border-bottom: 1px solid lightgray;
 }
 
 .content .trending .card {
@@ -327,12 +340,20 @@ body {
     gap: 1rem;
     flex-direction: column;
     justify-content: space-between;
+    padding: var(--card-outer-padding);
 }
 
 .content .trending .trending-project {
     display: flex;
     align-items: center;
     gap: 1rem;
+    padding: var(--card-inner-padding);
+}
+
+.content .trending .trending-project:hover {
+    background-color: var(--hover-darken-background);
+    border-radius: var(--card-border-radius);
+    cursor: pointer;
 }
 
 .content .trending .trending-project .profile-image {

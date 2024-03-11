@@ -49,11 +49,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function generateAnnouncements() {
-        const titles = ["Site Maintenance", "Community Share Day", "Updated Privacy Policy"];
+        const titles = [
+            "Site Maintenance",
+            "Community Share Day",
+            "Updated Privacy Policy"
+        ];
 
         for (const title of titles) {
+            const divider = document.createElement('div');
+            divider.classList.add('divider');
+
             announcements.appendChild(createAnnouncement(title));
+            announcements.appendChild(divider);
         }
+
+        const lastChild = Array.from(announcements.children).pop();
+        announcements.removeChild(lastChild);
     }
 
     function createAnnouncement(announcementTitle) {
