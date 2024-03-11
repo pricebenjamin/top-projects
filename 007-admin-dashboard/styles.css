@@ -12,6 +12,7 @@
     --card-outer-padding: 1.2rem;
     --card-padding: 2rem;
     --hover-darken-background: rgba(0, 0, 0, 0.05);
+    --trending-min-width: 200px;
 }
 
 * {
@@ -219,6 +220,7 @@ body {
     column-gap: var(--card-gap);
     padding: 0 1rem;
     padding-bottom: 2rem;
+    overflow-y: auto;
 }
 
 .content h2 {
@@ -312,6 +314,7 @@ body {
 .content .announcements .announcement-card {
     border-radius: var(--card-border-radius);
     padding: var(--card-inner-padding);
+    min-width: var(--trending-min-width);
 }
 
 .content .announcements .announcement-card:hover {
@@ -348,6 +351,7 @@ body {
     align-items: center;
     gap: 1rem;
     padding: var(--card-inner-padding);
+    min-width: var(--trending-min-width);
 }
 
 .content .trending .trending-project:hover {
