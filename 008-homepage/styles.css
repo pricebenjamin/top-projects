@@ -61,7 +61,6 @@ header {
 header .content {
     padding-top: calc(var(--header-image-overflow-top) - var(--header-card-padding));
     padding-left: calc(var(--header-image-overflow-left) - var(--header-card-padding));
-    border: 1px solid red;
 }
 
 header .card {
