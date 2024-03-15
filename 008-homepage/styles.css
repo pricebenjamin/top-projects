@@ -55,6 +55,7 @@ h2 {
 
 header {
     padding: 2rem 0;
+    padding-bottom: calc(2.5 * var(--heading-font-size));
 }
 
 header .content {
@@ -64,15 +65,19 @@ header .content {
 }
 
 header .card {
-    position: relative;
     padding: var(--header-card-padding);
     background-color: var(--background-color);
     box-shadow: var(--card-box-shadow);
 }
 
+header .card p {
+    line-height: 1.5rem;
+    margin: 2rem 0;
+}
+
 header .image {
     float: left;
-    height: 300px;
+    height: 400px;
     width: 400px;
     margin-top: calc(-1 * var(--header-image-overflow-top));
     margin-left: calc(-1 * var(--header-image-overflow-left));
@@ -203,6 +208,10 @@ ul {
         --header-image-overflow-left: 5rem;
     }
 
+    header {
+        padding-bottom: calc(1.5 * var(--heading-font-size));
+    }
+
     header .image {
         background-color: lightgreen;
     }
@@ -217,6 +226,14 @@ ul {
 }
 
 @media (width <=480px) {
+    .content h2 {
+        text-align: center;
+    }
+
+    header {
+        padding-bottom: calc(1 * var(--heading-font-size));
+    }
+
     header .content {
         margin: 0 auto;
         padding: 0;
@@ -233,7 +250,7 @@ ul {
     }
 
     header .image {
-        margin: 0;
+        margin: 2rem 0;
         padding: 0;
         float: none;
         width: 300px;
@@ -242,5 +259,13 @@ ul {
 
     header .name {
         text-align: center;
+    }
+
+    header .card h2 {
+        margin: 0;
+    }
+
+    header .card p {
+        margin: 0.5rem 0;
     }
 }
