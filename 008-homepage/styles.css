@@ -1,6 +1,8 @@
 :root {
     --background-accent-color: #0891B2;
     --background-color: white;
+    --heading-font-size: 2.5rem;
+    --heading-font-weight: 200;
     --font-color-light: #565656;
     --font-color-dark: black;
     --footer-font-color: white;
@@ -36,10 +38,12 @@ h5,
 h6,
 .project .image {
     font-family: "Playfair Display", Times, serif;
+    font-weight: var(--heading-font-weight);
     color: var(--font-color-dark);
 }
 
 h2 {
+    font-size: var(--heading-font-size);
     margin-bottom: 0.5rem;
 }
 
@@ -80,8 +84,10 @@ header .image {
 
 header .name {
     font-size: 3rem;
+    font-weight: 500;
+    text-shadow: 0px 5px 5px var(--box-shadow-color);
+    color: white;
     margin-top: auto;
-    margin-bottom: 1rem;
     text-align: center;
 }
 
@@ -160,7 +166,8 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.5rem;
+    font-size: var(--heading-font-size);
+    font-weight: var(--heading-font-weight);
     text-align: center;
     padding: 0 3rem;
 }
@@ -171,6 +178,7 @@ ul {
 }
 
 .project h3 {
+    font-weight: 500;
     margin: 0.5rem 0;
 }
 
