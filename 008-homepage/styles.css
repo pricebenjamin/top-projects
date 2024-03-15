@@ -85,7 +85,6 @@ header .name {
 }
 
 header .links {
-    display: flex;
     justify-content: flex-end;
 }
 
