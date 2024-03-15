@@ -4,7 +4,8 @@
     --font-color-light: #565656;
     --font-color-dark: black;
     --footer-font-color: white;
-    --min-project-card-width: 200px;
+    --min-project-card-width: 250px;
+    --project-card-gap: 2rem;
     --box-shadow-color: rgba(0, 0, 0, 0.2);
     --card-box-shadow: 2px 2px 7px 2px var(--box-shadow-color);
 
@@ -116,7 +117,7 @@ ul {
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(var(--min-project-card-width), 1fr));
-    gap: 1.5rem;
+    gap: var(--project-card-gap);
 }
 
 .flex {
@@ -152,12 +153,16 @@ ul {
 }
 
 .project .image {
-    height: 200px;
+    height: 250px;
     flex: 1 0 auto;
     background-color: lightcoral;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 0 3rem;
 }
 
 .project .title-row {
@@ -176,7 +181,8 @@ ul {
 
 .project .details {
     flex: 1 0 auto;
-    padding: 0 1rem 1rem 1rem;
+    padding: 0 1rem;
+    padding-bottom: 4rem;
 }
 
 .project .details nav {
