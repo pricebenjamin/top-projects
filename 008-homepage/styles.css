@@ -250,7 +250,8 @@ ul {
     }
 
     header .image {
-        margin: 2rem 0;
+        margin: 0;
+        margin-bottom: 2rem;
         padding: 0;
         float: none;
         width: 300px;
