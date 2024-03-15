@@ -28,6 +28,12 @@ body {
     min-height: 100vh;
     font-family: "Roboto", sans-serif;
     color: var(--font-color-light);
+    --gradient-start: 450px;
+    --shadow-length: 5px;
+    background: linear-gradient(170deg,
+            var(--background-accent-color) 0 var(--gradient-start),
+            var(--box-shadow-color) var(--gradient-start) var(--shadow-length),
+            var(--background-color) calc(var(--gradient-start) + var(--shadow-length)) 0);
 }
 
 h1,
@@ -48,12 +54,6 @@ h2 {
 }
 
 header {
-    --gradient-start: 50%;
-    --shadow-length: 5px;
-    background: linear-gradient(170deg,
-            var(--background-accent-color) 0 var(--gradient-start),
-            var(--box-shadow-color) var(--gradient-start) var(--shadow-length),
-            var(--background-color) calc(var(--gradient-start) + var(--shadow-length)) 0);
     padding: 2rem 0;
 }
 
