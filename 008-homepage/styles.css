@@ -21,6 +21,7 @@
 body {
     display: flex;
     flex-direction: column;
+    min-width: min-content;
     min-height: 100vh;
     font-family: "Roboto", sans-serif;
     color: var(--font-color-light);
@@ -72,11 +73,20 @@ header .image {
     margin-left: calc(-1 * var(--header-image-overflow-left));
     margin-right: var(--header-card-padding);
     background-color: lightblue;
+    display: flex;
+    flex-direction: column;
 }
 
 header .name {
-    position: absolute;
-    bottom: 1rem;
+    font-size: 3rem;
+    margin-top: auto;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+header .links {
+    display: flex;
+    justify-content: flex-end;
 }
 
 main {
@@ -85,7 +95,8 @@ main {
 
 .content {
     margin: 0 auto;
-    max-width: 800px;
+    width: clamp(250px, 90%, 1000px);
+    box-sizing: border-box;
 }
 
 footer {
@@ -171,4 +182,52 @@ ul {
 
 .project .details nav {
     margin-left: auto;
+}
+
+@media (480px < width <=1080px) {
+    :root {
+        --header-image-overflow-top: 6rem;
+        --header-image-overflow-left: 5rem;
+    }
+
+    header .image {
+        background-color: lightgreen;
+    }
+}
+
+@media (800px <=width <=1080px) {
+    header .name {
+        margin: 0;
+        position: relative;
+        left: 20rem;
+    }
+}
+
+@media (width <=480px) {
+    header .content {
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    header .card {
+        margin: 0;
+        padding: 0;
+        background-color: transparent;
+        box-shadow: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header .image {
+        margin: 0;
+        padding: 0;
+        float: none;
+        width: 300px;
+        background-color: lightcoral;
+    }
+
+    header .name {
+        text-align: center;
+    }
 }
