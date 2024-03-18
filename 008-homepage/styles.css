@@ -86,7 +86,9 @@ header .image {
     margin-top: calc(-1 * var(--header-image-overflow-top));
     margin-left: calc(-1 * var(--header-image-overflow-left));
     margin-right: var(--header-card-padding);
-    background-color: lightblue;
+    background: url(images/pexels-anna-shvets-3727474.jpg);
+    background-size: cover;
+    box-shadow: var(--card-box-shadow);
     display: flex;
     flex-direction: column;
 }
@@ -170,7 +172,6 @@ ul {
 .project .image {
     height: 250px;
     flex: 1 0 auto;
-    background-color: lightcoral;
     color: white;
     display: flex;
     justify-content: center;
@@ -253,7 +254,10 @@ footer .contact-me nav .icon {
 footer .image {
     flex: 1 1 200px;
     height: 400px;
-    background-color: lightblue;
+    background: url(images/footer-image.png);
+    background-size: cover;
+    background-position: 50% 50%;
+    box-shadow: var(--card-box-shadow);
 }
 
 @media (480px < width <=1080px) {
@@ -264,10 +268,6 @@ footer .image {
 
     header {
         padding-bottom: calc(1.5 * var(--heading-font-size));
-    }
-
-    header .image {
-        background-color: lightgreen;
     }
 }
 
@@ -335,7 +335,6 @@ footer .image {
         padding: 0;
         float: none;
         width: 100%;
-        background-color: lightcoral;
     }
 
     header .name {
