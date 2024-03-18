@@ -279,6 +279,12 @@ footer .image {
     }
 }
 
+@media (480px < width < 800px) {
+    header .name {
+        margin: 0;
+    }
+}
+
 @media (width <=700px) {
     footer .content {
         flex-direction: column;
