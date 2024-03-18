@@ -6,6 +6,7 @@
     --font-color-light: #565656;
     --font-color-dark: black;
     --footer-font-color: white;
+    --body-min-width: 300px;
     --min-project-card-width: 250px;
     --project-card-gap: 2rem;
     --box-shadow-color: rgba(0, 0, 0, 0.2);
@@ -21,10 +22,14 @@
     margin: 0;
 }
 
+html {
+    min-width: min-content;
+}
+
 body {
     display: flex;
     flex-direction: column;
-    min-width: min-content;
+    min-width: var(--body-min-width);
     min-height: 100vh;
     font-family: "Roboto", sans-serif;
     color: var(--font-color-light);
