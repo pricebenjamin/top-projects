@@ -1,5 +1,5 @@
 :root {
-    --background-accent-color: #0891B2;
+    --background-accent-color: #0891b2;
     --background-color: white;
     --heading-font-size: 2.5rem;
     --heading-font-weight: 200;
@@ -35,10 +35,12 @@ body {
     color: var(--font-color-light);
     --gradient-start: 450px;
     --shadow-length: 5px;
-    background: linear-gradient(170deg,
-            var(--background-accent-color) 0 var(--gradient-start),
-            var(--box-shadow-color) var(--gradient-start) var(--shadow-length),
-            var(--background-color) calc(var(--gradient-start) + var(--shadow-length)) 0);
+    background: linear-gradient(
+        170deg,
+        var(--background-accent-color) 0 var(--gradient-start),
+        var(--box-shadow-color) var(--gradient-start) var(--shadow-length),
+        var(--background-color) calc(var(--gradient-start) + var(--shadow-length)) 0
+    );
 }
 
 h1,
@@ -260,7 +262,7 @@ footer .image {
     box-shadow: var(--card-box-shadow);
 }
 
-@media (480px < width <=1080px) {
+@media (480px < width <= 1080px) {
     :root {
         --header-image-overflow-top: 6rem;
         --header-image-overflow-left: 5rem;
@@ -271,7 +273,7 @@ footer .image {
     }
 }
 
-@media (800px <=width <=1080px) {
+@media (800px <= width <= 1080px) {
     header .name {
         margin: 0;
         position: relative;
@@ -285,7 +287,7 @@ footer .image {
     }
 }
 
-@media (width <=700px) {
+@media (width <= 700px) {
     footer .content {
         flex-direction: column;
     }
@@ -301,7 +303,7 @@ footer .image {
     }
 }
 
-@media (width <=480px) {
+@media (width <= 480px) {
     :root {
         --min-project-card-width: 200px;
     }
