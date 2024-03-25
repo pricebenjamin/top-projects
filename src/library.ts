@@ -6,23 +6,24 @@ export interface Book {
 }
 
 export class Library {
-  collection: Map<string, Book>;
+  #collection: Map<string, Book>;
 
   constructor() {
-    this.collection = new Map();
+    this.#collection = new Map();
   }
 
   add(book: Book) {
+    const copy = Library.copy(this);
     const key = crypto.randomUUID();
-    this.collection.set(key, { ...book });
+    copy.#collection.set(key, { ...book });
     console.log(
       `library.add(): added '${book.title}' to collection (key=${key})`
     );
-    return key;
+    return copy;
   }
 
   get(key: string) {
-    const book = this.collection.get(key);
+    const book = this.#collection.get(key);
     if (book === undefined) {
       console.log(`library.get(): no book found (key=${key})`);
     }
@@ -30,25 +31,36 @@ export class Library {
   }
 
   update(key: string, fieldsToUpdate: Partial<Book>) {
-    const book = this.collection.get(key);
+    const copy = Library.copy(this);
+    const book = copy.#collection.get(key);
     if (book === undefined) {
       console.log(`library.update(): no book to update (key=${key})`);
-      return;
+    } else {
+      console.log(`library.update():`);
+      copy.#collection.set(key, { ...book, ...fieldsToUpdate });
     }
-    this.collection.set(key, { ...book, ...fieldsToUpdate });
+    return copy;
   }
 
   delete(key: string) {
-    if (!this.collection.delete(key)) {
-      console.log(`library.delete(): no book to delete (key=${key})`);
-    } else {
+    const copy = Library.copy(this);
+    if (copy.#collection.delete(key)) {
       console.log(`library.delete(): deleted ${key}`);
+    } else {
+      console.log(`library.delete(): no book to delete (key=${key})`);
     }
+    return copy;
   }
 
-  toArray() {
-    return [...this.collection.entries()].map(([key, book]) => {
-      return { key, ...book };
-    });
+  map<T>(fn: (key: string, book: Book) => T) {
+    return [...this.#collection.entries()].map(([key, book]) => fn(key, book));
+  }
+
+  static copy(otherLibrary: Library) {
+    const lib = new Library();
+    for (const [key, book] of otherLibrary.#collection.entries()) {
+      lib.#collection.set(key, { ...book });
+    }
+    return lib;
   }
 }

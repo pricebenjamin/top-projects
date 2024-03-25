@@ -3,13 +3,7 @@ import "./App.css";
 import { Book, Library } from "./library.ts";
 import { books } from "./data.js";
 
-const library = new Library();
-
-for (const book of books) {
-  library.add(book);
-}
-
-interface BookProps extends Book {
+interface BookComponentProps extends Book {
   onDelete: () => void;
 }
 
@@ -19,7 +13,7 @@ function BookComponent({
   pageCount,
   hasBeenRead,
   onDelete,
-}: BookProps) {
+}: BookComponentProps) {
   return (
     <div className="book">
       <h2 className="title">{title}</h2>
@@ -34,19 +28,18 @@ function BookComponent({
 }
 
 function LibraryComponent() {
-  const [keys, setKeys] = useState([...library.collection.keys()]);
-
-  const books = keys.map((key) => {
-    const book = library.get(key);
-    if (book) {
-      return <BookComponent key={key} {...book} onDelete={onDelete(key)} />;
+  const [library, setLibrary] = useState(() => {
+    console.log(`LibraryComponent: useState: initializing`);
+    let lib = new Library();
+    for (const book of books) {
+      lib = lib.add(book);
     }
+    return lib;
   });
 
   function onDelete(key: string) {
     return () => {
-      library.delete(key);
-      setKeys(keys.filter((k) => k !== key));
+      setLibrary(library.delete(key));
     };
   }
 
@@ -57,14 +50,17 @@ function LibraryComponent() {
       pageCount: 0,
       hasBeenRead: false,
     };
-    const key = library.add(book);
-    setKeys([...keys, key]);
+    setLibrary(library.add(book));
   }
 
   return (
     <div className="library">
       <h1>My Library</h1>
-      <div className="grid">{books}</div>
+      <div className="grid">
+        {library.map((key, book) => (
+          <BookComponent key={key} {...book} onDelete={onDelete(key)} />
+        ))}
+      </div>
       <button type="button" name="add-book" onClick={addBook}>
         Add Book
       </button>
