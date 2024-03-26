@@ -53,7 +53,9 @@ export class Library {
   }
 
   map<T>(fn: (key: string, book: Book) => T) {
-    return [...this.#collection.entries()].map(([key, book]) => fn(key, book));
+    return [...this.#collection.entries()].map(([key, book]) =>
+      fn(key, { ...book })
+    );
   }
 
   static copy(otherLibrary: Library) {
