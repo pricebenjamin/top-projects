@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./App.css";
 import { Book, Library } from "./library.ts";
 import { books } from "./data.js";
@@ -43,15 +43,39 @@ function LibraryComponent() {
     };
   }
 
-  function addBook() {
-    const book: Book = {
-      title: "Title",
-      author: "Author",
-      pageCount: 0,
-      hasBeenRead: false,
-    };
-    setLibrary(library.add(book));
+  const [showModal, setShowModal] = useState(false);
+
+  function toggleModal() {
+    const modalState = !showModal;
+    console.log(`toggleModal(): setting state to ${showModal}`);
+    setShowModal(modalState);
   }
+
+  const dialog = useRef(
+    (() => {
+      const p = document.createElement("p");
+      p.innerText = "Hello, world!";
+
+      const button = document.createElement("button");
+      button.innerText = "Close";
+      button.addEventListener("click", toggleModal);
+
+      const dialog = document.createElement("dialog");
+      dialog.appendChild(p);
+      dialog.appendChild(button);
+      document.body.appendChild(dialog);
+
+      return dialog;
+    })()
+  );
+
+  useEffect(() => {
+    if (showModal) {
+      dialog.current.showModal();
+    } else {
+      dialog.current.close();
+    }
+  }, [showModal]);
 
   return (
     <div className="library">
@@ -61,7 +85,7 @@ function LibraryComponent() {
           <BookComponent key={key} {...book} onDelete={onDelete(key)} />
         ))}
       </div>
-      <button type="button" name="add-book" onClick={addBook}>
+      <button type="button" name="add-book" onClick={toggleModal}>
         Add Book
       </button>
     </div>
