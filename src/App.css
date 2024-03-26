@@ -56,3 +56,43 @@
 .book button[name="delete"] {
   margin-top: auto;
 }
+
+dialog {
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 2rem;
+  padding-top: 0;
+}
+
+dialog button.close-modal {
+  margin: 0;
+  padding: 0px 10px;
+  background-color: rgba(255, 0, 0, 0.2);
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-left: auto;
+  font-size: 18px;
+}
+
+dialog button.close-modal:hover {
+  background-color: rgba(255, 0, 0, 0.6);
+}
+
+form.add-book {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+form input[type="text"],
+form input[type="number"] {
+  padding: 5px 10px;
+  width: 30ch;
+}
+
+.labeled-checkbox {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}
