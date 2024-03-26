@@ -8,7 +8,7 @@ function App() {
 }
 
 function LibraryComponent() {
-  const [library, setLibrary] = useState(initialLibrary());
+  const [library, setLibrary] = useState(() => initialLibrary());
 
   function onDelete(key: string) {
     return () => {
