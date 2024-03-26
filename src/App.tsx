@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import "./App.css";
 import { Book, Library } from "./library.ts";
 import { books } from "./data.js";
@@ -43,52 +43,31 @@ function LibraryComponent() {
     };
   }
 
-  const [showModal, setShowModal] = useState(false);
-
-  function toggleModal() {
-    const modalState = !showModal;
-    console.log(`toggleModal(): setting state to ${showModal}`);
-    setShowModal(modalState);
-  }
-
-  const dialog = useRef(
-    (() => {
-      const p = document.createElement("p");
-      p.innerText = "Hello, world!";
-
-      const button = document.createElement("button");
-      button.innerText = "Close";
-      button.addEventListener("click", toggleModal);
-
-      const dialog = document.createElement("dialog");
-      dialog.appendChild(p);
-      dialog.appendChild(button);
-      document.body.appendChild(dialog);
-
-      return dialog;
-    })()
-  );
-
-  useEffect(() => {
-    if (showModal) {
-      dialog.current.showModal();
-    } else {
-      dialog.current.close();
-    }
-  }, [showModal]);
+  // https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom
+  const dialog = useRef<HTMLDialogElement>(null);
 
   return (
-    <div className="library">
-      <h1>My Library</h1>
-      <div className="grid">
-        {library.map((key, book) => (
-          <BookComponent key={key} {...book} onDelete={onDelete(key)} />
-        ))}
+    <>
+      <dialog ref={dialog}>
+        <p>Hello, world!</p>
+        <button onClick={() => dialog.current?.close()}>Close</button>
+      </dialog>
+      <div className="library">
+        <h1>My Library</h1>
+        <div className="grid">
+          {library.map((key, book) => (
+            <BookComponent key={key} {...book} onDelete={onDelete(key)} />
+          ))}
+        </div>
+        <button
+          type="button"
+          name="add-book"
+          onClick={() => dialog.current?.showModal()}
+        >
+          Add Book
+        </button>
       </div>
-      <button type="button" name="add-book" onClick={toggleModal}>
-        Add Book
-      </button>
-    </div>
+    </>
   );
 }
 
