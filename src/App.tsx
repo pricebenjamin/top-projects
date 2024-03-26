@@ -19,29 +19,81 @@ function LibraryComponent() {
   // https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom
   const dialog = useRef<HTMLDialogElement>(null);
 
-  function onSubmit() {}
+  function closeModal() {
+    dialog.current?.close();
+  }
+
+  const newBook = () => {
+    return {
+      title: "",
+      author: "",
+      pageCount: 0,
+      hasBeenRead: false,
+    };
+  };
+
+  // dialogState keys _must match_ input form name
+  const [dialogState, setDialogState] = useState(newBook());
+
+  function onSubmit() {
+    setLibrary(library.add(dialogState));
+    setDialogState(newBook());
+  }
+
+  function onDialogInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const key = event.target.name;
+    const value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value;
+
+    console.log(`onDialogInputChange(): ${key} => ${value}`);
+
+    setDialogState({
+      ...dialogState,
+      [key]: value,
+    });
+  }
 
   return (
     <>
       <dialog ref={dialog}>
-        <form className="add-book">
-          <button
-            className="close-modal"
-            onClick={() => dialog.current?.close()}
-          >
+        <form method="dialog" className="add-book" onSubmit={onSubmit}>
+          <button type="button" className="close-modal" onClick={closeModal}>
             ×
           </button>
+          {/* input names must match dialogState keys */}
           <label htmlFor="title">Title: </label>
-          <input type="text" name="title" />
+          <input
+            value={dialogState["title"]}
+            name="title"
+            onChange={onDialogInputChange}
+            type="text"
+          />
           <label htmlFor="author">Author:</label>
-          <input type="text" name="author" />
-          <label htmlFor="pages">Pages: </label>
-          <input type="number" name="pages" />
+          <input
+            value={dialogState["author"]}
+            name="author"
+            onChange={onDialogInputChange}
+            type="text"
+          />
+          <label htmlFor="pageCount">Pages: </label>
+          <input
+            value={dialogState["pageCount"]}
+            name="pageCount"
+            onChange={onDialogInputChange}
+            type="number"
+          />
           <div className="labeled-checkbox">
-            <label htmlFor="read">Read: </label>
-            <input type="checkbox" name="read" />
+            <label htmlFor="hasBeenRead">Read: </label>
+            <input
+              checked={dialogState["hasBeenRead"]}
+              name="hasBeenRead"
+              onChange={onDialogInputChange}
+              type="checkbox"
+            />
           </div>
-          <button onClick={onSubmit}>Submit</button>
+          <button type="submit">Submit</button>
         </form>
       </dialog>
       <div className="library">
