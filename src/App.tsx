@@ -33,6 +33,19 @@ export default function LibraryComponent() {
       };
     }
 
+    function toggleReadStatus(key: string) {
+      return () => {
+        const book = library.get(key);
+        if (book) {
+          setLibrary(library.update(key, { hasBeenRead: !book.hasBeenRead }));
+        } else {
+          console.log(
+            `error: unable to update book: failed to find book by key=${key}`
+          );
+        }
+      };
+    }
+
     function showAddBookDialog() {
       resetDialog();
       dialog.current?.showModal();
@@ -49,6 +62,7 @@ export default function LibraryComponent() {
         {...book}
         deleteBook={deleteBook(key)}
         updateBook={updateBook(key)}
+        toggleReadStatus={toggleReadStatus(key)}
       />
     ));
 
@@ -185,6 +199,7 @@ function initialLibrary() {
 interface BookComponentProps extends Book {
   deleteBook: () => void;
   updateBook: () => void;
+  toggleReadStatus: () => void;
 }
 
 function BookComponent({
@@ -194,6 +209,7 @@ function BookComponent({
   hasBeenRead,
   deleteBook,
   updateBook,
+  toggleReadStatus,
 }: BookComponentProps) {
   return (
     <div className="book">
@@ -202,6 +218,13 @@ function BookComponent({
       <p>{`Pages: ${pageCount}`}</p>
       {hasBeenRead && <p>✅ Read</p>}
       <div className="actions">
+        <button
+          type="button"
+          className="toggle-read"
+          onClick={toggleReadStatus}
+        >
+          Mark as {hasBeenRead ? "Unread" : "Read"}
+        </button>
         <button type="button" className="icon" onClick={updateBook}>
           <img src={editIcon} alt="Edit Details" title="Edit Details" />
         </button>

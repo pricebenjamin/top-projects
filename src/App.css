@@ -54,9 +54,13 @@
 }
 
 .book .actions {
-  align-self: flex-end;
   margin-top: auto;
   display: flex;
+}
+
+.book button.toggle-read {
+  font-size: 12px;
+  margin-right: auto;
 }
 
 .book button.icon {
