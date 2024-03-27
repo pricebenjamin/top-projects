@@ -71,14 +71,14 @@ export default function LibraryComponent() {
       }
     }
 
-    function onDialogInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    function updateDialogInputs(event: React.ChangeEvent<HTMLInputElement>) {
       const key = event.target.name;
       const value =
         event.target.type === "checkbox"
           ? event.target.checked
           : event.target.value;
 
-      console.log(`onDialogInputChange(): ${key} => ${value}`);
+      console.log(`updateDialogInputs(): ${key} => ${value}`);
 
       setDialogState({
         ...dialogState,
@@ -112,7 +112,7 @@ export default function LibraryComponent() {
           <input
             checked={dialogState[name]}
             name={name}
-            onChange={onDialogInputChange}
+            onChange={updateDialogInputs}
             type={inputTypes[name]}
           />
         </div>
@@ -122,7 +122,7 @@ export default function LibraryComponent() {
           <input
             value={dialogState[name]}
             name={name}
-            onChange={onDialogInputChange}
+            onChange={updateDialogInputs}
             type={inputTypes[name]}
           />
         </>
