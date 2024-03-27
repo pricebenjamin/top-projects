@@ -36,7 +36,7 @@ export class Library {
     if (book === undefined) {
       console.log(`library.update(): no book to update (key=${key})`);
     } else {
-      console.log(`library.update():`);
+      console.log(`library.update(): updating book with key=${key}`);
       copy.#collection.set(key, { ...book, ...fieldsToUpdate });
     }
     return copy;
