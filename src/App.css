@@ -19,6 +19,11 @@
   margin-bottom: 2rem;
 }
 
+.library > h2 {
+  font-size: 32px;
+  margin: 2rem 0;
+}
+
 .library .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

@@ -56,20 +56,56 @@ export default function LibraryComponent() {
       setDialogState(emptyBook());
     }
 
-    const bookList = library.map((key, book) => (
-      <BookComponent
-        key={key}
-        {...book}
-        deleteBook={deleteBook(key)}
-        updateBook={updateBook(key)}
-        toggleReadStatus={toggleReadStatus(key)}
-      />
-    ));
+    const bookArray = library.map((key, book) => {
+      return { key, book };
+    });
+
+    const sortedBookArray = bookArray.sort((a, b) =>
+      sortByTitle(a.book, b.book)
+    );
+
+    function sortByTitle(bookA: Book, bookB: Book): number {
+      const titleA = bookA.title.toLowerCase();
+      const titleB = bookB.title.toLowerCase();
+      if (titleA > titleB) return 1;
+      if (titleA < titleB) return -1;
+      return 0;
+    }
+
+    const sortedReadBooks = sortedBookArray.filter(
+      ({ book }) => book.hasBeenRead
+    );
+    const sortedUnreadBooks = sortedBookArray.filter(
+      ({ book }) => !book.hasBeenRead
+    );
+
+    function renderBook({ key, book }: { key: string; book: Book }) {
+      return (
+        <BookComponent
+          key={key}
+          {...book}
+          deleteBook={deleteBook(key)}
+          updateBook={updateBook(key)}
+          toggleReadStatus={toggleReadStatus(key)}
+        />
+      );
+    }
 
     return (
       <div className="library">
         <h1>My Library</h1>
-        <div className="grid">{bookList}</div>
+        {sortedUnreadBooks.length > 0 && (
+          <>
+            <h2>Unread</h2>
+            <div className="grid">{sortedUnreadBooks.map(renderBook)}</div>
+          </>
+        )}
+        {sortedReadBooks.length > 0 && (
+          <>
+            <h2>Read</h2>
+            <div className="grid">{sortedReadBooks.map(renderBook)}</div>
+          </>
+        )}
         <button type="button" name="add-book" onClick={showAddBookDialog}>
           Add Book
         </button>
