@@ -112,6 +112,7 @@ export default function LibraryComponent() {
           <input
             checked={dialogState[name]}
             name={name}
+            id={name}
             onChange={updateDialogInputs}
             type={inputTypes[name]}
           />
@@ -122,6 +123,7 @@ export default function LibraryComponent() {
           <input
             value={dialogState[name]}
             name={name}
+            id={name}
             onChange={updateDialogInputs}
             type={inputTypes[name]}
           />
