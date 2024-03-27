@@ -124,8 +124,13 @@ function LibraryComponent() {
               type="checkbox"
             />
           </div>
-          <label htmlFor="key">Key: </label>
-          <input value={key} name="key" type="text" disabled />
+          <input
+            value={key}
+            name="key"
+            type="text"
+            disabled
+            style={{ visibility: "collapse" }}
+          />
           <button type="submit">Submit</button>
         </form>
       </dialog>
