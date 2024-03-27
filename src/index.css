@@ -11,6 +11,7 @@
   --background-color-hover: rgba(255, 255, 255, 0.05);
   --dialog-backdrop: rgba(0, 0, 0, 0.5);
   --book-border-color: rgba(255, 255, 255, 0.1);
+  --action-button-hover-background: rgba(255, 255, 255, 0.1);
 }
 
 a {
@@ -59,6 +60,7 @@ button:hover {
     --color-dim: rgba(0, 0, 0, 0.6);
     --background-color-hover: #ffffff;
     --dialog-backdrop: rgba(0, 0, 0, 0.3);
+    --action-button-hover-background: rgba(0, 0, 0, 0.05);
   }
   a:hover {
     color: #747bff;

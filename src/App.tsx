@@ -2,6 +2,8 @@ import { useState, useRef } from "react";
 import { Book, Library } from "./library.ts";
 import { books } from "./data.js";
 import "./App.css";
+import trashIcon from "./icons/trash-can-outline.svg";
+import editIcon from "./icons/text-box-edit-outline.svg";
 
 export default function LibraryComponent() {
   const [library, setLibrary] = useState(() => initialLibrary());
@@ -194,24 +196,19 @@ function BookComponent({
   updateBook,
 }: BookComponentProps) {
   return (
-    <div className="book" onClick={updateBook}>
+    <div className="book">
       <h2 className="title">{title}</h2>
       <h3 className="author">{author}</h3>
       <p>{`Pages: ${pageCount}`}</p>
       {hasBeenRead && <p>✅ Read</p>}
-      {/* since the parent div also has an onClick handler, we need to
-          stop propagation if the delete button is pressed */}
-      <button type="button" name="delete" onClick={doNotPropagate(deleteBook)}>
-        Delete
-      </button>
+      <div className="actions">
+        <button type="button" className="icon" onClick={updateBook}>
+          <img src={editIcon} alt="Edit Details" title="Edit Details" />
+        </button>
+        <button type="button" className="icon" onClick={deleteBook}>
+          <img src={trashIcon} alt="Remove" title="Remove" />
+        </button>
+      </div>
     </div>
   );
-}
-
-function doNotPropagate(wrappedFn: () => void): React.MouseEventHandler {
-  function callback(event: React.MouseEvent) {
-    event.stopPropagation();
-    wrappedFn();
-  }
-  return callback;
 }

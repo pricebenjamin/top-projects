@@ -42,7 +42,6 @@
 
 .book:hover {
   background-color: var(--background-color-hover);
-  cursor: pointer;
 }
 
 .book .author,
@@ -54,8 +53,27 @@
   margin-bottom: 1rem;
 }
 
-.book button[name="delete"] {
+.book .actions {
+  align-self: flex-end;
   margin-top: auto;
+  display: flex;
+}
+
+.book button.icon {
+  background-color: inherit;
+  padding: 5px;
+  display: flex;
+  place-items: center;
+  transition: none;
+}
+
+.book button.icon:hover {
+  background-color: var(--action-button-hover-background);
+  border-color: var(--action-button-hover-background);
+}
+
+.book .icon img {
+  height: 25px;
 }
 
 dialog {
