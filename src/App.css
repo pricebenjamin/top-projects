@@ -64,6 +64,10 @@ dialog {
   padding-top: 0;
 }
 
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 dialog button.close-modal {
   margin: 0;
   padding: 0px 10px;
