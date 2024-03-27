@@ -9,150 +9,176 @@ function App() {
 
 function LibraryComponent() {
   const [library, setLibrary] = useState(() => initialLibrary());
+  const [dialogState, setDialogState] = useState(newBook());
   const [key, setKey] = useState("");
-
-  function onDelete(key: string) {
-    return (event: React.MouseEvent) => {
-      // prevent click from propagating onto book div
-      event.stopPropagation();
-      setLibrary(library.delete(key));
-    };
-  }
-
-  function onUpdate(targetKey: string) {
-    return () => {
-      const book = library.get(targetKey);
-      if (book) {
-        setKey(targetKey);
-        setDialogState(book);
-        dialog.current?.showModal();
-      } else {
-        // should never fail
-        console.log(`onUpdate(): error (targetKey=${targetKey})`);
-      }
-    };
-  }
-
-  // https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom
   const dialog = useRef<HTMLDialogElement>(null);
 
-  function closeModal() {
-    dialog.current?.close();
-  }
-
-  const newBook = () => {
-    return {
-      title: "",
-      author: "",
-      pageCount: 0,
-      hasBeenRead: false,
-    };
-  };
-
-  // dialogState keys _must match_ input form name
-  const [dialogState, setDialogState] = useState(newBook());
-
-  function onSubmit() {
-    const book = library.get(key);
-    if (book) {
-      setLibrary(library.update(key, dialogState));
-    } else {
-      setLibrary(library.add(dialogState));
+  function createLibrary() {
+    function deleteBook(key: string) {
+      return (event: React.MouseEvent) => {
+        // prevent click from propagating onto book div
+        event.stopPropagation();
+        setLibrary(library.delete(key));
+      };
     }
+
+    function updateBook(targetKey: string) {
+      return () => {
+        const book = library.get(targetKey);
+        if (book) {
+          setKey(targetKey);
+          setDialogState(book);
+          dialog.current?.showModal();
+        } else {
+          // should never fail
+          console.log(`onUpdate(): error (targetKey=${targetKey})`);
+        }
+      };
+    }
+
+    function showAddBookDialog() {
+      resetDialog();
+      dialog.current?.showModal();
+    }
+
+    function resetDialog() {
+      setKey("");
+      setDialogState(newBook());
+    }
+
+    const bookList = library.map((key, book) => (
+      <BookComponent
+        key={key}
+        {...book}
+        deleteBook={deleteBook(key)}
+        updateBook={updateBook(key)}
+      />
+    ));
+
+    return (
+      <div className="library">
+        <h1>My Library</h1>
+        <div className="grid">{bookList}</div>
+        <button type="button" name="add-book" onClick={showAddBookDialog}>
+          Add Book
+        </button>
+      </div>
+    );
   }
 
-  function onDialogInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const key = event.target.name;
-    const value =
-      event.target.type === "checkbox"
-        ? event.target.checked
-        : event.target.value;
+  function createDialog() {
+    function onSubmit() {
+      const book = library.get(key);
+      if (book) {
+        setLibrary(library.update(key, dialogState));
+      } else {
+        setLibrary(library.add(dialogState));
+      }
+    }
 
-    console.log(`onDialogInputChange(): ${key} => ${value}`);
+    function onDialogInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+      const key = event.target.name;
+      const value =
+        event.target.type === "checkbox"
+          ? event.target.checked
+          : event.target.value;
 
-    setDialogState({
-      ...dialogState,
-      [key]: value,
-    });
-  }
+      console.log(`onDialogInputChange(): ${key} => ${value}`);
 
-  function showAddBookDialog() {
-    resetDialog();
-    dialog.current?.showModal();
-  }
+      setDialogState({
+        ...dialogState,
+        [key]: value,
+      });
+    }
 
-  function resetDialog() {
-    setKey("");
-    setDialogState(newBook());
-  }
+    function closeModal() {
+      dialog.current?.close();
+    }
 
-  return (
-    <>
+    function createInputFor(name: keyof Book) {
+      const displayLabels = {
+        title: "Title: ",
+        author: "Author: ",
+        pageCount: "Pages: ",
+        hasBeenRead: "Read: ",
+      };
+
+      const inputTypes = {
+        title: "text",
+        author: "text",
+        pageCount: "number",
+        hasBeenRead: "checkbox",
+      };
+
+      return name === "hasBeenRead" ? (
+        <div className="labeled-checkbox">
+          {/* keep label inline for checkbox */}
+          <label htmlFor={name}>{displayLabels[name]}</label>
+          <input
+            checked={dialogState[name]}
+            name={name}
+            onChange={onDialogInputChange}
+            type={inputTypes[name]}
+          />
+        </div>
+      ) : (
+        <>
+          <label htmlFor={name}>{displayLabels[name]}</label>
+          <input
+            value={dialogState[name]}
+            name={name}
+            onChange={onDialogInputChange}
+            type={inputTypes[name]}
+          />
+        </>
+      );
+    }
+
+    function createHiddenInput() {
+      return (
+        <input
+          value={key}
+          name="key"
+          type="text"
+          disabled
+          style={{ visibility: "collapse" }}
+        />
+      );
+    }
+
+    return (
       <dialog ref={dialog}>
         <form method="dialog" className="add-book" onSubmit={onSubmit}>
           <button type="button" className="close-modal" onClick={closeModal}>
             ×
           </button>
-          {/* input names must match dialogState keys */}
-          <label htmlFor="title">Title: </label>
-          <input
-            value={dialogState["title"]}
-            name="title"
-            onChange={onDialogInputChange}
-            type="text"
-          />
-          <label htmlFor="author">Author:</label>
-          <input
-            value={dialogState["author"]}
-            name="author"
-            onChange={onDialogInputChange}
-            type="text"
-          />
-          <label htmlFor="pageCount">Pages: </label>
-          <input
-            value={dialogState["pageCount"]}
-            name="pageCount"
-            onChange={onDialogInputChange}
-            type="number"
-          />
-          <div className="labeled-checkbox">
-            <label htmlFor="hasBeenRead">Read: </label>
-            <input
-              checked={dialogState["hasBeenRead"]}
-              name="hasBeenRead"
-              onChange={onDialogInputChange}
-              type="checkbox"
-            />
-          </div>
-          <input
-            value={key}
-            name="key"
-            type="text"
-            disabled
-            style={{ visibility: "collapse" }}
-          />
+          {createInputFor("title")}
+          {createInputFor("author")}
+          {createInputFor("pageCount")}
+          {createInputFor("hasBeenRead")}
+          {createHiddenInput()}
           <button type="submit">Submit</button>
         </form>
       </dialog>
-      <div className="library">
-        <h1>My Library</h1>
-        <div className="grid">
-          {library.map((key, book) => (
-            <BookComponent
-              key={key}
-              {...book}
-              onDelete={onDelete(key)}
-              onClick={onUpdate(key)}
-            />
-          ))}
-        </div>
-        <button type="button" name="add-book" onClick={showAddBookDialog}>
-          Add Book
-        </button>
-      </div>
+    );
+  }
+
+  return (
+    <>
+      {createLibrary()}
+      {createDialog()}
     </>
   );
 }
+
+const newBook = (): Book => {
+  return {
+    title: "",
+    author: "",
+    pageCount: 0,
+    hasBeenRead: false,
+  };
+};
 
 function initialLibrary() {
   let lib = new Library();
@@ -163,8 +189,8 @@ function initialLibrary() {
 }
 
 interface BookComponentProps extends Book {
-  onDelete: React.MouseEventHandler;
-  onClick: React.MouseEventHandler;
+  deleteBook: React.MouseEventHandler;
+  updateBook: React.MouseEventHandler;
 }
 
 function BookComponent({
@@ -172,16 +198,16 @@ function BookComponent({
   author,
   pageCount,
   hasBeenRead,
-  onDelete,
-  onClick,
+  deleteBook,
+  updateBook,
 }: BookComponentProps) {
   return (
-    <div className="book" onClick={onClick}>
+    <div className="book" onClick={updateBook}>
       <h2 className="title">{title}</h2>
       <h3 className="author">{author}</h3>
       <p>{`Pages: ${pageCount}`}</p>
       {hasBeenRead && <p>✅ Read</p>}
-      <button type="button" name="delete" onClick={onDelete}>
+      <button type="button" name="delete" onClick={deleteBook}>
         Delete
       </button>
     </div>
