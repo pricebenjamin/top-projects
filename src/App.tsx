@@ -54,15 +54,11 @@ function LibraryComponent() {
 
   function onSubmit() {
     const book = library.get(key);
-
     if (book) {
       setLibrary(library.update(key, dialogState));
     } else {
       setLibrary(library.add(dialogState));
     }
-
-    setKey("");
-    setDialogState(newBook());
   }
 
   function onDialogInputChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -78,6 +74,16 @@ function LibraryComponent() {
       ...dialogState,
       [key]: value,
     });
+  }
+
+  function showAddBookDialog() {
+    resetDialog();
+    dialog.current?.showModal();
+  }
+
+  function resetDialog() {
+    setKey("");
+    setDialogState(newBook());
   }
 
   return (
@@ -135,11 +141,7 @@ function LibraryComponent() {
             />
           ))}
         </div>
-        <button
-          type="button"
-          name="add-book"
-          onClick={() => dialog.current?.showModal()}
-        >
+        <button type="button" name="add-book" onClick={showAddBookDialog}>
           Add Book
         </button>
       </div>
