@@ -74,6 +74,7 @@
 
 .book .icon img {
   height: 25px;
+  filter: invert(80%);
 }
 
 dialog {
