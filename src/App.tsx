@@ -16,16 +16,17 @@ export default function LibraryComponent() {
       };
     }
 
-    function updateBook(targetKey: string) {
+    function updateBook(key: string) {
       return () => {
-        const book = library.get(targetKey);
+        const book = library.get(key);
         if (book) {
-          setKey(targetKey);
+          setKey(key);
           setDialogState(book);
           dialog.current?.showModal();
         } else {
-          // should never fail
-          console.log(`onUpdate(): error (targetKey=${targetKey})`);
+          console.log(
+            `error: unable to update book: failed to find book by key=${key}`
+          );
         }
       };
     }
