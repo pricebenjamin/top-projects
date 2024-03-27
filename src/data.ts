@@ -25,4 +25,28 @@ export const books: Book[] = [
     pageCount: 856,
     hasBeenRead: true,
   },
+  {
+    title: "The Remains of the Day",
+    author: "Kazuo Ishiguro",
+    pageCount: 258,
+    hasBeenRead: true,
+  },
+  {
+    title: "Pedro Páramo",
+    author: "Juan Rulfo",
+    pageCount: 124,
+    hasBeenRead: true,
+  },
+  {
+    title: "Inferno",
+    author: "Dante Alighieri",
+    pageCount: 490,
+    hasBeenRead: true,
+  },
+  {
+    title: "Candide",
+    author: "Voltaire",
+    pageCount: 129,
+    hasBeenRead: true,
+  },
 ];
