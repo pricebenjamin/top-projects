@@ -3,11 +3,7 @@ import { Book, Library } from "./library.ts";
 import { books } from "./data.js";
 import "./App.css";
 
-function App() {
-  return <LibraryComponent />;
-}
-
-function LibraryComponent() {
+export default function LibraryComponent() {
   const [library, setLibrary] = useState(() => initialLibrary());
   const [dialogState, setDialogState] = useState(emptyBook());
   const [key, setKey] = useState("");
@@ -214,5 +210,3 @@ function BookComponent({
     </div>
   );
 }
-
-export default App;
