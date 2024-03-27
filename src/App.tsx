@@ -67,7 +67,7 @@ function LibraryComponent() {
   }
 
   function createDialog() {
-    function onSubmit() {
+    function submit() {
       const book = library.get(key);
       if (book) {
         setLibrary(library.update(key, dialogState));
@@ -91,7 +91,7 @@ function LibraryComponent() {
       });
     }
 
-    function closeModal() {
+    function closeDialog() {
       dialog.current?.close();
     }
 
@@ -148,8 +148,9 @@ function LibraryComponent() {
 
     return (
       <dialog ref={dialog}>
-        <form method="dialog" className="add-book" onSubmit={onSubmit}>
-          <button type="button" className="close-modal" onClick={closeModal}>
+        {/* method="dialog" closes the dialog on form submission */}
+        <form method="dialog" className="add-book" onSubmit={submit}>
+          <button type="button" className="close-dialog" onClick={closeDialog}>
             ×
           </button>
           {createInputFor("title")}

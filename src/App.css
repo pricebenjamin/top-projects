@@ -68,7 +68,7 @@ dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-dialog button.close-modal {
+dialog button.close-dialog {
   margin: 0;
   padding: 0px 10px;
   background-color: rgba(255, 0, 0, 0.2);
@@ -78,7 +78,7 @@ dialog button.close-modal {
   font-size: 18px;
 }
 
-dialog button.close-modal:hover {
+dialog button.close-dialog:hover {
   background-color: rgba(255, 0, 0, 0.6);
 }
 
