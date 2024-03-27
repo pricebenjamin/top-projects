@@ -131,15 +131,9 @@ export default function LibraryComponent() {
       );
     }
 
-    function createHiddenInput() {
+    function embedKey() {
       return (
-        <input
-          value={key}
-          name="key"
-          type="text"
-          disabled
-          style={{ visibility: "collapse" }}
-        />
+        <input value={key} type="text" disabled style={{ display: "none" }} />
       );
     }
 
@@ -154,7 +148,7 @@ export default function LibraryComponent() {
           {createInputFor("author")}
           {createInputFor("pageCount")}
           {createInputFor("hasBeenRead")}
-          {createHiddenInput()}
+          {embedKey()}
           <button type="submit">Submit</button>
         </form>
       </dialog>
