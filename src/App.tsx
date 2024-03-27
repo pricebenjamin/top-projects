@@ -9,10 +9,27 @@ function App() {
 
 function LibraryComponent() {
   const [library, setLibrary] = useState(() => initialLibrary());
+  const [key, setKey] = useState("");
 
   function onDelete(key: string) {
-    return () => {
+    return (event: React.MouseEvent) => {
+      // prevent click from propagating onto book div
+      event.stopPropagation();
       setLibrary(library.delete(key));
+    };
+  }
+
+  function onUpdate(targetKey: string) {
+    return () => {
+      const book = library.get(targetKey);
+      if (book) {
+        setKey(targetKey);
+        setDialogState(book);
+        dialog.current?.showModal();
+      } else {
+        // should never fail
+        console.log(`onUpdate(): error (targetKey=${targetKey})`);
+      }
     };
   }
 
@@ -36,7 +53,15 @@ function LibraryComponent() {
   const [dialogState, setDialogState] = useState(newBook());
 
   function onSubmit() {
-    setLibrary(library.add(dialogState));
+    const book = library.get(key);
+
+    if (book) {
+      setLibrary(library.update(key, dialogState));
+    } else {
+      setLibrary(library.add(dialogState));
+    }
+
+    setKey("");
     setDialogState(newBook());
   }
 
@@ -93,6 +118,8 @@ function LibraryComponent() {
               type="checkbox"
             />
           </div>
+          <label htmlFor="key">Key: </label>
+          <input value={key} name="key" type="text" disabled />
           <button type="submit">Submit</button>
         </form>
       </dialog>
@@ -100,7 +127,12 @@ function LibraryComponent() {
         <h1>My Library</h1>
         <div className="grid">
           {library.map((key, book) => (
-            <BookComponent key={key} {...book} onDelete={onDelete(key)} />
+            <BookComponent
+              key={key}
+              {...book}
+              onDelete={onDelete(key)}
+              onClick={onUpdate(key)}
+            />
           ))}
         </div>
         <button
@@ -124,7 +156,8 @@ function initialLibrary() {
 }
 
 interface BookComponentProps extends Book {
-  onDelete: () => void;
+  onDelete: React.MouseEventHandler;
+  onClick: React.MouseEventHandler;
 }
 
 function BookComponent({
@@ -133,9 +166,10 @@ function BookComponent({
   pageCount,
   hasBeenRead,
   onDelete,
+  onClick,
 }: BookComponentProps) {
   return (
-    <div className="book">
+    <div className="book" onClick={onClick}>
       <h2 className="title">{title}</h2>
       <h3 className="author">{author}</h3>
       <p>{`Pages: ${pageCount}`}</p>
