@@ -1,0 +1,141 @@
+#root {
+  width: clamp(300px, 85%, 1280px);
+  margin: 0 auto;
+}
+
+#root > * {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+*:not(dialog) {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: var(--background-color);
+  z-index: 1;
+  border-bottom: 1px solid white;
+}
+
+header .add-book {
+  margin-left: auto;
+}
+
+.library {
+  display: flex;
+  flex-direction: column;
+}
+
+.library > h2 {
+  font-size: 32px;
+  margin: 2rem 0;
+}
+
+.library .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background-color: #292929;
+  border: 1px solid var(--book-border-color);
+  border-radius: 20px;
+}
+
+.book:hover {
+  background-color: var(--background-color-hover);
+}
+
+.book .author,
+.book p {
+  color: var(--color-dim);
+}
+
+.book p:last-of-type {
+  margin-bottom: 1rem;
+}
+
+.book .actions {
+  margin-top: auto;
+  display: flex;
+}
+
+.book button.toggle-read {
+  font-size: 12px;
+  margin-right: auto;
+}
+
+.book button.icon {
+  background-color: inherit;
+  padding: 5px;
+  display: flex;
+  place-items: center;
+  transition: none;
+}
+
+.book button.icon:hover {
+  background-color: var(--action-button-hover-background);
+  border-color: var(--action-button-hover-background);
+}
+
+.book .icon img {
+  height: 25px;
+  filter: invert(80%);
+}
+
+dialog {
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 2rem;
+  padding-top: 0;
+}
+
+dialog::backdrop {
+  background-color: var(--dialog-backdrop);
+}
+
+dialog button.close-dialog {
+  margin: 0;
+  padding: 0px 10px;
+  background-color: rgba(255, 0, 0, 0.2);
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-left: auto;
+  font-size: 18px;
+}
+
+dialog button.close-dialog:hover {
+  background-color: rgba(255, 0, 0, 0.6);
+}
+
+form.add-book {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+form input[type="text"],
+form input[type="number"] {
+  padding: 5px 10px;
+  width: 30ch;
+}
+
+.labeled-checkbox {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}
