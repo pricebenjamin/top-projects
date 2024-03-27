@@ -6,6 +6,11 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+
+  --color-dim: rgba(255, 255, 255, 0.5);
+  --background-color-hover: rgba(255, 255, 255, 0.05);
+  --dialog-backdrop: rgba(0, 0, 0, 0.5);
+  --book-border-color: rgba(255, 255, 255, 0.1);
 }
 
 a {
@@ -49,12 +54,22 @@ button:hover {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #f0f0f0;
+
+    --color-dim: rgba(0, 0, 0, 0.6);
+    --background-color-hover: #ffffff;
+    --dialog-backdrop: rgba(0, 0, 0, 0.3);
   }
   a:hover {
     color: #747bff;
   }
   button {
+    background-color: #dadada;
+  }
+  .book {
     background-color: #f9f9f9;
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.1),
+      0 2px 3px rgba(0, 0, 0, 0.1);
   }
 }
