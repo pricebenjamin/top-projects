@@ -11,9 +11,7 @@ export default function LibraryComponent() {
 
   function createLibrary() {
     function deleteBook(key: string) {
-      return (event: React.MouseEvent) => {
-        // prevent click from propagating onto book div
-        event.stopPropagation();
+      return () => {
         setLibrary(library.delete(key));
       };
     }
@@ -186,8 +184,8 @@ function initialLibrary() {
 }
 
 interface BookComponentProps extends Book {
-  deleteBook: React.MouseEventHandler;
-  updateBook: React.MouseEventHandler;
+  deleteBook: () => void;
+  updateBook: () => void;
 }
 
 function BookComponent({
@@ -204,9 +202,19 @@ function BookComponent({
       <h3 className="author">{author}</h3>
       <p>{`Pages: ${pageCount}`}</p>
       {hasBeenRead && <p>✅ Read</p>}
-      <button type="button" name="delete" onClick={deleteBook}>
+      {/* since the parent div also has an onClick handler, we need to
+          stop propagation if the delete button is pressed */}
+      <button type="button" name="delete" onClick={doNotPropagate(deleteBook)}>
         Delete
       </button>
     </div>
   );
+}
+
+function doNotPropagate(wrappedFn: () => void): React.MouseEventHandler {
+  function callback(event: React.MouseEvent) {
+    event.stopPropagation();
+    wrappedFn();
+  }
+  return callback;
 }
