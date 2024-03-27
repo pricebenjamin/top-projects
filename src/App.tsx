@@ -9,7 +9,7 @@ function App() {
 
 function LibraryComponent() {
   const [library, setLibrary] = useState(() => initialLibrary());
-  const [dialogState, setDialogState] = useState(newBook());
+  const [dialogState, setDialogState] = useState(emptyBook());
   const [key, setKey] = useState("");
   const dialog = useRef<HTMLDialogElement>(null);
 
@@ -43,7 +43,7 @@ function LibraryComponent() {
 
     function resetDialog() {
       setKey("");
-      setDialogState(newBook());
+      setDialogState(emptyBook());
     }
 
     const bookList = library.map((key, book) => (
@@ -171,14 +171,14 @@ function LibraryComponent() {
   );
 }
 
-const newBook = (): Book => {
+function emptyBook(): Book {
   return {
     title: "",
     author: "",
     pageCount: 0,
     hasBeenRead: false,
   };
-};
+}
 
 function initialLibrary() {
   let lib = new Library();
