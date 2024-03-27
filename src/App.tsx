@@ -92,24 +92,32 @@ export default function LibraryComponent() {
     }
 
     return (
-      <div className="library">
-        <h1>My Library</h1>
-        {sortedUnreadBooks.length > 0 && (
-          <>
-            <h2>Unread</h2>
-            <div className="grid">{sortedUnreadBooks.map(renderBook)}</div>
-          </>
-        )}
-        {sortedReadBooks.length > 0 && (
-          <>
-            <h2>Read</h2>
-            <div className="grid">{sortedReadBooks.map(renderBook)}</div>
-          </>
-        )}
-        <button type="button" name="add-book" onClick={showAddBookDialog}>
-          Add Book
-        </button>
-      </div>
+      <>
+        <header>
+          <h1>My Library</h1>
+          <button
+            type="button"
+            className="add-book"
+            onClick={showAddBookDialog}
+          >
+            Add Book
+          </button>
+        </header>
+        <div className="library">
+          {sortedUnreadBooks.length > 0 && (
+            <>
+              <h2>Unread</h2>
+              <div className="grid">{sortedUnreadBooks.map(renderBook)}</div>
+            </>
+          )}
+          {sortedReadBooks.length > 0 && (
+            <>
+              <h2>Read</h2>
+              <div className="grid">{sortedReadBooks.map(renderBook)}</div>
+            </>
+          )}
+        </div>
+      </>
     );
   }
 

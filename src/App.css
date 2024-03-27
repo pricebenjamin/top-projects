@@ -1,7 +1,11 @@
 #root {
-  width: clamp(300px, 90%, 1280px);
+  width: clamp(300px, 85%, 1280px);
   margin: 0 auto;
-  padding: 2rem;
+}
+
+#root > * {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 *:not(dialog) {
@@ -10,13 +14,25 @@
   box-sizing: border-box;
 }
 
+header {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: var(--background-color);
+  z-index: 1;
+  border-bottom: 1px solid white;
+}
+
+header .add-book {
+  margin-left: auto;
+}
+
 .library {
   display: flex;
   flex-direction: column;
-}
-
-.library h1 {
-  margin-bottom: 2rem;
 }
 
 .library > h2 {
@@ -28,12 +44,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1rem;
-}
-
-.library button[name="add-book"] {
-  position: fixed;
-  bottom: 3rem;
-  right: 3rem;
 }
 
 .book {
