@@ -1,23 +1,35 @@
-import { TicTacToe } from "@components/TicTacToe";
+import { useRef, useState } from "react";
+import { TicTacToe, TicTacToeBoard } from "@components/TicTacToe";
 import "./App.css";
 
 function App() {
-  function play() {
-    const game = new TicTacToe();
+  const game = useRef(new TicTacToe());
+  const [board, setBoard] = useState(game.current.getBoard());
 
-    while (!game.finished()) {
-      console.clear();
-      game.showBoard();
+  const newGame = () => {
+    game.current = new TicTacToe();
+    setBoard(game.current.getBoard());
+  };
 
-      const input = prompt(`Current Player: ${game.getPlayer()}\n\nMove:`);
-      if (input === null) break;
+  const playMove = (move: number) => {
+    game.current.playMove(move);
+    setBoard(game.current.getBoard());
+  };
 
-      const move = Number(input);
-      game.playMove(move);
-    }
-  }
+  const winner = game.current.getOutcome();
 
-  return <button onClick={play}>Play Tic Tac Toe</button>;
+  return (
+    <>
+      <TicTacToeBoard {...{ board, onClick: playMove }} />
+      <button onClick={newGame}>New Game</button>
+      {winner &&
+        (winner === "draw" ? (
+          <h1>Draw Game!</h1>
+        ) : (
+          <h1>Player {winner} wins!</h1>
+        ))}
+    </>
+  );
 }
 
 export default App;

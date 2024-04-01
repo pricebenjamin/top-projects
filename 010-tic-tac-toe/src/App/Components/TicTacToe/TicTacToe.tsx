@@ -1,10 +1,60 @@
+import "./TicTacToe.css";
+
 type Player = "X" | "O";
 type Square = Player | null;
+
+interface BoardProps {
+  board: Square[];
+  onClick: (move: number) => void;
+}
+
+export function TicTacToeBoard({ board, onClick }: BoardProps) {
+  return (
+    <div className="board">
+      <div className="row">
+        <Square {...{ index: 0, value: board[0], onClick }} />
+        <Square {...{ index: 1, value: board[1], onClick }} />
+        <Square {...{ index: 2, value: board[2], onClick }} />
+      </div>
+      <div className="row">
+        <Square {...{ index: 3, value: board[3], onClick }} />
+        <Square {...{ index: 4, value: board[4], onClick }} />
+        <Square {...{ index: 5, value: board[5], onClick }} />
+      </div>
+      <div className="row">
+        <Square {...{ index: 6, value: board[6], onClick }} />
+        <Square {...{ index: 7, value: board[7], onClick }} />
+        <Square {...{ index: 8, value: board[8], onClick }} />
+      </div>
+    </div>
+  );
+}
+
+interface SquareProps {
+  index: number;
+  value: Square;
+  onClick: (value: number) => void;
+}
+
+function Square({ index, value, onClick }: SquareProps) {
+  return (
+    <>
+      {value === null ? (
+        <div className="square playable" onClick={() => onClick(index)}>
+          {index}
+        </div>
+      ) : (
+        <div className="square">{value}</div>
+      )}
+    </>
+  );
+}
 
 export class TicTacToe {
   #board: Square[] = Array(9).fill(null);
   #currentPlayer: Player = "X";
   #gameOver = false;
+  #outcome: Player | "draw" | undefined = undefined;
 
   playMove(location: number) {
     if (this.#gameOver) {
@@ -50,12 +100,14 @@ export class TicTacToe {
       ) {
         console.log(`Winner: ${squares[0]}`);
         this.#gameOver = true;
+        this.#outcome = squares[0];
       }
     }
 
     if (!this.#board.includes(null)) {
       console.log("Result: draw");
       this.#gameOver = true;
+      this.#outcome = "draw";
     }
   }
 
@@ -76,5 +128,13 @@ export class TicTacToe {
 
   finished() {
     return this.#gameOver;
+  }
+
+  getBoard() {
+    return [...this.#board];
+  }
+
+  getOutcome() {
+    return this.#outcome;
   }
 }
