@@ -1,21 +1,23 @@
-import { useState } from "react";
-import { Greet } from "@components/Greet";
+import { TicTacToe } from "@components/TicTacToe";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  function play() {
+    const game = new TicTacToe();
 
-  return (
-    <>
-      <h1>Hello, world!</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <Greet />
-      </div>
-    </>
-  );
+    while (!game.finished()) {
+      console.clear();
+      game.showBoard();
+
+      const input = prompt(`Current Player: ${game.getPlayer()}\n\nMove:`);
+      if (input === null) break;
+
+      const move = Number(input);
+      game.playMove(move);
+    }
+  }
+
+  return <button onClick={play}>Play Tic Tac Toe</button>;
 }
 
 export default App;
