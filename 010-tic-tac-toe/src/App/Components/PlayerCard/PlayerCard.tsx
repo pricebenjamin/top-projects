@@ -27,6 +27,12 @@ export function PlayerCard({
     setInput(event.target.value);
   }
 
+  function handleEnterKey(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Enter") {
+      save();
+    }
+  }
+
   function save() {
     setEditMode(false);
     onNameChange(input);
@@ -38,7 +44,7 @@ export function PlayerCard({
 
   useEffect(() => {
     if (inputRef.current && editMode) {
-      inputRef.current.focus();
+      inputRef.current.select();
     }
   }, [editMode]);
 
@@ -50,6 +56,7 @@ export function PlayerCard({
         type="text"
         value={input}
         onChange={handleInput}
+        onKeyDown={handleEnterKey}
         maxLength={10}
         disabled={!editMode}
       />
