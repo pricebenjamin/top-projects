@@ -30,19 +30,17 @@ function App() {
       {header}
       <div className="content">
         <PlayerCard
-          name={xName}
-          setName={xSetName}
           symbol="X"
-          alignment="left"
           active={game.current.getPlayer() === "X"}
+          name={xName}
+          onNameChange={xSetName}
         />
         <TicTacToeBoard {...{ board, onClick: playMove }} />
         <PlayerCard
-          name={oName}
-          setName={oSetName}
           symbol="O"
-          alignment="right"
           active={game.current.getPlayer() === "O"}
+          name={oName}
+          onNameChange={oSetName}
         />
       </div>
       <button onClick={newGame}>New Game</button>

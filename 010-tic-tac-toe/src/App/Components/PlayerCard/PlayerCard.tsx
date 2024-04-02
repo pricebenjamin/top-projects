@@ -4,28 +4,19 @@ import "./PlayerCard.css";
 interface PlayerCardProps {
   symbol: string;
   name: string;
-  setName: (name: string) => void;
-  alignment: "left" | "right";
   active: boolean;
+  onNameChange: (name: string) => void;
 }
 
 export function PlayerCard({
   symbol,
   name,
-  setName,
-  alignment,
   active,
+  onNameChange,
 }: PlayerCardProps) {
   const [editMode, setEditMode] = useState(false);
   const [input, setInput] = useState(name);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const lookup = {
-    left: "flex-start",
-    right: "flex-end",
-  };
-  const alignItems = { alignItems: lookup[alignment] };
-  const textAlign = { textAlign: alignment };
 
   const classList = ["player-card"];
   if (active) {
@@ -36,9 +27,9 @@ export function PlayerCard({
     setInput(event.target.value);
   }
 
-  function saveName() {
-    setName(input);
+  function save() {
     setEditMode(false);
+    onNameChange(input);
   }
 
   function edit() {
@@ -46,29 +37,23 @@ export function PlayerCard({
   }
 
   useEffect(() => {
-    if (inputRef.current) {
-      const style = window.getComputedStyle(inputRef.current);
-      style.display === "block" && inputRef.current.focus();
+    if (inputRef.current && editMode) {
+      inputRef.current.focus();
     }
-  });
+  }, [editMode]);
 
   return (
-    <div className={classList.join(" ")} style={alignItems}>
+    <div className={classList.join(" ")}>
       <div className="symbol">{symbol}</div>
       <input
         ref={inputRef}
         type="text"
         value={input}
         onChange={handleInput}
-        style={{ ...textAlign, display: editMode ? "block" : "none" }}
+        maxLength={10}
+        disabled={!editMode}
       />
-      <div
-        className="name"
-        style={{ ...textAlign, display: editMode ? "none" : "block" }}
-      >
-        {name}
-      </div>
-      <button onClick={editMode ? saveName : edit}>
+      <button onClick={editMode ? save : edit}>
         {editMode ? "Save" : "Change Name"}
       </button>
     </div>
