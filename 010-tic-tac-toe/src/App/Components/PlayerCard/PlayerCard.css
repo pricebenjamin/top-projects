@@ -1,0 +1,39 @@
+.player-card {
+  display: flex;
+  flex-direction: column;
+  font-family: monospace;
+  width: 200px;
+}
+
+.player-card > .symbol {
+  line-height: normal;
+  font-size: 10rem;
+}
+
+.player-card > .name,
+.player-card > input[type="text"] {
+  font-family: inherit;
+  font-size: 2rem;
+  padding: 0;
+  color: inherit;
+  width: 100%;
+}
+
+.player-card:not(.active) > .symbol,
+.player-card:not(.active) > .name {
+  opacity: 0.2;
+}
+
+.player-card > button {
+  font-size: 1rem;
+  margin-top: auto;
+}
+
+.player-card > input[type="text"] {
+  background: #343434;
+  border: none;
+}
+
+.player-card > input[type="text"]:focus-visible {
+  outline: none;
+}

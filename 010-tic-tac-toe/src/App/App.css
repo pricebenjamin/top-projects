@@ -7,3 +7,8 @@
   align-items: center;
   gap: 2rem;
 }
+
+.content {
+  display: flex;
+  gap: 2rem;
+}

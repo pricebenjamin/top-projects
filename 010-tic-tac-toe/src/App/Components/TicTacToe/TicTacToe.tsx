@@ -101,6 +101,7 @@ export class TicTacToe {
         console.log(`Winner: ${squares[0]}`);
         this.#gameOver = true;
         this.#outcome = squares[0];
+        return;
       }
     }
 
