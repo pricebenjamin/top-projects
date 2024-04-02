@@ -15,7 +15,6 @@ export function PlayerCard({
   onNameChange,
 }: PlayerCardProps) {
   const [editMode, setEditMode] = useState(false);
-  const [input, setInput] = useState(name);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const classList = ["player-card"];
@@ -24,22 +23,18 @@ export function PlayerCard({
   }
 
   function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
-    setInput(event.target.value);
+    onNameChange(event.target.value);
   }
 
   function handleEnterKey(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter") {
-      save();
+      onNameChange(event.target.value);
+      toggleEditMode();
     }
   }
 
-  function save() {
-    setEditMode(false);
-    onNameChange(input);
-  }
-
-  function edit() {
-    setEditMode(true);
+  function toggleEditMode() {
+    setEditMode(!editMode);
   }
 
   useEffect(() => {
@@ -54,13 +49,13 @@ export function PlayerCard({
       <input
         ref={inputRef}
         type="text"
-        value={input}
+        value={name}
         onChange={handleInput}
         onKeyDown={handleEnterKey}
         maxLength={10}
         disabled={!editMode}
       />
-      <button onClick={editMode ? save : edit}>
+      <button onClick={toggleEditMode}>
         {editMode ? "Save" : "Change Name"}
       </button>
     </div>
