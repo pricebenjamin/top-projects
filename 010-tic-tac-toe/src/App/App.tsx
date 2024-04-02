@@ -45,7 +45,7 @@ function App() {
         (winner === "draw" ? (
           <h1>Draw Game!</h1>
         ) : (
-          <h1>Player {winner} wins!</h1>
+          <h1>{winner === "X" ? xName : oName} wins!</h1>
         ))}
     </>
   );
