@@ -15,9 +15,13 @@
   align-items: center;
 }
 
-.playable {
+.square.playable {
   color: #444444;
   cursor: pointer;
+}
+
+.square.highlight {
+  background-color: hsl(0, 100%, 50%, 0.15);
 }
 
 @media (prefers-color-scheme: light) {

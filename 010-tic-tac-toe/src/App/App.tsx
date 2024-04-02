@@ -19,6 +19,7 @@ function App() {
   }
 
   const winner = game.current.getOutcome();
+  const winLine = game.current.getWinLine();
 
   const [xName, xSetName] = useState("Player 1");
   const [oName, oSetName] = useState("Player 2");
@@ -33,7 +34,7 @@ function App() {
           name={xName}
           onNameChange={xSetName}
         />
-        <TicTacToeBoard {...{ board, onClick: playMove }} />
+        <TicTacToeBoard {...{ board, onClick: playMove, winLine }} />
         <PlayerCard
           symbol="O"
           active={game.current.getPlayer() === "O"}

@@ -6,25 +6,38 @@ type Square = Player | null;
 interface BoardProps {
   board: Square[];
   onClick: (move: number) => void;
+  winLine: number[] | undefined;
 }
 
-export function TicTacToeBoard({ board, onClick }: BoardProps) {
+export function TicTacToeBoard({ board, onClick, winLine }: BoardProps) {
+  function createSquare(index: number) {
+    return (
+      <Square
+        {...{
+          index,
+          value: board[index],
+          onClick,
+          highlight: winLine === undefined ? false : winLine.includes(index),
+        }}
+      />
+    );
+  }
   return (
     <div className="board">
       <div className="row">
-        <Square {...{ index: 0, value: board[0], onClick }} />
-        <Square {...{ index: 1, value: board[1], onClick }} />
-        <Square {...{ index: 2, value: board[2], onClick }} />
+        {createSquare(0)}
+        {createSquare(1)}
+        {createSquare(2)}
       </div>
       <div className="row">
-        <Square {...{ index: 3, value: board[3], onClick }} />
-        <Square {...{ index: 4, value: board[4], onClick }} />
-        <Square {...{ index: 5, value: board[5], onClick }} />
+        {createSquare(3)}
+        {createSquare(4)}
+        {createSquare(5)}
       </div>
       <div className="row">
-        <Square {...{ index: 6, value: board[6], onClick }} />
-        <Square {...{ index: 7, value: board[7], onClick }} />
-        <Square {...{ index: 8, value: board[8], onClick }} />
+        {createSquare(6)}
+        {createSquare(7)}
+        {createSquare(8)}
       </div>
     </div>
   );
@@ -34,17 +47,28 @@ interface SquareProps {
   index: number;
   value: Square;
   onClick: (value: number) => void;
+  highlight: boolean;
 }
 
-function Square({ index, value, onClick }: SquareProps) {
+function Square({ index, value, onClick, highlight = false }: SquareProps) {
+  const classList = ["square"];
+
+  if (value === null) {
+    classList.push("playable");
+  }
+
+  if (highlight) {
+    classList.push("highlight");
+  }
+
   return (
     <>
       {value === null ? (
-        <div className="square playable" onClick={() => onClick(index)}>
+        <div className={classList.join(" ")} onClick={() => onClick(index)}>
           {index}
         </div>
       ) : (
-        <div className="square">{value}</div>
+        <div className={classList.join(" ")}>{value}</div>
       )}
     </>
   );
@@ -55,6 +79,7 @@ export class TicTacToe {
   #currentPlayer: Player = "X";
   #gameOver = false;
   #outcome: Player | "draw" | undefined = undefined;
+  #winLine: number[] | undefined = undefined;
 
   playMove(location: number) {
     if (this.#gameOver) {
@@ -101,6 +126,7 @@ export class TicTacToe {
         console.log(`Winner: ${squares[0]}`);
         this.#gameOver = true;
         this.#outcome = squares[0];
+        this.#winLine = [...line];
         return;
       }
     }
@@ -137,5 +163,9 @@ export class TicTacToe {
 
   getOutcome() {
     return this.#outcome;
+  }
+
+  getWinLine() {
+    return this.#winLine;
   }
 }
