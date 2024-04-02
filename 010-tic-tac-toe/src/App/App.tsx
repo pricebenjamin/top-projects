@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { TicTacToe, TicTacToeBoard } from "@components/TicTacToe";
 import { PlayerCard } from "@components/PlayerCard";
+import { Header } from "@components/Header";
 import "./App.css";
 
 function App() {
@@ -19,15 +20,12 @@ function App() {
 
   const winner = game.current.getOutcome();
 
-  const header = null;
-  const outcomeBanner = null;
-
-  const [xName, xSetName] = useState("Foo");
-  const [oName, oSetName] = useState("Bar");
+  const [xName, xSetName] = useState("Player 1");
+  const [oName, oSetName] = useState("Player 2");
 
   return (
     <>
-      {header}
+      <Header title="Tic-Tac-Toe" actions={new Map([["New Game", newGame]])} />
       <div className="content">
         <PlayerCard
           symbol="X"
@@ -43,14 +41,12 @@ function App() {
           onNameChange={oSetName}
         />
       </div>
-      <button onClick={newGame}>New Game</button>
       {winner &&
         (winner === "draw" ? (
           <h1>Draw Game!</h1>
         ) : (
           <h1>Player {winner} wins!</h1>
         ))}
-      {outcomeBanner}
     </>
   );
 }
