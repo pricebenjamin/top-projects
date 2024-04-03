@@ -21,7 +21,10 @@ function App() {
     <>
       <Header title="Todo List" project={activeProject} />
       <div className="container">
-        <ProjectNavigator projects={projects} />
+        <ProjectNavigator
+          projects={projects}
+          onProjectSelect={setActiveProject}
+        />
         <TodoList project={projects.find((p) => p.title === activeProject)} />
       </div>
     </>

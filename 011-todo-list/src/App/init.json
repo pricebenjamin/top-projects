@@ -1,11 +1,34 @@
 {
-  "activeProject": "default",
+  "activeProject": "The Odin Project",
   "projects": [
     {
       "title": "default",
       "todos": [
         {
           "title": "New Todo",
+          "description": "",
+          "dueDate": null,
+          "priority": "low"
+        }
+      ]
+    },
+    {
+      "title": "The Odin Project",
+      "todos": [
+        {
+          "title": "Todo List Project",
+          "description": "",
+          "dueDate": 1712392657776,
+          "priority": "low"
+        },
+        {
+          "title": "React Reading",
+          "description": "",
+          "dueDate": null,
+          "priority": "low"
+        },
+        {
+          "title": "Memory Card Project",
           "description": "",
           "dueDate": null,
           "priority": "low"
