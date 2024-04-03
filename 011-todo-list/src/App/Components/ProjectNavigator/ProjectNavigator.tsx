@@ -4,11 +4,13 @@ import "./ProjectNavigator.css";
 interface ProjectNavigatorProps {
   projects: Project[];
   onProjectSelect: (title: string) => void;
+  onCreateProject: (project: Project) => void;
 }
 
 export function ProjectNavigator({
   projects,
   onProjectSelect,
+  onCreateProject,
 }: ProjectNavigatorProps) {
   function listItem(project: Project, index: number) {
     return (
@@ -18,12 +20,25 @@ export function ProjectNavigator({
     );
   }
 
+  function createNewProject() {
+    const project = {
+      title: "New Project",
+      description: "",
+      dueDate: null,
+      priority: "low",
+      todos: [],
+    };
+    onCreateProject(project);
+  }
+
   return (
     <div className="project-navigator">
       {projects.length > 0 && (
         <ul>
           {projects.map((project, idx) => listItem(project, idx))}
-          <li className="create-project">Create Project</li>
+          <li className="create-project" onClick={createNewProject}>
+            Create Project
+          </li>
         </ul>
       )}
     </div>

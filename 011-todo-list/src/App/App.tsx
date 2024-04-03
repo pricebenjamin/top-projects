@@ -17,6 +17,10 @@ function App() {
     setProjects(app.projects);
   }, []);
 
+  function addProject(project: Project) {
+    setProjects([...projects, project]);
+  }
+
   return (
     <>
       <Header title="Todo List" project={activeProject} />
@@ -24,6 +28,7 @@ function App() {
         <ProjectNavigator
           projects={projects}
           onProjectSelect={setActiveProject}
+          onCreateProject={addProject}
         />
         <TodoList project={projects.find((p) => p.title === activeProject)} />
       </div>
