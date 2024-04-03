@@ -1,3 +1,4 @@
+import moment from "moment";
 import { Project } from "@components/Project";
 import "./TodoList.css";
 
@@ -11,7 +12,7 @@ export function TodoList({ project }: TodoListProps) {
     if (timestamp === null) {
       return "Not set";
     }
-    return new Date(timestamp).toLocaleDateString();
+    return moment(timestamp).fromNow();
   }
 
   return (
