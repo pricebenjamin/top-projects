@@ -33,14 +33,12 @@ export function ProjectNavigator({
 
   return (
     <div className="project-navigator">
-      {projects.length > 0 && (
-        <ul>
-          {projects.map((project, idx) => listItem(project, idx))}
-          <li className="create-project" onClick={createNewProject}>
-            Create Project
-          </li>
-        </ul>
-      )}
+      <ul>
+        {projects.map((project, idx) => listItem(project, idx))}
+        <li className="create-project" onClick={createNewProject}>
+          Create Project
+        </li>
+      </ul>
     </div>
   );
 }
