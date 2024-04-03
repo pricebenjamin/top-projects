@@ -1,0 +1,27 @@
+.project-navigator {
+  width: clamp(150px, 20%, 250px);
+}
+
+.project-navigator ul {
+  width: 100%;
+  list-style: none;
+}
+
+.project-navigator li {
+  padding: 0.5rem;
+}
+
+.project-navigator li:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.project-navigator li.create-project {
+  opacity: 0.5;
+}
+
+@media (prefers-color-scheme: light) {
+  .project-navigator li:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}

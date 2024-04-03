@@ -1,0 +1,21 @@
+header > * {
+  margin: 0;
+  padding: 0;
+}
+
+header.header {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+header .application-title {
+  flex: 0 0;
+  white-space: nowrap;
+}
+
+header .active-project {
+  flex: 1 0;
+  text-align: center;
+}

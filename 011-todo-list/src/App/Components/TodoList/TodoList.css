@@ -1,0 +1,47 @@
+.todo-list {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.todo-list .is-empty {
+  text-align: center;
+}
+
+.todo-list table {
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.todo-list table th,
+.todo-list table td {
+  padding: 5px;
+}
+
+.todo-list table thead tr {
+  text-align: left;
+}
+
+.todo-list table tbody {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+@media (prefers-color-scheme: light) {
+  .todo-list {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+
+  .todo-list table {
+    background-color: white;
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.1),
+      0 1px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .todo-list table tbody {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+}

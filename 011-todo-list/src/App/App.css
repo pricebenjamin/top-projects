@@ -1,0 +1,12 @@
+#root {
+  flex: 1 0;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+}

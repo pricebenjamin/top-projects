@@ -1,0 +1,16 @@
+{
+  "activeProject": "default",
+  "projects": [
+    {
+      "title": "default",
+      "todos": [
+        {
+          "title": "New Todo",
+          "description": "",
+          "dueDate": null,
+          "priority": "low"
+        }
+      ]
+    }
+  ]
+}
