@@ -29,6 +29,10 @@
   background-color: rgba(255, 255, 255, 0.03);
 }
 
+.todo-list table .todo-status {
+  text-align: center;
+}
+
 @media (prefers-color-scheme: light) {
   .todo-list {
     background-color: rgba(0, 0, 0, 0.03);

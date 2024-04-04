@@ -3,4 +3,5 @@ export interface Todo {
   description: string;
   dueDate: number | null;
   priority: "high" | "medium" | "low";
+  finished: boolean;
 }

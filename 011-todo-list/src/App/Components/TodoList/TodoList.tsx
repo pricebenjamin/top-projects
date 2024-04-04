@@ -4,8 +4,10 @@ import "./TodoList.css";
 
 interface TodoListProps {
   project?: Project;
+  onTodoStatusChange: (index: number) => void;
 }
-export function TodoList({ project }: TodoListProps) {
+
+export function TodoList({ project, onTodoStatusChange }: TodoListProps) {
   const todos = project?.todos;
 
   function renderDate(timestamp: number | null) {
@@ -23,6 +25,7 @@ export function TodoList({ project }: TodoListProps) {
         <table>
           <thead>
             <tr>
+              <th></th>
               <th>Title</th>
               <th>Due</th>
               <th>Priority</th>
@@ -31,6 +34,13 @@ export function TodoList({ project }: TodoListProps) {
           <tbody>
             {todos.map((t, idx) => (
               <tr key={idx}>
+                <td className="todo-status">
+                  <input
+                    type="checkbox"
+                    onChange={() => onTodoStatusChange(idx)}
+                    checked={t.finished}
+                  />
+                </td>
                 <td>{t.title}</td>
                 <td>{renderDate(t.dueDate)}</td>
                 <td>{t.priority}</td>

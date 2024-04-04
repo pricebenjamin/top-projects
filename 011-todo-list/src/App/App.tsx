@@ -21,6 +21,19 @@ function App() {
     setProjects([...projects, project]);
   }
 
+  function updateTodoStatus(index: number) {
+    const project = projects.find((p) => p.title === activeProject);
+
+    if (!project) {
+      throw new Error("updateTodoStatus(): failed to find active project");
+    }
+
+    const todo = project.todos[index];
+
+    todo.finished = !todo.finished;
+    setProjects([...projects]);
+  }
+
   return (
     <>
       <Header title="Todo List" project={activeProject} />
@@ -30,7 +43,10 @@ function App() {
           onProjectSelect={setActiveProject}
           onCreateProject={addProject}
         />
-        <TodoList project={projects.find((p) => p.title === activeProject)} />
+        <TodoList
+          project={projects.find((p) => p.title === activeProject)}
+          onTodoStatusChange={updateTodoStatus}
+        />
       </div>
     </>
   );
