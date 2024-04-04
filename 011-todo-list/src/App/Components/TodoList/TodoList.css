@@ -16,6 +16,23 @@
   border-radius: 10px;
 }
 
+/* widths do not need to add to 100% */
+.todo-list table col.status {
+  width: 5%;
+}
+
+.todo-list table col.title {
+  width: 50%;
+}
+
+.todo-list table col.due-date {
+  width: 15%;
+}
+
+.todo-list table col.priority {
+  width: 10%;
+}
+
 .todo-list table th,
 .todo-list table td {
   padding: 5px;

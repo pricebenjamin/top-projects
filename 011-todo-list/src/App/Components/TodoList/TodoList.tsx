@@ -23,6 +23,13 @@ export function TodoList({ project, onTodoStatusChange }: TodoListProps) {
         <div className="is-empty">Nothing to do...</div>
       ) : (
         <table>
+          <colgroup>
+            <col span={1} className="status" />
+            <col span={1} className="title" />
+            <col span={1} className="due-date" />
+            <col span={1} className="priority" />
+          </colgroup>
+
           <thead>
             <tr>
               <th></th>
@@ -31,6 +38,7 @@ export function TodoList({ project, onTodoStatusChange }: TodoListProps) {
               <th>Priority</th>
             </tr>
           </thead>
+
           <tbody>
             {todos.map((t, idx) => (
               <tr key={idx}>
