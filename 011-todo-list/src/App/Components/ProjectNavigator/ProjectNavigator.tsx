@@ -2,19 +2,25 @@ import { Project } from "@components/Project";
 import "./ProjectNavigator.css";
 
 interface ProjectNavigatorProps {
+  activeProject: string;
   projects: Project[];
   onProjectSelect: (title: string) => void;
   onCreateProject: (project: Project) => void;
 }
 
 export function ProjectNavigator({
+  activeProject,
   projects,
   onProjectSelect,
   onCreateProject,
 }: ProjectNavigatorProps) {
   function listItem(project: Project, index: number) {
     return (
-      <li key={index} onClick={() => onProjectSelect(project.title)}>
+      <li
+        key={index}
+        className={project.title === activeProject ? "active" : ""}
+        onClick={() => onProjectSelect(project.title)}
+      >
         {project.title}
       </li>
     );

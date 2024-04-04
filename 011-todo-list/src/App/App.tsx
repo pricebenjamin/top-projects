@@ -39,6 +39,7 @@ function App() {
       <Header title="Todo List" project={activeProject} />
       <div className="container">
         <ProjectNavigator
+          activeProject={activeProject}
           projects={projects}
           onProjectSelect={setActiveProject}
           onCreateProject={addProject}
