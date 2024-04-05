@@ -1,9 +1,7 @@
 .todo-list {
   flex: 1;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.03);
 }
 
 .todo-list .is-empty {
@@ -51,10 +49,6 @@
 }
 
 @media (prefers-color-scheme: light) {
-  .todo-list {
-    background-color: rgba(0, 0, 0, 0.03);
-  }
-
   .todo-list table {
     background-color: white;
     box-shadow:

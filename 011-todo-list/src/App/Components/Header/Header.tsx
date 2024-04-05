@@ -1,28 +1,24 @@
 import { Project } from "@components/Project";
 import "./Header.css";
 
-type onClick = () => void;
-
 interface HeaderProps {
-  title: string;
   project: Project;
-  actions?: Map<string, onClick>;
+  onProjectDelete: (id: string) => void;
+  onTodoCreate: (id: string) => void;
 }
 
-export function Header({ title, project, actions }: HeaderProps) {
+export function Header({
+  project,
+  onProjectDelete,
+  onTodoCreate,
+}: HeaderProps) {
   return (
     <header className="header">
-      <h1 className="application-title">{title}</h1>
-      <h2 className="active-project">{project.title}</h2>
-      {actions && (
-        <nav>
-          {[...actions.entries()].map(([name, onClick]) => (
-            <button key={name} onClick={onClick}>
-              {name}
-            </button>
-          ))}
-        </nav>
-      )}
+      <h1 className="active-project">{project.title}</h1>
+      <nav>
+        <button onClick={() => onTodoCreate(project.id)}>Add Todo</button>
+        <button onClick={() => onProjectDelete(project.id)}>Delete</button>
+      </nav>
     </header>
   );
 }

@@ -5,17 +5,18 @@ header > * {
 
 header.header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 2rem;
-  padding-bottom: 0.5rem;
-}
-
-header .application-title {
-  flex: 0 0;
-  white-space: nowrap;
+  padding-bottom: 1rem;
 }
 
 header .active-project {
+  font-size: 2rem;
   flex: 1 0;
-  text-align: center;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }

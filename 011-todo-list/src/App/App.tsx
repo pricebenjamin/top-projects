@@ -3,6 +3,7 @@ import { Header } from "@components/Header";
 import { ProjectNavigator } from "@components/ProjectNavigator";
 import { TodoList } from "@components/TodoList";
 import { createNewProject } from "@components/Project";
+import { createNewTodo } from "@components/Todo";
 import init from "./initialAppData";
 import "./App.css";
 
@@ -29,14 +30,25 @@ function App() {
 
   return (
     <>
-      <Header title="Todo List" project={activeProject} />
-      <div className="container">
-        <ProjectNavigator
-          activeProjectId={activeProjectId}
-          projects={projects}
-          onProjectSelect={setActiveProjectId}
-          onCreateProject={() => setProjects([...projects, createNewProject()])}
-        />
+      <ProjectNavigator
+        activeProjectId={activeProjectId}
+        projects={projects}
+        onProjectSelect={setActiveProjectId}
+        onCreateProject={() => setProjects([...projects, createNewProject()])}
+      />
+      <div className="flex-column">
+        {activeProject && (
+          <Header
+            project={activeProject}
+            onProjectDelete={(id: string) => {
+              setTodos(todos.filter((todo) => todo.projectId !== id));
+              setProjects(projects.filter((project) => project.id !== id));
+            }}
+            onTodoCreate={(id: string) => {
+              setTodos([...todos, createNewTodo(id)]);
+            }}
+          />
+        )}{" "}
         <TodoList todos={activeTodos} onTodoStatusChange={updateTodoStatus} />
       </div>
     </>
