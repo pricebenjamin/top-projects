@@ -13,9 +13,13 @@ function App() {
   const [todos, setTodos] = useState(init.todos);
 
   const activeProject = projects.find((p) => p.id === activeProjectId);
-  const activeTodos = todos.filter(
-    (todo) => todo.projectId === activeProjectId
-  );
+  const finishedTodos: Todo[] = [];
+  const unfinishedTodos: Todo[] = [];
+
+  todos.forEach((todo) => {
+    if (todo.projectId !== activeProjectId) return;
+    todo.finished ? finishedTodos.push(todo) : unfinishedTodos.push(todo);
+  });
 
   function updateTodo(id: string, changes: Partial<Todo>) {
     setTodos(
@@ -58,7 +62,14 @@ function App() {
           />
         )}{" "}
         <TodoList
-          todos={activeTodos}
+          title="In Progress"
+          todos={unfinishedTodos}
+          onTodoEdit={updateTodo}
+          onTodoDelete={deleteTodo}
+        />
+        <TodoList
+          title="Completed"
+          todos={finishedTodos}
           onTodoEdit={updateTodo}
           onTodoDelete={deleteTodo}
         />

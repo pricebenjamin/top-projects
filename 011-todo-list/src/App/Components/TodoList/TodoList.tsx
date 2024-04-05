@@ -4,18 +4,23 @@ import "./TodoList.css";
 import trashIcon from "@icons/trash-can-outline.svg";
 
 interface TodoListProps {
+  title: string;
   todos: Todo[];
   onTodoEdit: (id: string, changes: Partial<Todo>) => void;
   onTodoDelete: (id: string) => void;
 }
 
-export function TodoList({ todos, onTodoEdit, onTodoDelete }: TodoListProps) {
+export function TodoList({
+  title,
+  todos,
+  onTodoEdit,
+  onTodoDelete,
+}: TodoListProps) {
   return (
     <div className="todo-list">
-      {todos.length === 0 ? (
-        <div className="is-empty">Nothing to do...</div>
-      ) : (
+      {todos.length > 0 && (
         <table>
+          <caption>{title}</caption>
           <colgroup>
             <col span={1} className="status" />
             <col span={1} className="title" />

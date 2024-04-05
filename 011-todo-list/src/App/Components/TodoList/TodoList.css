@@ -1,7 +1,7 @@
 .todo-list {
-  flex: 1;
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
 }
 
 .todo-list .is-empty {
@@ -12,6 +12,12 @@
   padding: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
+}
+
+.todo-list table caption {
+  font-size: 1.5rem;
+  text-align: left;
+  padding: 8px;
 }
 
 /* widths do not need to add to 100% */
