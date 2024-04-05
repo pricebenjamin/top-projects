@@ -25,6 +25,10 @@ function App() {
     );
   }
 
+  function deleteTodo(id: string) {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  }
+
   return (
     <>
       <ProjectNavigator
@@ -46,7 +50,11 @@ function App() {
             }}
           />
         )}{" "}
-        <TodoList todos={activeTodos} onTodoEdit={updateTodo} />
+        <TodoList
+          todos={activeTodos}
+          onTodoEdit={updateTodo}
+          onTodoDelete={deleteTodo}
+        />
       </div>
     </>
   );

@@ -1,13 +1,15 @@
 import moment from "moment";
 import { Todo } from "@components/Todo";
 import "./TodoList.css";
+import trashIcon from "@icons/trash-can-outline.svg";
 
 interface TodoListProps {
   todos: Todo[];
   onTodoEdit: (id: string, changes: Partial<Todo>) => void;
+  onTodoDelete: (id: string) => void;
 }
 
-export function TodoList({ todos, onTodoEdit }: TodoListProps) {
+export function TodoList({ todos, onTodoEdit, onTodoDelete }: TodoListProps) {
   return (
     <div className="todo-list">
       {todos.length === 0 ? (
@@ -19,20 +21,27 @@ export function TodoList({ todos, onTodoEdit }: TodoListProps) {
             <col span={1} className="title" />
             <col span={1} className="due-date" />
             <col span={1} className="priority" />
+            <col span={1} className="delete" />
           </colgroup>
 
           <thead>
             <tr>
-              <th></th>
+              <th>{/* status */}</th>
               <th>Title</th>
               <th>Due</th>
               <th>Priority</th>
+              <th>{/* delete */}</th>
             </tr>
           </thead>
 
           <tbody>
             {todos.map((todo) => (
-              <TodoListRow key={todo.id} {...todo} onTodoEdit={onTodoEdit} />
+              <TodoListRow
+                key={todo.id}
+                {...todo}
+                onTodoEdit={onTodoEdit}
+                onTodoDelete={onTodoDelete}
+              />
             ))}
           </tbody>
         </table>
@@ -43,6 +52,7 @@ export function TodoList({ todos, onTodoEdit }: TodoListProps) {
 
 interface TodoListRowProps extends Todo {
   onTodoEdit: (id: string, changes: Partial<Todo>) => void;
+  onTodoDelete: (id: string) => void;
 }
 
 function TodoListRow({
@@ -52,6 +62,7 @@ function TodoListRow({
   priority,
   finished,
   onTodoEdit,
+  onTodoDelete,
 }: TodoListRowProps) {
   function renderDate(timestamp: number | null) {
     if (timestamp === null) {
@@ -78,6 +89,9 @@ function TodoListRow({
       </td>
       <td>{dueDate && renderDate(dueDate)}</td>
       <td>{priority}</td>
+      <td className="todo-delete" onClick={() => onTodoDelete(id)}>
+        <img src={trashIcon} alt="Delete" className="icon" />
+      </td>
     </tr>
   );
 }

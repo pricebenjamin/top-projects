@@ -31,6 +31,10 @@
   width: 10%;
 }
 
+.todo-list table col.delete {
+  width: 5%;
+}
+
 .todo-list table th,
 .todo-list table td {
   padding: 5px;
@@ -44,6 +48,7 @@
   background-color: rgba(255, 255, 255, 0.03);
 }
 
+.todo-list table .todo-delete,
 .todo-list table .todo-status {
   text-align: center;
 }
@@ -61,8 +66,18 @@
   outline: none;
 }
 
+.todo-list table tr:hover,
 .todo-list table tr:has(input[type="text"]:focus) {
   background-color: rgba(255, 255, 255, 0.05);
+}
+
+.todo-list table .icon {
+  filter: invert(100%);
+  height: 1rem;
+}
+
+.todo-list table .todo-delete:hover {
+  cursor: pointer;
 }
 
 @media (prefers-color-scheme: light) {
@@ -77,7 +92,12 @@
     background-color: rgba(0, 0, 0, 0.03);
   }
 
+  .todo-list table tr:hover,
   .todo-list table tr:has(input[type="text"]:focus) {
     background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .todo-list table .icon {
+    filter: invert(0);
   }
 }
