@@ -15,8 +15,33 @@ header .active-project {
   flex: 1 0;
 }
 
+header .active-project input[type="text"] {
+  font: inherit;
+  background-color: inherit;
+  color: inherit;
+  appearance: none;
+  border: none;
+  width: 100%;
+  line-height: normal;
+  padding: 8px;
+}
+
+header .active-project input[type="text"]:focus {
+  outline: none;
+}
+
+header .active-project:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
 header nav {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+@media (prefers-color-scheme: light) {
+  header .active-project:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
 }

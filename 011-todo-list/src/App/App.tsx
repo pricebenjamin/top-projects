@@ -45,6 +45,13 @@ function App() {
               setTodos(todos.filter((todo) => todo.projectId !== id));
               setProjects(projects.filter((project) => project.id !== id));
             }}
+            onProjectTitleChange={(id: string, title: string) => {
+              setProjects(
+                projects.map((project) =>
+                  project.id === id ? { ...project, title: title } : project
+                )
+              );
+            }}
             onTodoCreate={(id: string) => {
               setTodos([...todos, createNewTodo(id)]);
             }}
