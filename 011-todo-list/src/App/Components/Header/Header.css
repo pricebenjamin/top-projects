@@ -5,7 +5,7 @@ header > * {
 
 header.header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 2rem;
   padding-bottom: 0.5rem;
 }
@@ -15,7 +15,6 @@ header .application-title {
   white-space: nowrap;
 }
 
-header .active-project {
-  flex: 1 0;
-  text-align: center;
+header .actions {
+  margin-left: auto;
 }

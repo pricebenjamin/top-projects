@@ -1,53 +1,58 @@
 import { useState, useEffect } from "react";
 import { Header } from "@components/Header";
+import { Project, createNewProject } from "@components/Project";
+import { ProjectManager } from "@components/ProjectManager";
 import { ProjectNavigator } from "@components/ProjectNavigator";
-import { TodoList } from "@components/TodoList";
-import { Project } from "@components/Project";
 import appData from "./init.json?raw";
 import "./App.css";
 
 function App() {
-  const [activeProject, setActiveProject] = useState<string>("default");
+  const [activeProject, setActiveProject] = useState<Project>();
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
     const app = JSON.parse(appData);
-    console.log(app);
-    setActiveProject(app.activeProject);
-    setProjects(app.projects);
+
+    const id = app.activeProjectID as string;
+    const projects = app.projects as Project[];
+
+    setActiveProject(projects.find((p) => p.id === id));
+    setProjects(projects);
   }, []);
 
-  function addProject(project: Project) {
-    setProjects([...projects, project]);
-  }
-
-  function updateTodoStatus(index: number) {
-    const project = projects.find((p) => p.title === activeProject);
-
-    if (!project) {
-      throw new Error("updateTodoStatus(): failed to find active project");
-    }
-
-    const todo = project.todos[index];
-
-    todo.finished = !todo.finished;
+  function deleteProject(project: Project) {
+    const idx = projects.findIndex((p) => p.id === project.id);
+    projects.splice(idx, 1);
     setProjects([...projects]);
+    setActiveProject(undefined);
   }
 
   return (
     <>
-      <Header title="Todo List" project={activeProject} />
+      <Header
+        title="Todo List"
+        actions={
+          new Map([
+            [
+              "Create Project",
+              () => setProjects([...projects, createNewProject()]),
+            ],
+          ])
+        }
+      />
       <div className="container">
         <ProjectNavigator
           activeProject={activeProject}
           projects={projects}
-          onProjectSelect={setActiveProject}
-          onCreateProject={addProject}
+          onProjectSelect={(project: Project) => setActiveProject(project)}
         />
-        <TodoList
-          project={projects.find((p) => p.title === activeProject)}
-          onTodoStatusChange={updateTodoStatus}
-        />
+        {activeProject && (
+          <ProjectManager
+            key={activeProject.id}
+            project={activeProject}
+            onProjectDelete={deleteProject}
+          />
+        )}
       </div>
     </>
   );

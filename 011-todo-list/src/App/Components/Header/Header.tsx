@@ -4,17 +4,15 @@ type onClick = () => void;
 
 interface HeaderProps {
   title: string;
-  project: string;
   actions?: Map<string, onClick>;
 }
 
-export function Header({ title, project, actions }: HeaderProps) {
+export function Header({ title, actions }: HeaderProps) {
   return (
     <header className="header">
       <h1 className="application-title">{title}</h1>
-      <h2 className="active-project">{project}</h2>
       {actions && (
-        <nav>
+        <nav className="actions">
           {[...actions.entries()].map(([name, onClick]) => (
             <button key={name} onClick={onClick}>
               {name}

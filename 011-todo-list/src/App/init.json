@@ -1,10 +1,12 @@
 {
-  "activeProject": "The Odin Project",
+  "activeProjectID": "7172abd0-bab6-4b17-932d-d219bb34fda8",
   "projects": [
     {
+      "id": "fe1e120d-0b71-48ce-899a-ca5d91841dc5",
       "title": "default",
       "todos": [
         {
+          "id": "fce70f32-43c5-4ed5-8747-651630baa8e3",
           "title": "New Todo",
           "description": "",
           "dueDate": null,
@@ -14,9 +16,11 @@
       ]
     },
     {
+      "id": "7172abd0-bab6-4b17-932d-d219bb34fda8",
       "title": "The Odin Project",
       "todos": [
         {
+          "id": "eab38158-b986-4e19-b6db-99a699967d4a",
           "title": "Todo List Project",
           "description": "",
           "dueDate": 1712392657776,
@@ -24,6 +28,7 @@
           "finished": false
         },
         {
+          "id": "d57e6c8a-0a8c-4f4e-9565-e2dd1379e9ee",
           "title": "React Reading",
           "description": "",
           "dueDate": null,
@@ -31,6 +36,7 @@
           "finished": false
         },
         {
+          "id": "c5896e9c-5743-4259-bff5-a1e10af40be5",
           "title": "Memory Card Project",
           "description": "",
           "dueDate": null,

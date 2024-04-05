@@ -1,0 +1,3 @@
+.active-todo.finished .title {
+  text-decoration: line-through;
+}
