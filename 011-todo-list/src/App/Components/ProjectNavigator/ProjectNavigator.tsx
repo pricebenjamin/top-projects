@@ -2,46 +2,31 @@ import { Project } from "@components/Project";
 import "./ProjectNavigator.css";
 
 interface ProjectNavigatorProps {
-  activeProject: string;
+  activeProjectId: string;
   projects: Project[];
-  onProjectSelect: (title: string) => void;
-  onCreateProject: (project: Project) => void;
+  onProjectSelect: (id: string) => void;
+  onCreateProject: () => void;
 }
 
 export function ProjectNavigator({
-  activeProject,
+  activeProjectId,
   projects,
   onProjectSelect,
   onCreateProject,
 }: ProjectNavigatorProps) {
-  function listItem(project: Project, index: number) {
-    return (
-      <li
-        key={index}
-        className={project.title === activeProject ? "active" : ""}
-        onClick={() => onProjectSelect(project.title)}
-      >
-        {project.title}
-      </li>
-    );
-  }
-
-  function createNewProject() {
-    const project = {
-      title: "New Project",
-      description: "",
-      dueDate: null,
-      priority: "low",
-      todos: [],
-    };
-    onCreateProject(project);
-  }
-
   return (
     <div className="project-navigator">
       <ul>
-        {projects.map((project, idx) => listItem(project, idx))}
-        <li className="create-project" onClick={createNewProject}>
+        {projects.map((project) => (
+          <li
+            key={project.id}
+            className={project.id === activeProjectId ? "active" : ""}
+            onClick={() => onProjectSelect(project.id)}
+          >
+            {project.title}
+          </li>
+        ))}
+        <li className="create-project" onClick={onCreateProject}>
           Create Project
         </li>
       </ul>

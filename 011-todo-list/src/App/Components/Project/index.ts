@@ -1,6 +1,14 @@
-import { Todo } from "@components/Todo";
-
 export interface Project {
+  id: string;
   title: string;
-  todos: Todo[];
+  activeTodoId?: string;
+}
+
+export function createNewProject({
+  title = "New Project",
+}: Partial<Project> = {}): Project {
+  return {
+    id: crypto.randomUUID(),
+    title,
+  };
 }

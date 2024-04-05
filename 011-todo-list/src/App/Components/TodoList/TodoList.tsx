@@ -1,15 +1,13 @@
 import moment from "moment";
-import { Project } from "@components/Project";
+import { Todo } from "@components/Todo";
 import "./TodoList.css";
 
 interface TodoListProps {
-  project?: Project;
-  onTodoStatusChange: (index: number) => void;
+  todos: Todo[];
+  onTodoStatusChange: (id: string) => void;
 }
 
-export function TodoList({ project, onTodoStatusChange }: TodoListProps) {
-  const todos = project?.todos;
-
+export function TodoList({ todos, onTodoStatusChange }: TodoListProps) {
   function renderDate(timestamp: number | null) {
     if (timestamp === null) {
       return "Not set";
@@ -19,7 +17,7 @@ export function TodoList({ project, onTodoStatusChange }: TodoListProps) {
 
   return (
     <div className="todo-list">
-      {todos === undefined || todos.length === 0 ? (
+      {todos.length === 0 ? (
         <div className="is-empty">Nothing to do...</div>
       ) : (
         <table>
@@ -40,18 +38,18 @@ export function TodoList({ project, onTodoStatusChange }: TodoListProps) {
           </thead>
 
           <tbody>
-            {todos.map((t, idx) => (
-              <tr key={idx}>
+            {todos.map(({ id, title, dueDate, priority, finished }) => (
+              <tr key={id}>
                 <td className="todo-status">
                   <input
                     type="checkbox"
-                    onChange={() => onTodoStatusChange(idx)}
-                    checked={t.finished}
+                    onChange={() => onTodoStatusChange(id)}
+                    checked={finished}
                   />
                 </td>
-                <td>{t.title}</td>
-                <td>{renderDate(t.dueDate)}</td>
-                <td>{t.priority}</td>
+                <td>{title}</td>
+                <td>{dueDate && renderDate(dueDate)}</td>
+                <td>{priority}</td>
               </tr>
             ))}
           </tbody>
