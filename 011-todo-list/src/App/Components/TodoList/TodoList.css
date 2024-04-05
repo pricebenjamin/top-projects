@@ -48,6 +48,23 @@
   text-align: center;
 }
 
+.todo-list table input[type="text"] {
+  font: inherit;
+  background-color: inherit;
+  color: inherit;
+  appearance: none;
+  border: none;
+  width: 100%;
+}
+
+.todo-list table input[type="text"]:focus {
+  outline: none;
+}
+
+.todo-list table tr:has(input[type="text"]:focus) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
 @media (prefers-color-scheme: light) {
   .todo-list table {
     background-color: white;
@@ -58,5 +75,9 @@
 
   .todo-list table tbody {
     background-color: rgba(0, 0, 0, 0.03);
+  }
+
+  .todo-list table tr:has(input[type="text"]:focus) {
+    background-color: rgba(0, 0, 0, 0.05);
   }
 }

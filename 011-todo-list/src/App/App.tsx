@@ -3,7 +3,7 @@ import { Header } from "@components/Header";
 import { ProjectNavigator } from "@components/ProjectNavigator";
 import { TodoList } from "@components/TodoList";
 import { createNewProject } from "@components/Project";
-import { createNewTodo } from "@components/Todo";
+import { Todo, createNewTodo } from "@components/Todo";
 import init from "./initialAppData";
 import "./App.css";
 
@@ -17,13 +17,10 @@ function App() {
     (todo) => todo.projectId === activeProjectId
   );
 
-  function updateTodoStatus(id: string) {
+  function updateTodo(id: string, changes: Partial<Todo>) {
     setTodos(
       todos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, finished: !todo.finished };
-        }
-        return todo;
+        return todo.id === id ? { ...todo, ...changes } : todo;
       })
     );
   }
@@ -49,7 +46,7 @@ function App() {
             }}
           />
         )}{" "}
-        <TodoList todos={activeTodos} onTodoStatusChange={updateTodoStatus} />
+        <TodoList todos={activeTodos} onTodoEdit={updateTodo} />
       </div>
     </>
   );

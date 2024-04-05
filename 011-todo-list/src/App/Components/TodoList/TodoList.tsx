@@ -4,17 +4,10 @@ import "./TodoList.css";
 
 interface TodoListProps {
   todos: Todo[];
-  onTodoStatusChange: (id: string) => void;
+  onTodoEdit: (id: string, changes: Partial<Todo>) => void;
 }
 
-export function TodoList({ todos, onTodoStatusChange }: TodoListProps) {
-  function renderDate(timestamp: number | null) {
-    if (timestamp === null) {
-      return "Not set";
-    }
-    return moment(timestamp).fromNow();
-  }
-
+export function TodoList({ todos, onTodoEdit }: TodoListProps) {
   return (
     <div className="todo-list">
       {todos.length === 0 ? (
@@ -38,23 +31,53 @@ export function TodoList({ todos, onTodoStatusChange }: TodoListProps) {
           </thead>
 
           <tbody>
-            {todos.map(({ id, title, dueDate, priority, finished }) => (
-              <tr key={id}>
-                <td className="todo-status">
-                  <input
-                    type="checkbox"
-                    onChange={() => onTodoStatusChange(id)}
-                    checked={finished}
-                  />
-                </td>
-                <td>{title}</td>
-                <td>{dueDate && renderDate(dueDate)}</td>
-                <td>{priority}</td>
-              </tr>
+            {todos.map((todo) => (
+              <TodoListRow key={todo.id} {...todo} onTodoEdit={onTodoEdit} />
             ))}
           </tbody>
         </table>
       )}
     </div>
+  );
+}
+
+interface TodoListRowProps extends Todo {
+  onTodoEdit: (id: string, changes: Partial<Todo>) => void;
+}
+
+function TodoListRow({
+  id,
+  title,
+  dueDate,
+  priority,
+  finished,
+  onTodoEdit,
+}: TodoListRowProps) {
+  function renderDate(timestamp: number | null) {
+    if (timestamp === null) {
+      return "Not set";
+    }
+    return moment(timestamp).fromNow();
+  }
+
+  return (
+    <tr>
+      <td className="todo-status">
+        <input
+          type="checkbox"
+          onChange={() => onTodoEdit(id, { finished: !finished })}
+          checked={finished}
+        />
+      </td>
+      <td>
+        <input
+          type="text"
+          value={title}
+          onChange={(event) => onTodoEdit(id, { title: event.target.value })}
+        />
+      </td>
+      <td>{dueDate && renderDate(dueDate)}</td>
+      <td>{priority}</td>
+    </tr>
   );
 }
