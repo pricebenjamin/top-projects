@@ -3,3 +3,9 @@
   margin: 0 auto;
   padding: 2rem;
 }
+
+#root form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
