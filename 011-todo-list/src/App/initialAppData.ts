@@ -1,5 +1,11 @@
-import { createNewProject } from "@components/Project";
-import { createNewTodo } from "@components/Todo";
+import { Project, createNewProject } from "@components/Project";
+import { Todo, createNewTodo } from "@components/Todo";
+
+export interface ApplicationState {
+  activeProjectId: string;
+  projects: Project[];
+  todos: Todo[];
+}
 
 const projects = [
   createNewProject({ title: "Unassigned" }),
@@ -15,4 +21,8 @@ const todos = [
 
 const activeProjectId = projects[1].id;
 
-export default { activeProjectId, projects, todos };
+export const initialAppState: ApplicationState = {
+  activeProjectId,
+  projects,
+  todos,
+};

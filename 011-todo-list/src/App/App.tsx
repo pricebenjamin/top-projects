@@ -1,16 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@components/Header";
 import { ProjectNavigator } from "@components/ProjectNavigator";
 import { TodoList } from "@components/TodoList";
 import { createNewProject } from "@components/Project";
 import { Todo, createNewTodo } from "@components/Todo";
-import init from "./initialAppData";
+import { initialAppState, ApplicationState } from "./initialAppData";
 import "./App.css";
 
+const APP_KEY = "todo-list";
+
+function storageKey(key: string) {
+  return `${APP_KEY}:${key}`;
+}
+
+const initState = getInitialState() as ApplicationState;
+
+function getInitialState() {
+  return Object.fromEntries(
+    Object.entries(initialAppState).map(([key, value]) => {
+      const storage = window.localStorage.getItem(storageKey(key));
+      if (!storage) return [key, value];
+      return [key, JSON.parse(storage)];
+    })
+  );
+}
+
+function saveApplicationState(app: ApplicationState) {
+  for (const [key, value] of Object.entries(app)) {
+    window.localStorage.setItem(storageKey(key), JSON.stringify(value));
+  }
+}
+
 function App() {
-  const [activeProjectId, setActiveProjectId] = useState(init.activeProjectId);
-  const [projects, setProjects] = useState(init.projects);
-  const [todos, setTodos] = useState(init.todos);
+  const [activeProjectId, setActiveProjectId] = useState(
+    initState.activeProjectId
+  );
+  const [projects, setProjects] = useState(initState.projects);
+  const [todos, setTodos] = useState(initState.todos);
+
+  useEffect(() => {
+    saveApplicationState({ activeProjectId, projects, todos });
+  }, [activeProjectId, projects, todos]);
 
   const activeProject = projects.find((p) => p.id === activeProjectId);
   const finishedTodos: Todo[] = [];
