@@ -17,6 +17,14 @@ export function TodoList({
   onTodoEdit,
   onTodoDelete,
 }: TodoListProps) {
+  const sortedTodos = [...todos].sort(sortByPriority);
+
+  function sortByPriority(a: Todo, b: Todo) {
+    if (a.priority === b.priority) return 0;
+    if (a.priority === "high" || b.priority === "low") return -1;
+    return 1;
+  }
+
   return (
     todos.length > 0 && (
       <div className="todo-list">
@@ -41,7 +49,7 @@ export function TodoList({
           </thead>
 
           <tbody>
-            {todos.map((todo) => (
+            {sortedTodos.map((todo) => (
               <TodoListRow
                 key={todo.id}
                 {...todo}
@@ -71,6 +79,7 @@ function TodoListRow({
   onTodoDelete,
 }: TodoListRowProps) {
   const [showDateInput, setShowDateInput] = useState(false);
+  const [showPriorityInput, setShowPriorityInput] = useState(false);
 
   function updateDueDate(event) {
     const timestamp = event.target.valueAsNumber;
@@ -116,7 +125,35 @@ function TodoListRow({
           dueDate && renderDate(dueDate)
         )}
       </td>
-      <td>{priority}</td>
+      <td
+        className="todo-priority"
+        onMouseEnter={() => setShowPriorityInput(true)}
+        onMouseLeave={() => setShowPriorityInput(false)}
+      >
+        {showPriorityInput && (
+          <button
+            onClick={() =>
+              onTodoEdit(id, {
+                priority: priority === "low" ? "normal" : "high",
+              })
+            }
+          >
+            ↑
+          </button>
+        )}
+        {priority}
+        {showPriorityInput && (
+          <button
+            onClick={() =>
+              onTodoEdit(id, {
+                priority: priority === "high" ? "normal" : "low",
+              })
+            }
+          >
+            ↓
+          </button>
+        )}
+      </td>
       <td className="todo-delete" onClick={() => onTodoDelete(id)}>
         <img src={trashIcon} alt="Delete" className="icon" />
       </td>

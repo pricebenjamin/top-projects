@@ -34,7 +34,7 @@
 }
 
 .todo-list table col.priority {
-  width: 10%;
+  width: 12%;
 }
 
 .todo-list table col.delete {
@@ -58,6 +58,18 @@
 .todo-list table .todo-delete,
 .todo-list table .todo-status {
   text-align: center;
+}
+
+.todo-list table .todo-priority {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+
+.todo-list table .todo-priority button {
+  padding: 0 7px;
+  border-radius: 3px;
 }
 
 .todo-list table input[type="date"],
