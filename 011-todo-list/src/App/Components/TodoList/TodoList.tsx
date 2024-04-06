@@ -1,4 +1,5 @@
 import moment from "moment";
+import { useState } from "react";
 import { Todo } from "@components/Todo";
 import "./TodoList.css";
 import trashIcon from "@icons/trash-can-outline.svg";
@@ -69,6 +70,14 @@ function TodoListRow({
   onTodoEdit,
   onTodoDelete,
 }: TodoListRowProps) {
+  const [showDateInput, setShowDateInput] = useState(false);
+
+  function updateDueDate(event) {
+    const timestamp = event.target.valueAsNumber;
+    onTodoEdit(id, { dueDate: isNaN(timestamp) ? undefined : timestamp });
+    setShowDateInput(false);
+  }
+
   function renderDate(timestamp: number | null) {
     if (timestamp === null) {
       return "Not set";
@@ -92,7 +101,21 @@ function TodoListRow({
           onChange={(event) => onTodoEdit(id, { title: event.target.value })}
         />
       </td>
-      <td>{dueDate && renderDate(dueDate)}</td>
+      <td
+        className="todo-date"
+        onMouseEnter={() => setShowDateInput(true)}
+        onMouseLeave={() => setShowDateInput(false)}
+      >
+        {showDateInput ? (
+          <input
+            type="date"
+            value={dueDate && moment(dueDate).format("yyyy-MM-DD")}
+            onChange={updateDueDate}
+          />
+        ) : (
+          dueDate && renderDate(dueDate)
+        )}
+      </td>
       <td>{priority}</td>
       <td className="todo-delete" onClick={() => onTodoDelete(id)}>
         <img src={trashIcon} alt="Delete" className="icon" />

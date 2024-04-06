@@ -30,7 +30,7 @@
 }
 
 .todo-list table col.due-date {
-  width: 15%;
+  width: 20%;
 }
 
 .todo-list table col.priority {
@@ -54,11 +54,13 @@
   background-color: rgba(255, 255, 255, 0.03);
 }
 
+.todo-list table .todo-date,
 .todo-list table .todo-delete,
 .todo-list table .todo-status {
   text-align: center;
 }
 
+.todo-list table input[type="date"],
 .todo-list table input[type="text"] {
   font: inherit;
   background-color: inherit;
@@ -66,6 +68,10 @@
   appearance: none;
   border: none;
   width: 100%;
+}
+
+.todo-list table input[type="date"] {
+  font-size: 0.8rem;
 }
 
 .todo-list table input[type="text"]:focus {
