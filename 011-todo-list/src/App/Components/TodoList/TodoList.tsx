@@ -17,8 +17,8 @@ export function TodoList({
   onTodoDelete,
 }: TodoListProps) {
   return (
-    <div className="todo-list">
-      {todos.length > 0 && (
+    todos.length > 0 && (
+      <div className="todo-list">
         <table>
           <caption>{title}</caption>
           <colgroup>
@@ -50,8 +50,8 @@ export function TodoList({
             ))}
           </tbody>
         </table>
-      )}
-    </div>
+      </div>
+    )
   );
 }
 
