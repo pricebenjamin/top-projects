@@ -17,7 +17,7 @@ header .active-project {
 
 header .active-project input[type="text"] {
   font: inherit;
-  background-color: inherit;
+  background-color: transparent;
   color: inherit;
   appearance: none;
   border: none;

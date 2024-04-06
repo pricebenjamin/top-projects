@@ -63,7 +63,7 @@
 .todo-list table input[type="date"],
 .todo-list table input[type="text"] {
   font: inherit;
-  background-color: inherit;
+  background-color: transparent;
   color: inherit;
   appearance: none;
   border: none;
