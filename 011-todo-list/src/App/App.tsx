@@ -69,7 +69,11 @@ function App() {
         activeProjectId={activeProjectId}
         projects={projects}
         onProjectSelect={setActiveProjectId}
-        onCreateProject={() => setProjects([...projects, createNewProject()])}
+        onCreateProject={() => {
+          const newProject = createNewProject();
+          setActiveProjectId(newProject.id);
+          setProjects([...projects, newProject]);
+        }}
       />
       <div className="flex-column">
         {activeProject && (
