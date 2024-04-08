@@ -80,6 +80,13 @@ function App() {
           <Header
             project={activeProject}
             onProjectDelete={(id: string) => {
+              const idx = projects.findIndex((project) => project.id === id);
+              const before = projects[idx - 1];
+              const after = projects[idx + 1];
+
+              if (after) setActiveProjectId(after.id);
+              else if (before) setActiveProjectId(before.id);
+
               setTodos(todos.filter((todo) => todo.projectId !== id));
               setProjects(projects.filter((project) => project.id !== id));
             }}
