@@ -26,15 +26,11 @@
 }
 
 .todo-list table col.title {
-  width: 50%;
-}
-
-.todo-list table col.due-date {
-  width: 20%;
+  width: 60%;
 }
 
 .todo-list table col.priority {
-  width: 12%;
+  width: 15%;
 }
 
 .todo-list table col.delete {
@@ -60,30 +56,28 @@
   text-align: center;
 }
 
-.todo-list table .todo-priority {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 5px;
-}
-
 .todo-list table .todo-priority button {
   padding: 0 7px;
   border-radius: 3px;
 }
 
-.todo-list table input[type="date"],
+.todo-list table input[type="datetime-local"],
+.todo-list table input[type="text"] {
+  appearance: none;
+}
+
+.todo-list table .todo-priority select,
+.todo-list table input[type="datetime-local"],
 .todo-list table input[type="text"] {
   font: inherit;
   background-color: transparent;
   color: inherit;
-  appearance: none;
   border: none;
   width: 100%;
 }
 
-.todo-list table input[type="date"] {
-  font-size: 0.8rem;
+.todo-list table .todo-priority select option {
+  color: black;
 }
 
 .todo-list table input[type="text"]:focus {

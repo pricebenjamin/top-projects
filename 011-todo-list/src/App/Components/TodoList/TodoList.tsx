@@ -1,5 +1,4 @@
 import moment from "moment";
-import { useState } from "react";
 import { Todo } from "@components/Todo";
 import "./TodoList.css";
 import trashIcon from "@icons/trash-can-outline.svg";
@@ -17,14 +16,6 @@ export function TodoList({
   onTodoEdit,
   onTodoDelete,
 }: TodoListProps) {
-  const sortedTodos = [...todos].sort(sortByPriority);
-
-  function sortByPriority(a: Todo, b: Todo) {
-    if (a.priority === b.priority) return 0;
-    if (a.priority === "high" || b.priority === "low") return -1;
-    return 1;
-  }
-
   return (
     todos.length > 0 && (
       <div className="todo-list">
@@ -49,7 +40,7 @@ export function TodoList({
           </thead>
 
           <tbody>
-            {sortedTodos.map((todo) => (
+            {todos.map((todo) => (
               <TodoListRow
                 key={todo.id}
                 {...todo}
@@ -78,22 +69,6 @@ function TodoListRow({
   onTodoEdit,
   onTodoDelete,
 }: TodoListRowProps) {
-  const [showDateInput, setShowDateInput] = useState(false);
-  const [showPriorityInput, setShowPriorityInput] = useState(false);
-
-  function updateDueDate(event) {
-    const timestamp = event.target.valueAsNumber;
-    onTodoEdit(id, { dueDate: isNaN(timestamp) ? undefined : timestamp });
-    setShowDateInput(false);
-  }
-
-  function renderDate(timestamp: number | null) {
-    if (timestamp === null) {
-      return "Not set";
-    }
-    return moment(timestamp).fromNow();
-  }
-
   return (
     <tr>
       <td className="todo-status">
@@ -110,49 +85,27 @@ function TodoListRow({
           onChange={(event) => onTodoEdit(id, { title: event.target.value })}
         />
       </td>
-      <td
-        className="todo-date"
-        onMouseEnter={() => setShowDateInput(true)}
-        onMouseLeave={() => setShowDateInput(false)}
-      >
-        {showDateInput ? (
-          <input
-            type="date"
-            value={dueDate && moment(dueDate).format("yyyy-MM-DD")}
-            onChange={updateDueDate}
-          />
-        ) : (
-          dueDate && renderDate(dueDate)
-        )}
+      <td className="todo-date">
+        <input
+          type="datetime-local"
+          value={dueDate && moment(dueDate).utc().format("yyyy-MM-DDTHH:mm")}
+          onChange={(event) => {
+            const timestamp = event.target.valueAsNumber;
+            onTodoEdit(id, {
+              dueDate: isNaN(timestamp) ? undefined : timestamp,
+            });
+          }}
+        />
       </td>
-      <td
-        className="todo-priority"
-        onMouseEnter={() => setShowPriorityInput(true)}
-        onMouseLeave={() => setShowPriorityInput(false)}
-      >
-        {showPriorityInput && (
-          <button
-            onClick={() =>
-              onTodoEdit(id, {
-                priority: priority === "low" ? "normal" : "high",
-              })
-            }
-          >
-            ↑
-          </button>
-        )}
-        {priority}
-        {showPriorityInput && (
-          <button
-            onClick={() =>
-              onTodoEdit(id, {
-                priority: priority === "high" ? "normal" : "low",
-              })
-            }
-          >
-            ↓
-          </button>
-        )}
+      <td className="todo-priority">
+        <select
+          value={priority}
+          onChange={(event) => onTodoEdit(id, { priority: event.target.value })}
+        >
+          <option value="high">High</option>
+          <option value="normal">Normal</option>
+          <option value="low">Low</option>
+        </select>
       </td>
       <td className="todo-delete" onClick={() => onTodoDelete(id)}>
         <img src={trashIcon} alt="Delete" className="icon" />
