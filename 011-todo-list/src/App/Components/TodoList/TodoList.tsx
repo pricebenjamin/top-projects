@@ -19,37 +19,39 @@ export function TodoList({
   return (
     todos.length > 0 && (
       <div className="todo-list">
-        <table>
-          <caption>{title}</caption>
-          <colgroup>
-            <col span={1} className="status" />
-            <col span={1} className="title" />
-            <col span={1} className="due-date" />
-            <col span={1} className="priority" />
-            <col span={1} className="delete" />
-          </colgroup>
+        <h2 className="title">{title}</h2>
+        <div className="card">
+          <table>
+            <colgroup>
+              <col span={1} className="status" />
+              <col span={1} className="title" />
+              <col span={1} className="due-date" />
+              <col span={1} className="priority" />
+              <col span={1} className="delete" />
+            </colgroup>
 
-          <thead>
-            <tr>
-              <th>{/* status */}</th>
-              <th>Title</th>
-              <th>Due</th>
-              <th>Priority</th>
-              <th>{/* delete */}</th>
-            </tr>
-          </thead>
+            <thead>
+              <tr>
+                <th>{/* status */}</th>
+                <th>Title</th>
+                <th>Due</th>
+                <th>Priority</th>
+                <th>{/* delete */}</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {todos.map((todo) => (
-              <TodoListRow
-                key={todo.id}
-                {...todo}
-                onTodoEdit={onTodoEdit}
-                onTodoDelete={onTodoDelete}
-              />
-            ))}
-          </tbody>
-        </table>
+            <tbody>
+              {todos.map((todo) => (
+                <TodoListRow
+                  key={todo.id}
+                  {...todo}
+                  onTodoEdit={onTodoEdit}
+                  onTodoDelete={onTodoDelete}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   );
