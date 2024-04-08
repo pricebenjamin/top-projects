@@ -6,10 +6,12 @@
 .project-navigator ul {
   width: 100%;
   list-style: none;
+  position: sticky;
+  top: 0;
 }
 
 .project-navigator li {
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
 }
 
 .project-navigator li.active,

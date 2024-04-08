@@ -7,7 +7,11 @@ header.header {
   display: flex;
   align-items: center;
   gap: 2rem;
-  padding-bottom: 1rem;
+  background-color: var(--background-color);
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 header .active-project {
@@ -43,5 +47,9 @@ header nav {
 @media (prefers-color-scheme: light) {
   header .active-project:hover {
     background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  header.header {
+    box-shadow: 0 3px 5px -4px rgba(0, 0, 0, 0.5);
   }
 }
