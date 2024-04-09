@@ -89,7 +89,7 @@ function TodoListRow({
       <td className="todo-status">
         <input
           type="checkbox"
-          onChange={() => onTodoEdit(id, { finished: !finished })}
+          onClick={() => onTodoEdit(id, { finished: !finished })}
           checked={finished}
         />
       </td>
