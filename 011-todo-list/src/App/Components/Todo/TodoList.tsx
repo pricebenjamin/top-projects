@@ -9,7 +9,7 @@ interface TodoListProps {
   activeTodoId?: string;
   onTodoEdit: (id: string, changes: Partial<Todo>) => void;
   onTodoDelete: (id: string) => void;
-  onRowClick: (id: string) => void;
+  onSetActiveTodo: (id: string) => void;
 }
 
 export function TodoList({
@@ -18,7 +18,7 @@ export function TodoList({
   activeTodoId,
   onTodoEdit,
   onTodoDelete,
-  onRowClick,
+  onSetActiveTodo,
 }: TodoListProps) {
   return (
     todos.length > 0 && (
@@ -45,14 +45,23 @@ export function TodoList({
             </thead>
 
             <tbody>
-              {todos.map((todo) => (
+              {todos.map((todo, idx) => (
                 <TodoListRow
                   key={todo.id}
                   {...todo}
                   active={todo.id === activeTodoId}
                   onTodoEdit={onTodoEdit}
-                  onTodoDelete={onTodoDelete}
-                  onRowClick={onRowClick}
+                  onTodoDelete={(id: string) => {
+                    // set adjacent todo as active, if possible
+                    const prevTodo = todos[idx - 1]?.id;
+                    const nextTodo = todos[idx + 1]?.id;
+
+                    if (nextTodo) onSetActiveTodo(nextTodo);
+                    else if (prevTodo) onSetActiveTodo(prevTodo);
+
+                    onTodoDelete(id);
+                  }}
+                  onRowClick={onSetActiveTodo}
                 />
               ))}
             </tbody>

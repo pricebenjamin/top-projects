@@ -62,13 +62,6 @@ function App() {
   }
 
   function deleteTodo(id: string) {
-    const idx = todos.findIndex((todo) => todo.id === id);
-    const prevTodo = todos[idx - 1];
-    const nextTodo = todos[idx + 1];
-
-    if (nextTodo) updateProjectActiveTodo(nextTodo.id);
-    else if (prevTodo) updateProjectActiveTodo(prevTodo.id);
-
     setTodos(todos.filter((todo) => todo.id !== id));
   }
 
@@ -128,7 +121,7 @@ function App() {
           activeTodoId={activeProject?.activeTodoId}
           onTodoEdit={updateTodo}
           onTodoDelete={deleteTodo}
-          onRowClick={updateProjectActiveTodo}
+          onSetActiveTodo={updateProjectActiveTodo}
         />
         <TodoList
           title="Completed"
@@ -136,7 +129,7 @@ function App() {
           activeTodoId={activeProject?.activeTodoId}
           onTodoEdit={updateTodo}
           onTodoDelete={deleteTodo}
-          onRowClick={updateProjectActiveTodo}
+          onSetActiveTodo={updateProjectActiveTodo}
         />
       </div>
       {activeTodo && (
