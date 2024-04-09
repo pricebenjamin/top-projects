@@ -1,4 +1,5 @@
 import { Todo } from "@components/Todo";
+import { TodoPriorityInput } from "./Inputs";
 import "./TodoEditor.css";
 
 interface TodoEditorProps extends Todo {
@@ -36,7 +37,10 @@ export function TodoEditor({
           }}
         ></textarea>
         {dueDate && <p>{new Date(dueDate).toLocaleDateString()}</p>}
-        <p>Priority: {priority}</p>
+        <TodoPriorityInput
+          priority={priority}
+          onPriorityChange={(priority) => onTodoEdit(id, { priority })}
+        />
         <p>Status: {finished ? "finshed" : "in progress"}</p>
         <button onClick={onTodoClose}>Close</button>
       </div>

@@ -1,5 +1,6 @@
 import moment from "moment";
 import { Todo } from "@components/Todo";
+import { TodoPriorityInput } from "./Inputs";
 import "./TodoList.css";
 import trashIcon from "@icons/trash-can-outline.svg";
 
@@ -121,15 +122,11 @@ function TodoListRow({
           }}
         />
       </td>
-      <td className="todo-priority">
-        <select
-          value={priority}
-          onChange={(event) => onTodoEdit(id, { priority: event.target.value })}
-        >
-          <option value="high">High</option>
-          <option value="normal">Normal</option>
-          <option value="low">Low</option>
-        </select>
+      <td>
+        <TodoPriorityInput
+          priority={priority}
+          onPriorityChange={(priority) => onTodoEdit(id, { priority })}
+        />
       </td>
       <td className="todo-delete" onClick={() => onTodoDelete(id)}>
         <img src={trashIcon} alt="Delete" className="icon" />

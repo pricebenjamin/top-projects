@@ -1,0 +1,11 @@
+select.todo-priority {
+  font: inherit;
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  width: 100%;
+}
+
+select.todo-priority option {
+  color: black;
+}

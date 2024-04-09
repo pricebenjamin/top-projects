@@ -70,7 +70,6 @@
   appearance: none;
 }
 
-.todo-list table .todo-priority select,
 .todo-list table input[type="datetime-local"],
 .todo-list table input[type="text"] {
   font: inherit;
@@ -78,10 +77,6 @@
   color: inherit;
   border: none;
   width: 100%;
-}
-
-.todo-list table .todo-priority select option {
-  color: black;
 }
 
 .todo-list table input[type="text"]:focus {

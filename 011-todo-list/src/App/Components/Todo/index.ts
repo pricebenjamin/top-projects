@@ -3,12 +3,14 @@ import { TodoList } from "./TodoList";
 
 export { TodoEditor, TodoList };
 
+export type TodoPriority = "high" | "normal" | "low";
+
 export interface Todo {
   id: string;
   projectId: string;
   title: string;
   description: string;
-  priority: "high" | "normal" | "low";
+  priority: TodoPriority;
   finished: boolean;
   dueDate?: number;
 }
