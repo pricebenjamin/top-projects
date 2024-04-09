@@ -1,6 +1,7 @@
 import { TodoEditor } from "./TodoEditor";
+import { TodoList } from "./TodoList";
 
-export { TodoEditor };
+export { TodoEditor, TodoList };
 
 export interface Todo {
   id: string;
