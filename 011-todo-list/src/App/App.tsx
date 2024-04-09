@@ -115,8 +115,10 @@ function App() {
                 )
               );
             }}
-            onTodoCreate={(id: string) => {
-              setTodos([...todos, createNewTodo(id)]);
+            onTodoCreate={(projectId: string) => {
+              const newTodo = createNewTodo(projectId);
+              setTodos([...todos, newTodo]);
+              updateProjectActiveTodo(newTodo.id);
             }}
           />
         )}{" "}

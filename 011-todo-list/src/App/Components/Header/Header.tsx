@@ -7,7 +7,7 @@ interface HeaderProps {
   project: Project;
   onProjectDelete: (id: string) => void;
   onProjectTitleChange: (id: string, title: string) => void;
-  onTodoCreate: (id: string) => void;
+  onTodoCreate: (projectId: string) => void;
 }
 
 export function Header({
