@@ -1,3 +1,7 @@
+import { TodoEditor } from "./TodoEditor";
+
+export { TodoEditor };
+
 export interface Todo {
   id: string;
   projectId: string;

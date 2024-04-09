@@ -1,0 +1,40 @@
+.todo-editor {
+  flex: 1 1 300px;
+}
+
+.todo-editor .sticky {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+}
+
+.todo-editor textarea {
+  font: inherit;
+  background: transparent;
+  resize: none;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.todo-editor textarea:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.todo-editor textarea.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+}
+
+.todo-editor textarea.description {
+  height: 8rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.todo-editor button {
+  margin-top: 1rem;
+}

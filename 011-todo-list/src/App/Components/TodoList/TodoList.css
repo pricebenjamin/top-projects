@@ -93,6 +93,7 @@
   outline: none;
 }
 
+.todo-list table tr.active,
 .todo-list table tr:hover,
 .todo-list table tr:has(input[type="text"]:focus) {
   background-color: rgba(255, 255, 255, 0.05);
@@ -119,6 +120,7 @@
     background-color: rgba(0, 0, 0, 0.03);
   }
 
+  .todo-list table tr.active,
   .todo-list table tr:hover,
   .todo-list table tr:has(input[type="text"]:focus) {
     background-color: rgba(0, 0, 0, 0.05);

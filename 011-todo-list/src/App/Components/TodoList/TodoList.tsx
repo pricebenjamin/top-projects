@@ -6,15 +6,19 @@ import trashIcon from "@icons/trash-can-outline.svg";
 interface TodoListProps {
   title: string;
   todos: Todo[];
+  activeTodoId?: string;
   onTodoEdit: (id: string, changes: Partial<Todo>) => void;
   onTodoDelete: (id: string) => void;
+  onRowClick: (id: string) => void;
 }
 
 export function TodoList({
   title,
   todos,
+  activeTodoId,
   onTodoEdit,
   onTodoDelete,
+  onRowClick,
 }: TodoListProps) {
   return (
     todos.length > 0 && (
@@ -45,8 +49,10 @@ export function TodoList({
                 <TodoListRow
                   key={todo.id}
                   {...todo}
+                  active={todo.id === activeTodoId}
                   onTodoEdit={onTodoEdit}
                   onTodoDelete={onTodoDelete}
+                  onRowClick={onRowClick}
                 />
               ))}
             </tbody>
@@ -58,8 +64,10 @@ export function TodoList({
 }
 
 interface TodoListRowProps extends Todo {
+  active: boolean;
   onTodoEdit: (id: string, changes: Partial<Todo>) => void;
   onTodoDelete: (id: string) => void;
+  onRowClick: (id: string) => void;
 }
 
 function TodoListRow({
@@ -68,11 +76,16 @@ function TodoListRow({
   dueDate,
   priority,
   finished,
+  active,
   onTodoEdit,
   onTodoDelete,
+  onRowClick,
 }: TodoListRowProps) {
   return (
-    <tr>
+    <tr
+      onClickCapture={() => onRowClick(id)}
+      className={active ? "active" : ""}
+    >
       <td className="todo-status">
         <input
           type="checkbox"

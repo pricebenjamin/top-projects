@@ -3,7 +3,7 @@ import { Header } from "@components/Header";
 import { ProjectNavigator } from "@components/ProjectNavigator";
 import { TodoList } from "@components/TodoList";
 import { createNewProject } from "@components/Project";
-import { Todo, createNewTodo } from "@components/Todo";
+import { Todo, TodoEditor, createNewTodo } from "@components/Todo";
 import { initialAppState, ApplicationState } from "./initialAppData";
 import "./App.css";
 
@@ -43,6 +43,9 @@ function App() {
   }, [activeProjectId, projects, todos]);
 
   const activeProject = projects.find((p) => p.id === activeProjectId);
+  const activeTodo = todos.find(
+    (todo) => todo.id === activeProject?.activeTodoId
+  );
   const finishedTodos: Todo[] = [];
   const unfinishedTodos: Todo[] = [];
 
@@ -60,7 +63,23 @@ function App() {
   }
 
   function deleteTodo(id: string) {
+    const idx = todos.findIndex((todo) => todo.id === id);
+    const prevTodo = todos[idx - 1];
+    const nextTodo = todos[idx + 1];
+
+    if (nextTodo) updateProjectActiveTodo(nextTodo.id);
+    else if (prevTodo) updateProjectActiveTodo(prevTodo.id);
+
     setTodos(todos.filter((todo) => todo.id !== id));
+  }
+
+  function updateProjectActiveTodo(id?: string) {
+    setProjects(
+      projects.map((project) => {
+        if (project.id !== activeProjectId) return project;
+        return { ...project, activeTodoId: id };
+      })
+    );
   }
 
   return (
@@ -105,16 +124,27 @@ function App() {
         <TodoList
           title="In Progress"
           todos={unfinishedTodos}
+          activeTodoId={activeProject?.activeTodoId}
           onTodoEdit={updateTodo}
           onTodoDelete={deleteTodo}
+          onRowClick={updateProjectActiveTodo}
         />
         <TodoList
           title="Completed"
           todos={finishedTodos}
+          activeTodoId={activeProject?.activeTodoId}
           onTodoEdit={updateTodo}
           onTodoDelete={deleteTodo}
+          onRowClick={updateProjectActiveTodo}
         />
       </div>
+      {activeTodo && (
+        <TodoEditor
+          {...activeTodo}
+          onTodoEdit={updateTodo}
+          onTodoClose={() => updateProjectActiveTodo()}
+        />
+      )}
     </>
   );
 }
