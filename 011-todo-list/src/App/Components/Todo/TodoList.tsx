@@ -125,7 +125,7 @@ function TodoListRow({
       <td>
         <TodoPriorityInput
           priority={priority}
-          onPriorityChange={(priority) => onTodoEdit(id, { priority })}
+          onChange={(priority) => onTodoEdit(id, { priority })}
         />
       </td>
       <td className="todo-delete" onClick={() => onTodoDelete(id)}>

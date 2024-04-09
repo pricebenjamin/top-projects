@@ -3,17 +3,17 @@ import "./Inputs.css";
 
 interface TodoPriorityInputProps {
   priority: TodoPriority;
-  onPriorityChange: (priority: TodoPriority) => void;
+  onChange: (priority: TodoPriority) => void;
 }
 
 export function TodoPriorityInput({
   priority,
-  onPriorityChange,
+  onChange,
 }: TodoPriorityInputProps) {
   return (
     <select
       value={priority}
-      onChange={(event) => onPriorityChange(event.target.value)}
+      onChange={(event) => onChange(event.target.value)}
       className="todo-priority"
     >
       <option value="high">High</option>

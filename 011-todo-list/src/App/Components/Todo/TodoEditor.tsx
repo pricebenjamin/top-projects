@@ -39,9 +39,9 @@ export function TodoEditor({
         {dueDate && <p>{new Date(dueDate).toLocaleDateString()}</p>}
         <TodoPriorityInput
           priority={priority}
-          onPriorityChange={(priority) => onTodoEdit(id, { priority })}
+          onChange={(priority) => onTodoEdit(id, { priority })}
         />
-        <p>Status: {finished ? "finshed" : "in progress"}</p>
+        <p>Status: {finished ? "finished" : "in progress"}</p>
         <button onClick={onTodoClose}>Close</button>
       </div>
     </div>
