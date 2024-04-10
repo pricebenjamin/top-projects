@@ -34,12 +34,39 @@
 }
 
 .todo-editor textarea.description {
-  height: 8rem;
+  height: 10rem;
   border-radius: 0.5rem;
   margin: 1rem 0;
 }
 
-.todo-editor button {
+.todo-editor input,
+.todo-editor select,
+.todo-editor textarea.description {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.todo-editor .flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.todo-editor .flex-wrap > * {
+  flex: 1 0 auto;
+}
+
+.todo-editor .input-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.todo-editor input,
+.todo-editor select {
+  flex: 1 1 auto;
+}
+
+.todo-editor .buttons {
   margin-top: 1rem;
 }
 
@@ -47,5 +74,11 @@
   .todo-editor textarea.title:focus,
   .todo-editor textarea.title:hover {
     background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .todo-editor input,
+  .todo-editor select,
+  .todo-editor textarea.description {
+    border: 1px solid rgba(0, 0, 0, 0.1);
   }
 }

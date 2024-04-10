@@ -31,21 +31,34 @@ export function TodoEditor({
         <textarea
           className="description"
           value={description}
+          placeholder="Add a description..."
           autoComplete="off"
           onChange={(event) => {
             onTodoEdit(id, { description: event.target.value });
           }}
         ></textarea>
-        <TodoDueDateInput
-          dueDate={dueDate}
-          onChange={(dueDate) => onTodoEdit(id, { dueDate })}
-        />
-        <TodoPriorityInput
-          priority={priority}
-          onChange={(priority) => onTodoEdit(id, { priority })}
-        />
-        <p>Status: {finished ? "finished" : "in progress"}</p>
-        <button onClick={onTodoClose}>Close</button>
+        <div className="flex-wrap">
+          <div className="input-row">
+            <label>Due: </label>
+            <TodoDueDateInput
+              dueDate={dueDate}
+              onChange={(dueDate) => onTodoEdit(id, { dueDate })}
+            />
+          </div>
+          <div className="input-row">
+            <label>Priority: </label>
+            <TodoPriorityInput
+              priority={priority}
+              onChange={(priority) => onTodoEdit(id, { priority })}
+            />
+          </div>
+        </div>
+        <div className="flex-wrap buttons">
+          <button onClick={() => onTodoEdit(id, { finished: !finished })}>
+            Mark as {finished ? "In Progress" : "Complete"}
+          </button>
+          <button onClick={onTodoClose}>Close</button>
+        </div>
       </div>
     </div>
   );
