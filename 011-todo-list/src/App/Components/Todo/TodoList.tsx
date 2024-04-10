@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Todo } from "@components/Todo";
 import { TodoPriorityInput, TodoDueDateInput } from "./Inputs";
 import "./TodoList.css";
@@ -20,6 +21,11 @@ export function TodoList({
   onTodoDelete,
   onSetActiveTodo,
 }: TodoListProps) {
+  const [sort, setSort] = useState<SortSpec>();
+
+  const sortedTodos =
+    sort === undefined ? todos : [...todos].sort(createSortFn(sort));
+
   return (
     todos.length > 0 && (
       <div className="todo-list">
@@ -37,15 +43,30 @@ export function TodoList({
             <thead>
               <tr>
                 <th>{/* status */}</th>
-                <th>Title</th>
-                <th>Due</th>
-                <th>Priority</th>
+                <TodoListSortableHeader
+                  text="Title"
+                  attribute="title"
+                  sort={sort}
+                  onChange={setSort}
+                />
+                <TodoListSortableHeader
+                  text="Due"
+                  attribute="dueDate"
+                  sort={sort}
+                  onChange={setSort}
+                />
+                <TodoListSortableHeader
+                  text="Priority"
+                  attribute="priority"
+                  sort={sort}
+                  onChange={setSort}
+                />
                 <th>{/* delete */}</th>
               </tr>
             </thead>
 
             <tbody>
-              {todos.map((todo, idx) => (
+              {sortedTodos.map((todo, idx) => (
                 <TodoListRow
                   key={todo.id}
                   {...todo}
@@ -69,6 +90,90 @@ export function TodoList({
         </div>
       </div>
     )
+  );
+}
+
+type SortableTodoAttribute = "title" | "dueDate" | "priority";
+
+interface SortSpec {
+  attribute: SortableTodoAttribute;
+  direction: "normal" | "reverse";
+  // Note(ben): Why not use "ascending" | "descending"?
+  //
+  // When I click to sort by "dueDate", I would expect soonest
+  // dates first (similar to "ascending"). However, when I click
+  // to sort by priority, I would expect highest priority first
+  // (similar to "descending").
+  //
+  // "normal" and "reverse" allow each attribute to be opinionated
+  // about the initial sort order.
+}
+
+function createSortFn(sort: SortSpec) {
+  function compare(a: Todo, b: Todo) {
+    // when sorting by due date, undefined should always be last
+    const last = sort.direction === "normal" ? Infinity : -Infinity;
+    const dueA = a.dueDate ?? last;
+    const dueB = b.dueDate ?? last;
+
+    switch (sort.attribute) {
+      case "title":
+        // normal behavior: A-Z
+        return a.title.localeCompare(b.title);
+      case "dueDate":
+        // normal behavior: earlier dates first
+        if (dueA === dueB) return 0;
+        return dueA > dueB ? 1 : -1;
+      case "priority":
+        // normal behavior: higher priority first
+        if (a.priority === b.priority) return 0;
+        return a.priority === "high" || b.priority === "low" ? -1 : 1;
+    }
+  }
+
+  return (a: Todo, b: Todo) => {
+    const result = compare(a, b);
+    return sort.direction === "normal" ? result : -result;
+  };
+}
+
+interface TodoListSortableHeaderProps {
+  text: string;
+  attribute: SortableTodoAttribute;
+  sort?: SortSpec;
+  onChange: (sort: SortSpec | undefined) => void;
+}
+
+function TodoListSortableHeader({
+  text,
+  attribute,
+  sort,
+  onChange,
+}: TodoListSortableHeaderProps) {
+  function toggleSort(attribute: SortableTodoAttribute) {
+    // toggle order: off -> normal -> reverse -> off
+    if (!sort || sort.attribute !== attribute) {
+      onChange({
+        attribute,
+        direction: "normal",
+      });
+    } else if (sort.direction === "normal") {
+      onChange({
+        attribute,
+        direction: "reverse",
+      });
+    } else {
+      onChange(undefined);
+    }
+  }
+
+  const sortIndicator =
+    sort === undefined ? "" : sort.direction === "normal" ? "↑" : "↓";
+
+  return (
+    <th className="sortable" onClick={() => toggleSort(attribute)}>
+      {text} {sort?.attribute === attribute && sortIndicator}
+    </th>
   );
 }
 

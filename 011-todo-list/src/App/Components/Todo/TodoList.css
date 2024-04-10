@@ -29,6 +29,11 @@
   padding: 8px;
 }
 
+.todo-list th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
 /* widths do not need to add to 100% */
 .todo-list table col.status {
   width: 5%;
@@ -80,6 +85,7 @@
   outline: none;
 }
 
+.todo-list th.sortable:hover,
 .todo-list table tr.active,
 .todo-list table tr:hover,
 .todo-list table tr:has(input[type="text"]:focus) {
@@ -107,6 +113,7 @@
     background-color: rgba(0, 0, 0, 0.03);
   }
 
+  .todo-list th.sortable:hover,
   .todo-list table tr.active,
   .todo-list table tr:hover,
   .todo-list table tr:has(input[type="text"]:focus) {
