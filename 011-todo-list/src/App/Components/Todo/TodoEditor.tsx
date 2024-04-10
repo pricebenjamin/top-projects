@@ -1,5 +1,5 @@
 import { Todo } from "@components/Todo";
-import { TodoPriorityInput } from "./Inputs";
+import { TodoPriorityInput, TodoDueDateInput } from "./Inputs";
 import "./TodoEditor.css";
 
 interface TodoEditorProps extends Todo {
@@ -36,7 +36,10 @@ export function TodoEditor({
             onTodoEdit(id, { description: event.target.value });
           }}
         ></textarea>
-        {dueDate && <p>{new Date(dueDate).toLocaleDateString()}</p>}
+        <TodoDueDateInput
+          dueDate={dueDate}
+          onChange={(dueDate) => onTodoEdit(id, { dueDate })}
+        />
         <TodoPriorityInput
           priority={priority}
           onChange={(priority) => onTodoEdit(id, { priority })}

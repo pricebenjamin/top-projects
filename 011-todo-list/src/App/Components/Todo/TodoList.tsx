@@ -1,6 +1,5 @@
-import moment from "moment";
 import { Todo } from "@components/Todo";
-import { TodoPriorityInput } from "./Inputs";
+import { TodoPriorityInput, TodoDueDateInput } from "./Inputs";
 import "./TodoList.css";
 import trashIcon from "@icons/trash-can-outline.svg";
 
@@ -110,16 +109,10 @@ function TodoListRow({
           onChange={(event) => onTodoEdit(id, { title: event.target.value })}
         />
       </td>
-      <td className="todo-date">
-        <input
-          type="datetime-local"
-          value={dueDate && moment(dueDate).utc().format("yyyy-MM-DDTHH:mm")}
-          onChange={(event) => {
-            const timestamp = event.target.valueAsNumber;
-            onTodoEdit(id, {
-              dueDate: isNaN(timestamp) ? undefined : timestamp,
-            });
-          }}
+      <td>
+        <TodoDueDateInput
+          dueDate={dueDate}
+          onChange={(dueDate) => onTodoEdit(id, { dueDate })}
         />
       </td>
       <td>

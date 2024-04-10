@@ -59,18 +59,15 @@
   background-color: rgba(255, 255, 255, 0.03);
 }
 
-.todo-list table .todo-date,
 .todo-list table .todo-delete,
 .todo-list table .todo-status {
   text-align: center;
 }
 
-.todo-list table input[type="datetime-local"],
 .todo-list table input[type="text"] {
   appearance: none;
 }
 
-.todo-list table input[type="datetime-local"],
 .todo-list table input[type="text"] {
   font: inherit;
   background-color: transparent;

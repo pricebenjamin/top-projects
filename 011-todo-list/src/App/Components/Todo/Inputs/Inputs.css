@@ -9,3 +9,12 @@ select.todo-priority {
 select.todo-priority option {
   color: black;
 }
+
+input.todo-due-date {
+  appearance: none;
+  font: inherit;
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  width: 100%;
+}
