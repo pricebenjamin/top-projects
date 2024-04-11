@@ -204,7 +204,7 @@ function TodoListRow({
         <input
           type="checkbox"
           onClick={() => onTodoEdit(id, { finished: !finished })}
-          checked={finished}
+          defaultChecked={finished}
         />
       </td>
       <td>
