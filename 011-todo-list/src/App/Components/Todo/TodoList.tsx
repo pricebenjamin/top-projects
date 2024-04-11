@@ -172,7 +172,7 @@ function TodoListSortableHeader({
 
   return (
     <th className="sortable" onClick={() => toggleSort(attribute)}>
-      {text} {sort?.attribute === attribute && sortIndicator}
+      {text}&nbsp;{sort?.attribute === attribute && sortIndicator}
     </th>
   );
 }
