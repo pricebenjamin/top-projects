@@ -1,6 +1,7 @@
+import moment from "moment";
 import { useState } from "react";
 import { Todo } from "@components/Todo";
-import { TodoPriorityInput, TodoDueDateInput } from "./Inputs";
+import { TodoPriorityInput } from "./Inputs";
 import "./TodoList.css";
 import trashIcon from "@icons/trash-can-outline.svg";
 
@@ -214,12 +215,7 @@ function TodoListRow({
           onChange={(event) => onTodoEdit(id, { title: event.target.value })}
         />
       </td>
-      <td>
-        <TodoDueDateInput
-          dueDate={dueDate}
-          onChange={(dueDate) => onTodoEdit(id, { dueDate })}
-        />
-      </td>
+      <td>{dueDate && moment(dueDate).fromNow()}</td>
       <td>
         <TodoPriorityInput
           priority={priority}

@@ -12,14 +12,16 @@ export function TodoDueDateInput({ dueDate, onChange }: TodoDueDateInputProps) {
       className="todo-due-date"
       type="datetime-local"
       value={
-        dueDate === undefined
-          ? ""
-          : moment(dueDate).utc().format("yyyy-MM-DDTHH:mm")
+        // convert unix timestamp (milliseconds) to local time string
+        dueDate === undefined ? "" : moment(dueDate).format("YYYY-MM-DDTHH:mm")
       }
       onChange={(event) => {
-        const timestamp = event.target.valueAsNumber;
-        const newDueDate = isNaN(timestamp) ? undefined : timestamp;
-        onChange(newDueDate);
+        const timestamp =
+          event.target.value === ""
+            ? undefined
+            : // convert local time string to unix timestamp (milliseconds)
+              moment(event.target.value).valueOf();
+        onChange(timestamp);
       }}
     />
   );
