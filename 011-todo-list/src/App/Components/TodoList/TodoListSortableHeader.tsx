@@ -48,6 +48,7 @@ interface TodoListSortableHeaderProps {
   text: string;
   attribute: SortableTodoAttribute;
   sort?: SortSpec;
+  colSpan?: number;
   onChange: (sort: SortSpec | undefined) => void;
 }
 
@@ -55,6 +56,7 @@ export function TodoListSortableHeader({
   text,
   attribute,
   sort,
+  colSpan,
   onChange,
 }: TodoListSortableHeaderProps) {
   function toggleSort(attribute: SortableTodoAttribute) {
@@ -78,7 +80,11 @@ export function TodoListSortableHeader({
     sort === undefined ? "" : sort.direction === "normal" ? "↑" : "↓";
 
   return (
-    <th className="sortable" onClick={() => toggleSort(attribute)}>
+    <th
+      className="sortable"
+      onClick={() => toggleSort(attribute)}
+      colSpan={colSpan ?? 1}
+    >
       {text}&nbsp;{sort?.attribute === attribute && sortIndicator}
     </th>
   );

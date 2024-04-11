@@ -36,21 +36,13 @@ export function TodoList({
         <h2 className="title">{title}</h2>
         <div className="card">
           <table>
-            <colgroup>
-              <col span={1} className="status" />
-              <col span={1} className="title" />
-              <col span={1} className="due-date" />
-              <col span={1} className="priority" />
-              <col span={1} className="delete" />
-            </colgroup>
-
             <thead>
               <tr>
-                <th>{/* status */}</th>
                 <TodoListSortableHeader
                   text="Title"
                   attribute="title"
                   sort={sort}
+                  colSpan={2}
                   onChange={setSort}
                 />
                 <TodoListSortableHeader
@@ -63,9 +55,9 @@ export function TodoList({
                   text="Priority"
                   attribute="priority"
                   sort={sort}
+                  colSpan={2}
                   onChange={setSort}
                 />
-                <th>{/* delete */}</th>
               </tr>
             </thead>
 

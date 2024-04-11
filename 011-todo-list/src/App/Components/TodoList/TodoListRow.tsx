@@ -33,15 +33,15 @@ export function TodoListRow({
           defaultChecked={finished}
         />
       </td>
-      <td>
+      <td className="todo-title">
         <input
           type="text"
           value={title}
           onChange={(event) => onTodoEdit(id, { title: event.target.value })}
         />
       </td>
-      <td>{dueDate && moment(dueDate).fromNow()}</td>
-      <td>
+      <td className="todo-due">{dueDate && moment(dueDate).fromNow()}</td>
+      <td className="todo-priority">
         <TodoPriorityInput
           priority={priority}
           onChange={(priority) => onTodoEdit(id, { priority })}

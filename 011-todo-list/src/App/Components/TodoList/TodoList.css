@@ -26,19 +26,19 @@
 }
 
 /* widths do not need to add to 100% */
-.todo-list table col.status {
+.todo-list table td.todo-status {
   width: 5%;
 }
 
-.todo-list table col.title {
+.todo-list table td.todo-title {
   width: 60%;
 }
 
-.todo-list table col.priority {
+.todo-list table td.todo-priority {
   width: 15%;
 }
 
-.todo-list table col.delete {
+.todo-list table td.todo-delete {
   width: 5%;
 }
 
