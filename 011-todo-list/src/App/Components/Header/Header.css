@@ -4,9 +4,6 @@ header > * {
 }
 
 header.header {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
   background-color: var(--background-color);
   padding: 1rem;
   position: sticky;
@@ -14,22 +11,38 @@ header.header {
   z-index: 1;
 }
 
+header .header-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 0.5rem;
+}
+
 header .active-project {
   font-size: 2rem;
   flex: 1 0;
 }
 
+header .search-bar,
 header .active-project input[type="text"] {
   font: inherit;
   background-color: transparent;
   color: inherit;
   appearance: none;
-  border: none;
   width: 100%;
   line-height: normal;
   padding: 8px;
 }
 
+header .search-bar {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+header .active-project input[type="text"] {
+  border: none;
+}
+
+header .search-bar:focus,
 header .active-project input[type="text"]:focus {
   outline: none;
 }
@@ -51,5 +64,9 @@ header nav {
 
   header.header {
     box-shadow: 0 3px 5px -4px rgba(0, 0, 0, 0.5);
+  }
+
+  header .search-bar {
+    border: 1px solid rgba(0, 0, 0, 0.1);
   }
 }

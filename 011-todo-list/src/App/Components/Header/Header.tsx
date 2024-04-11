@@ -5,37 +5,52 @@ import "./Header.css";
 
 interface HeaderProps {
   project: Project;
+  searchText: string;
   onProjectDelete: (id: string) => void;
   onProjectTitleChange: (id: string, title: string) => void;
   onTodoCreate: (projectId: string) => void;
+  onSearchTextChange: (text: string) => void;
 }
 
 export function Header({
   project,
+  searchText,
   onProjectDelete,
   onProjectTitleChange,
   onTodoCreate,
+  onSearchTextChange,
 }: HeaderProps) {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
   return (
     <>
       <header className="header">
-        <h1 className="active-project">
+        <div className="header-row">
+          <h1 className="active-project">
+            <input
+              type="text"
+              value={project.title}
+              onChange={(event) =>
+                onProjectTitleChange(project.id, event.target.value)
+              }
+            />
+          </h1>
+          <nav>
+            <button onClick={() => onTodoCreate(project.id)}>Add Todo</button>
+            <button onClick={() => setShowDeleteConfirmation(true)}>
+              Delete
+            </button>
+          </nav>
+        </div>
+        <div className="header-row">
           <input
+            className="search-bar"
             type="text"
-            value={project.title}
-            onChange={(event) =>
-              onProjectTitleChange(project.id, event.target.value)
-            }
+            value={searchText}
+            onChange={(event) => onSearchTextChange(event?.target.value)}
+            placeholder="Search todos"
           />
-        </h1>
-        <nav>
-          <button onClick={() => onTodoCreate(project.id)}>Add Todo</button>
-          <button onClick={() => setShowDeleteConfirmation(true)}>
-            Delete
-          </button>
-        </nav>
+        </div>
       </header>
       <ConfirmationModal
         show={showDeleteConfirmation}

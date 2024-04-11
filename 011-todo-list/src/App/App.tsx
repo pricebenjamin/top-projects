@@ -36,6 +36,7 @@ function App() {
   );
   const [projects, setProjects] = useState(initState.projects);
   const [todos, setTodos] = useState(initState.todos);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     saveApplicationState({ activeProjectId, projects, todos });
@@ -45,11 +46,18 @@ function App() {
   const activeTodo = todos.find(
     (todo) => todo.id === activeProject?.activeTodoId
   );
+
   const finishedTodos: Todo[] = [];
   const unfinishedTodos: Todo[] = [];
 
   todos.forEach((todo) => {
     if (todo.projectId !== activeProjectId) return;
+
+    const search = searchText.toLowerCase();
+    const matchesTitle = todo.title.toLowerCase().includes(search);
+
+    if (!matchesTitle) return;
+
     todo.finished ? finishedTodos.push(todo) : unfinishedTodos.push(todo);
   });
 
@@ -90,6 +98,7 @@ function App() {
         {activeProject && (
           <Header
             project={activeProject}
+            searchText={searchText}
             onProjectDelete={(id: string) => {
               const idx = projects.findIndex((project) => project.id === id);
               const before = projects[idx - 1];
@@ -113,6 +122,7 @@ function App() {
               setTodos([...todos, newTodo]);
               updateProjectActiveTodo(newTodo.id);
             }}
+            onSearchTextChange={setSearchText}
           />
         )}{" "}
         <TodoList
