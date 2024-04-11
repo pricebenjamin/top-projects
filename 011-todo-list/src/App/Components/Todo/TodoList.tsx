@@ -74,8 +74,8 @@ export function TodoList({
                   onTodoEdit={onTodoEdit}
                   onTodoDelete={(id: string) => {
                     // set adjacent todo as active, if possible
-                    const prevTodo = todos[idx - 1]?.id;
-                    const nextTodo = todos[idx + 1]?.id;
+                    const prevTodo = sortedTodos[idx - 1]?.id;
+                    const nextTodo = sortedTodos[idx + 1]?.id;
 
                     if (nextTodo) onSetActiveTodo(nextTodo);
                     else if (prevTodo) onSetActiveTodo(prevTodo);
