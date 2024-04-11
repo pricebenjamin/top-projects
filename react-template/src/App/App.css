@@ -1,0 +1,5 @@
+#root {
+  width: clamp(300px, 80%, 1280px);
+  margin: 0 auto;
+  padding: 2rem;
+}
