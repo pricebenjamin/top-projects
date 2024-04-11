@@ -102,12 +102,13 @@ function App() {
             project={activeProject}
             searchText={searchText}
             onProjectDelete={(id: string) => {
+              // set adjacent project as active, if possible
               const idx = projects.findIndex((project) => project.id === id);
-              const before = projects[idx - 1];
-              const after = projects[idx + 1];
+              const prevProject = projects[idx - 1];
+              const nextProject = projects[idx + 1];
 
-              if (after) setActiveProjectId(after.id);
-              else if (before) setActiveProjectId(before.id);
+              if (nextProject) setActiveProjectId(nextProject.id);
+              else if (prevProject) setActiveProjectId(prevProject.id);
 
               setTodos(todos.filter((todo) => todo.projectId !== id));
               setProjects(projects.filter((project) => project.id !== id));
