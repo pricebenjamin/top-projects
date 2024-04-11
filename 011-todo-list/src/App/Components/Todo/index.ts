@@ -1,8 +1,3 @@
-import { TodoEditor } from "./TodoEditor";
-import { TodoList } from "./TodoList";
-
-export { TodoEditor, TodoList };
-
 export type TodoPriority = "high" | "normal" | "low";
 
 export interface Todo {

@@ -1,7 +1,7 @@
 import moment from "moment";
 import { useState } from "react";
 import { Todo } from "@components/Todo";
-import { TodoPriorityInput } from "./Inputs";
+import { TodoPriorityInput } from "@components/TodoInputs";
 import "./TodoList.css";
 import trashIcon from "@icons/trash-can-outline.svg";
 

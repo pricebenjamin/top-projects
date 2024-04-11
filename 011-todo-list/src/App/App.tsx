@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { Header } from "@components/Header";
 import { ProjectNavigator } from "@components/ProjectNavigator";
 import { createNewProject } from "@components/Project";
-import { Todo, TodoEditor, TodoList, createNewTodo } from "@components/Todo";
+import { Todo, createNewTodo } from "@components/Todo";
+import { TodoEditor } from "@components/TodoEditor";
+import { TodoList } from "@components/TodoList";
 import { initialAppState, ApplicationState } from "./initialAppData";
 import "./App.css";
 

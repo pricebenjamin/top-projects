@@ -1,5 +1,5 @@
 import { Todo } from "@components/Todo";
-import { TodoPriorityInput, TodoDueDateInput } from "./Inputs";
+import { TodoPriorityInput, TodoDueDateInput } from "@components/TodoInputs";
 import "./TodoEditor.css";
 
 interface TodoEditorProps extends Todo {
