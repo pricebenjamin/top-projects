@@ -7,6 +7,8 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
   --background-color: #242424;
+  --accent-color: hsl(220deg, 30%, 25%);
+  --accent-color-hover: hsl(220deg, 40%, 30%);
 }
 
 *:not(dialog) {
@@ -33,12 +35,11 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--accent-color);
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: var(--accent-color-hover);
 }
 button:focus,
 button:focus-visible {
@@ -50,11 +51,7 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
     --background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+    --accent-color: hsl(220deg, 90%, 95%);
+    --accent-color-hover: hsl(220deg, 90%, 90%);
   }
 }

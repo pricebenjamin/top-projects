@@ -19,46 +19,44 @@ export function TodoEditor({
 }: TodoEditorProps) {
   return (
     <div className="todo-editor">
-      <div className="sticky">
-        <textarea
-          className="title"
-          value={title}
-          autoComplete="off"
-          onChange={(event) => {
-            onTodoEdit(id, { title: event.target.value });
-          }}
-        ></textarea>
-        <textarea
-          className="description"
-          value={description}
-          placeholder="Add a description..."
-          autoComplete="off"
-          onChange={(event) => {
-            onTodoEdit(id, { description: event.target.value });
-          }}
-        ></textarea>
-        <div className="flex-wrap">
-          <div className="input-row">
-            <label>Due: </label>
-            <TodoDueDateInput
-              dueDate={dueDate}
-              onChange={(dueDate) => onTodoEdit(id, { dueDate })}
-            />
-          </div>
-          <div className="input-row">
-            <label>Priority: </label>
-            <TodoPriorityInput
-              priority={priority}
-              onChange={(priority) => onTodoEdit(id, { priority })}
-            />
-          </div>
+      <textarea
+        className="title"
+        value={title}
+        autoComplete="off"
+        onChange={(event) => {
+          onTodoEdit(id, { title: event.target.value });
+        }}
+      ></textarea>
+      <textarea
+        className="description"
+        value={description}
+        placeholder="Add a description..."
+        autoComplete="off"
+        onChange={(event) => {
+          onTodoEdit(id, { description: event.target.value });
+        }}
+      ></textarea>
+      <div className="flex-wrap">
+        <div className="input-row">
+          <label>Due: </label>
+          <TodoDueDateInput
+            dueDate={dueDate}
+            onChange={(dueDate) => onTodoEdit(id, { dueDate })}
+          />
         </div>
-        <div className="flex-wrap buttons">
-          <button onClick={() => onTodoEdit(id, { finished: !finished })}>
-            Mark as {finished ? "In Progress" : "Complete"}
-          </button>
-          <button onClick={onTodoClose}>Close</button>
+        <div className="input-row">
+          <label>Priority: </label>
+          <TodoPriorityInput
+            priority={priority}
+            onChange={(priority) => onTodoEdit(id, { priority })}
+          />
         </div>
+      </div>
+      <div className="flex-wrap buttons">
+        <button onClick={() => onTodoEdit(id, { finished: !finished })}>
+          Mark as {finished ? "In Progress" : "Complete"}
+        </button>
+        <button onClick={onTodoClose}>Close</button>
       </div>
     </div>
   );

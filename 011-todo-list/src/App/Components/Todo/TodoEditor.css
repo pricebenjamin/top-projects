@@ -1,13 +1,9 @@
 .todo-editor {
-  flex: 1 1 300px;
-}
-
-.todo-editor .sticky {
+  width: clamp(300px, 30vw, 800px);
+  height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  position: sticky;
-  top: 0;
 }
 
 .todo-editor textarea {
@@ -34,7 +30,7 @@
 }
 
 .todo-editor textarea.description {
-  height: 10rem;
+  flex: 1 0 auto;
   border-radius: 0.5rem;
   margin: 1rem 0;
 }
