@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { Location, WeatherAPI } from "@utils/WeatherAPI";
+import "./LocationSearch.css";
 
 interface LocationSearchProps {
   weatherAPI: WeatherAPI;

@@ -22,8 +22,7 @@ export interface Location {
 }
 
 export interface DailyWeather {
-  date: string;
-  timestamp: number;
+  date: Date;
   avgTempF: number;
   minTempF: number;
   maxTempF: number;
@@ -67,18 +66,14 @@ export class WeatherAPI {
     });
 
     const response = await fetch(endpoint);
+    const json = await response.json();
+
     const {
       forecast: { forecastday },
-    } = (await response.json()) as API_Response_Forecast;
-
-    if (forecastday.length === 0) {
-      console.log("zero day forecast");
-      console.log(forecastday);
-    }
+    } = json as API_Response_Forecast;
 
     return forecastday.map((day) => {
       const {
-        date,
         date_epoch,
         day: {
           avgtemp_f,
@@ -88,9 +83,10 @@ export class WeatherAPI {
         },
       } = day;
 
+      const timestamp_ms = date_epoch * 1000;
+
       return {
-        date,
-        timestamp: date_epoch,
+        date: new Date(timestamp_ms),
         avgTempF: avgtemp_f,
         minTempF: mintemp_f,
         maxTempF: maxtemp_f,

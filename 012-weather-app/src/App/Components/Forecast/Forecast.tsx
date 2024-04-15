@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+
 import { DailyWeather, Location, WeatherAPI } from "@utils/WeatherAPI";
+import "./Forecast.css";
 
 interface ForecastProps {
   weatherAPI: WeatherAPI;
@@ -38,18 +40,34 @@ export function Forecast({ weatherAPI, location, days }: ForecastProps) {
   }, [weatherAPI, location, days]);
 
   return (
-    <>
-      {forecast && (
-        <div className="forecast">
-          {forecast.map((day) => (
-            <div className="daily-weather" key={day.date}>
-              <p>Date: {day.date}</p>
-              <p>Average: {day.avgTempF}</p>
-              <p>Condition: {day.condition}</p>
-            </div>
-          ))}
+    forecast && (
+      <div className="forecast">
+        <div className="card">
+          {forecast.length > 0 ? (
+            <table>
+              <caption>Forecast</caption>
+              <tbody>
+                {forecast.map((day) => (
+                  <tr className="daily-weather" key={day.date.valueOf()}>
+                    <td>
+                      {Intl.DateTimeFormat("en-US", {
+                        weekday: "long",
+                        timeZone: "UTC",
+                      }).format(day.date)}
+                    </td>
+                    <td>{day.condition}</td>
+                    <td>{day.avgTempF}&nbsp;&deg;F</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <h1 className="try-again">
+              Unable to load forecast. Please try again later.
+            </h1>
+          )}
         </div>
-      )}
-    </>
+      </div>
+    )
   );
 }

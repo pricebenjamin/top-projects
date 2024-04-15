@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { CurrentWeather, Location, WeatherAPI } from "@utils/WeatherAPI";
+import "./Weather.css";
 
 interface WeatherProps {
   weatherAPI: WeatherAPI;
@@ -37,24 +38,26 @@ export function Weather({ weatherAPI, location }: WeatherProps) {
     };
   }, [weatherAPI, location]);
 
-  const currentLocation = location
-    ? `${location.name}, ${location.region}, ${location.country}`
-    : undefined;
-
   return (
-    <>
-      <div className="current-location">
-        {currentLocation ?? "No location selected"}
-      </div>
-      {currentWeather && (
-        <div className="current-weather">
-          <div className="temperature">{currentWeather.temperatureF} °F</div>
+    currentWeather && (
+      <div className="current-weather">
+        <div className="column">
+          <div className="temperature">
+            {currentWeather.temperatureF}&nbsp;&deg;F
+          </div>
           <div className="condition">{currentWeather.condition}</div>
           <div className="last-updated">
-            {currentWeather.lastUpdated.toLocaleString()}
+            Updated:{" "}
+            {new Intl.DateTimeFormat("en-US", {
+              timeStyle: "short",
+            }).format(currentWeather.lastUpdated)}
           </div>
         </div>
-      )}
-    </>
+        <div className="column">
+          <h1 className="location-name">{location.name}</h1>
+          <h2 className="location-region">{location.region}</h2>
+        </div>
+      </div>
+    )
   );
 }

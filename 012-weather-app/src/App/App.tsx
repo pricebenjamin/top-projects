@@ -13,7 +13,12 @@ interface AppProps {
 }
 
 function App({ apiKey }: AppProps) {
-  const [location, setLocation] = useState<Location>();
+  const [location, setLocation] = useState<Location>({
+    id: "id:2670799",
+    name: "Pullman",
+    region: "Washington",
+    country: "United States of America",
+  });
 
   useEffect(() => {
     weather.setKey(apiKey ?? "");
@@ -22,10 +27,10 @@ function App({ apiKey }: AppProps) {
   return (
     <>
       <LocationSearch weatherAPI={weather} onSelect={setLocation} />
-      {location && <Weather weatherAPI={weather} location={location} />}
-      {location && (
+      <div className="content">
+        <Weather weatherAPI={weather} location={location} />
         <Forecast weatherAPI={weather} location={location} days={3} />
-      )}
+      </div>
       <div className="api-key">
         {apiKey === null ? (
           <p>No API key provided</p>

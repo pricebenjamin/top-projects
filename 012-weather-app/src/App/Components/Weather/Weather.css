@@ -1,0 +1,26 @@
+.current-weather {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.current-weather .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 2rem;
+}
+
+.current-weather .column:first-child {
+  border-right: 2px solid rgba(255, 255, 255, 0.2);
+  padding-left: 0;
+}
+
+.current-weather .temperature {
+  font-size: 2rem;
+}
+
+.current-weather .last-updated {
+  opacity: 0.5;
+}
