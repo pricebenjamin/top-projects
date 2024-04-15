@@ -71,6 +71,11 @@ export class WeatherAPI {
       forecast: { forecastday },
     } = (await response.json()) as API_Response_Forecast;
 
+    if (forecastday.length === 0) {
+      console.log("zero day forecast");
+      console.log(forecastday);
+    }
+
     return forecastday.map((day) => {
       const {
         date,
