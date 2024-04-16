@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import { Forecast } from "@components/Forecast";
 import { LocationSearch } from "@components/LocationSearch";
+import { Menu } from "@components/Menu";
 import { Weather } from "@components/Weather";
 import { WeatherAPI, Location } from "@utils/WeatherAPI";
 import "./App.css";
@@ -26,7 +27,10 @@ function App({ apiKey }: AppProps) {
 
   return (
     <>
-      <LocationSearch weatherAPI={weather} onSelect={setLocation} />
+      <nav>
+        <Menu />
+        <LocationSearch weatherAPI={weather} onSelect={setLocation} />
+      </nav>
       <div className="content">
         <Weather weatherAPI={weather} location={location} />
         <Forecast weatherAPI={weather} location={location} days={3} />

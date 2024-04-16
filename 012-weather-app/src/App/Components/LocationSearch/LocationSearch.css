@@ -1,13 +1,12 @@
 .search {
+  flex: 1 1 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
 }
 
 .search input {
   font: inherit;
   padding: 8px;
-  margin-bottom: 0.5rem;
 }
 
 .search .results {
