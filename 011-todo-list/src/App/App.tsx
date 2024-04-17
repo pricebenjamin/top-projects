@@ -127,7 +127,7 @@ function App() {
             }}
             onSearchTextChange={setSearchText}
           />
-        )}{" "}
+        )}
         <TodoList
           title="In Progress"
           todos={unfinishedTodos}
