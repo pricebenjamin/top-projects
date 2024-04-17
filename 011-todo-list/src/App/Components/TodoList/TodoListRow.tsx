@@ -3,7 +3,8 @@ import { Todo } from "@components/Todo";
 import { TodoPriorityInput } from "@components/TodoInputs";
 import trashIcon from "@icons/trash-can-outline.svg";
 
-interface TodoListRowProps extends Todo {
+interface TodoListRowProps {
+  todo: Todo;
   active: boolean;
   onTodoEdit: (id: string, changes: Partial<Todo>) => void;
   onTodoDelete: (id: string) => void;
@@ -11,16 +12,14 @@ interface TodoListRowProps extends Todo {
 }
 
 export function TodoListRow({
-  id,
-  title,
-  dueDate,
-  priority,
-  finished,
+  todo,
   active,
   onTodoEdit,
   onTodoDelete,
   onRowClick,
 }: TodoListRowProps) {
+  const { id, title, dueDate, priority, finished } = todo;
+
   return (
     <tr
       onClickCapture={() => onRowClick(id)}

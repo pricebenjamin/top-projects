@@ -65,7 +65,7 @@ export function TodoList({
               {sortedTodos.map((todo, idx) => (
                 <TodoListRow
                   key={todo.id}
-                  {...todo}
+                  todo={todo}
                   active={todo.id === activeTodoId}
                   onTodoEdit={onTodoEdit}
                   onTodoDelete={(id: string) => {
