@@ -1,3 +1,1 @@
-import { ProjectNavigator } from "./ProjectNavigator";
-
-export { ProjectNavigator };
+export { ProjectNavigator } from "./ProjectNavigator";

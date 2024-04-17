@@ -1,4 +1,2 @@
-import { TodoPriorityInput } from "./TodoPriorityInput";
-import { TodoDueDateInput } from "./TodoDueDateInput";
-
-export { TodoPriorityInput, TodoDueDateInput };
+export { TodoPriorityInput } from "./TodoPriorityInput";
+export { TodoDueDateInput } from "./TodoDueDateInput";

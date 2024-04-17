@@ -1,3 +1,1 @@
-import { TodoEditor } from "./TodoEditor";
-
-export { TodoEditor };
+export { TodoEditor } from "./TodoEditor";
