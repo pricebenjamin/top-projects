@@ -20,7 +20,7 @@ if (!API_KEY) {
   API_KEY = prompt("Please enter your WeatherAPI key");
 }
 
-const weather = new WeatherAPI(API_KEY);
+const weather = new WeatherAPI(API_KEY ?? "");
 
 function App() {
   const [location, setLocation] = useState<Location>({
