@@ -119,7 +119,7 @@ function App() {
 
   return (
     <>
-      <nav>
+      <header>
         <Menu />
         <LocationSearch
           searchText={searchText}
@@ -127,7 +127,7 @@ function App() {
           onSearchTextChange={setSearchText}
           onSelect={setLocation}
         />
-      </nav>
+      </header>
       <div className="content">
         <Weather currentWeather={currentWeather} location={location} />
         <Forecast forecast={forecast} />
