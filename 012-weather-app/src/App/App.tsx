@@ -4,7 +4,7 @@ import { Forecast } from "@components/Forecast";
 import { LocationSearch } from "@components/LocationSearch";
 import { Menu } from "@components/Menu";
 import { Weather } from "@components/Weather";
-import { WeatherAPI, Location } from "@utils/WeatherAPI";
+import { WeatherAPI, Location, CurrentWeather } from "@utils/WeatherAPI";
 import "./App.css";
 
 let API_KEY = null;
@@ -62,6 +62,31 @@ function App() {
     };
   }, [searchText]);
 
+  const [currentWeather, setCurrentWeather] = useState<CurrentWeather>();
+
+  useEffect(() => {
+    setCurrentWeather(undefined);
+
+    if (!location) return;
+
+    let active = true;
+
+    weather
+      .current(location.id)
+      .then((result) => {
+        if (active) {
+          setCurrentWeather({ ...result });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [location]);
+
   return (
     <>
       <nav>
@@ -74,7 +99,7 @@ function App() {
         />
       </nav>
       <div className="content">
-        <Weather weatherAPI={weather} location={location} />
+        <Weather currentWeather={currentWeather} location={location} />
         <Forecast weatherAPI={weather} location={location} days={3} />
       </div>
       <div className="api-key">
