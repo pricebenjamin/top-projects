@@ -51,26 +51,12 @@ interface SquareProps {
 }
 
 function Square({ index, value, onClick, highlight = false }: SquareProps) {
-  const classList = ["square"];
-
-  if (value === null) {
-    classList.push("playable");
-  }
-
-  if (highlight) {
-    classList.push("highlight");
-  }
-
-  return (
-    <>
-      {value === null ? (
-        <div className={classList.join(" ")} onClick={() => onClick(index)}>
-          {index}
-        </div>
-      ) : (
-        <div className={classList.join(" ")}>{value}</div>
-      )}
-    </>
+  return value === null ? (
+    <div className={"square playable"} onClick={() => onClick(index)}>
+      {index}
+    </div>
+  ) : (
+    <div className={`square ${highlight ? "highlight" : ""}`}>{value}</div>
   );
 }
 

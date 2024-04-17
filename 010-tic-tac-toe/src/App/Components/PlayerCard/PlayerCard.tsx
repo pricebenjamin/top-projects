@@ -17,11 +17,6 @@ export function PlayerCard({
   const [editMode, setEditMode] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const classList = ["player-card"];
-  if (active) {
-    classList.push("active");
-  }
-
   function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
     onNameChange(event.target.value);
   }
@@ -44,7 +39,7 @@ export function PlayerCard({
   }, [editMode]);
 
   return (
-    <div className={classList.join(" ")}>
+    <div className={`player-card ${active ? "active" : ""}`}>
       <div className="symbol">{symbol}</div>
       <input
         ref={inputRef}
