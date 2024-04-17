@@ -26,7 +26,7 @@ export function TodoEditor({
         onChange={(event) => {
           onTodoEdit(id, { title: event.target.value });
         }}
-      ></textarea>
+      />
       <textarea
         className="description"
         value={description}
@@ -35,7 +35,7 @@ export function TodoEditor({
         onChange={(event) => {
           onTodoEdit(id, { description: event.target.value });
         }}
-      ></textarea>
+      />
       <div className="flex-wrap">
         <div className="input-row">
           <label>Due: </label>
