@@ -1,8 +1,4 @@
-export interface Project {
-  id: string;
-  title: string;
-  activeTodoId?: string;
-}
+import { Project } from "@interfaces/Project";
 
 export function createNewProject({
   title = "New Project",

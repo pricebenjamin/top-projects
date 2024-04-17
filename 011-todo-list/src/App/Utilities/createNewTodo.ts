@@ -1,14 +1,4 @@
-export type TodoPriority = "high" | "normal" | "low";
-
-export interface Todo {
-  id: string;
-  projectId: string;
-  title: string;
-  description: string;
-  priority: TodoPriority;
-  finished: boolean;
-  dueDate?: number;
-}
+import { Todo } from "@interfaces/Todo";
 
 export function createNewTodo(
   projectId: string,

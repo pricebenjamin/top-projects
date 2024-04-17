@@ -1,4 +1,4 @@
-import { Project } from "@components/Project";
+import { Project } from "@interfaces/Project";
 import "./ProjectNavigator.css";
 
 interface ProjectNavigatorProps {

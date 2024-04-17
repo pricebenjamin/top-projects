@@ -1,4 +1,4 @@
-import { TodoPriority } from "@components/Todo";
+import type { TodoPriority } from "@app/Types/TodoPriority";
 import "./Inputs.css";
 
 interface TodoPriorityInputProps {

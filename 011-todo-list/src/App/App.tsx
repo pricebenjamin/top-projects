@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { Header } from "@components/Header";
 import { ProjectNavigator } from "@components/ProjectNavigator";
-import { createNewProject } from "@components/Project";
-import { Todo, createNewTodo } from "@components/Todo";
+import { createNewProject } from "@utilities/createNewProject";
+import { createNewTodo } from "@utilities/createNewTodo";
+import { Todo } from "@interfaces/Todo";
 import { TodoEditor } from "@components/TodoEditor";
 import { TodoList } from "@components/TodoList";
-import { initialAppState, ApplicationState } from "./initialAppData";
+import { initialAppState } from "./initialAppData";
+import { ApplicationState } from "@interfaces/ApplicationState";
 import "./App.css";
 
 const APP_KEY = "todo-list";
@@ -14,7 +16,7 @@ function storageKey(key: string) {
   return `${APP_KEY}:${key}`;
 }
 
-const initState = getInitialState() as ApplicationState;
+const initState = getInitialState();
 
 function getInitialState() {
   return Object.fromEntries(
@@ -23,7 +25,7 @@ function getInitialState() {
       if (!storage) return [key, value];
       return [key, JSON.parse(storage)];
     })
-  );
+  ) as ApplicationState;
 }
 
 function saveApplicationState(app: ApplicationState) {

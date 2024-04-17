@@ -1,4 +1,4 @@
-import { Todo } from "@components/Todo";
+import { Todo } from "@interfaces/Todo";
 import { TodoPriorityInput, TodoDueDateInput } from "@components/TodoInputs";
 import "./TodoEditor.css";
 

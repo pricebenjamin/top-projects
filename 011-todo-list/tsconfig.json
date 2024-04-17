@@ -20,7 +20,10 @@
     /* Resolve paths */
     "paths": {
       "@components/*": ["./src/App/Components/*"],
-      "@icons/*": ["./src/Icons/*"]
+      "@icons/*": ["./src/Icons/*"],
+      "@interfaces/*": ["./src/App/Interfaces/*"],
+      "@utilities/*": ["./src/App/Utilities/*"],
+      "@app/*": ["./src/App/*"]
     }
   },
   "include": ["src"],

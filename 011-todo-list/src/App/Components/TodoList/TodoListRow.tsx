@@ -1,5 +1,5 @@
 import moment from "moment";
-import { Todo } from "@components/Todo";
+import { Todo } from "@interfaces/Todo";
 import { TodoPriorityInput } from "@components/TodoInputs";
 import trashIcon from "@icons/trash-can-outline.svg";
 

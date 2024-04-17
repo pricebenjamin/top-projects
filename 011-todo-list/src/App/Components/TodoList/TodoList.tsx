@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { Todo } from "@components/Todo";
-import {
-  SortSpec,
-  createSortFn,
-  TodoListSortableHeader,
-} from "./TodoListSortableHeader";
+import { Todo } from "@interfaces/Todo";
+import { TodoListSortableHeader } from "./TodoListSortableHeader";
+import { SortSpec } from "@interfaces/SortSpec";
+import { createSortFn } from "@utilities/createSortFn";
 import { TodoListRow } from "./TodoListRow";
 import "./TodoList.css";
 

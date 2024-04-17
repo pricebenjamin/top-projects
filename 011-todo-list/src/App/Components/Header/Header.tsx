@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Project } from "@components/Project";
+import { Project } from "@interfaces/Project";
 import { ConfirmationModal } from "@components/Modal";
 import "./Header.css";
 
