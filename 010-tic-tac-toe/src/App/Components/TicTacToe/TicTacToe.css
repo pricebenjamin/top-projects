@@ -1,0 +1,34 @@
+.board {
+  border: 1px solid white;
+}
+
+.row {
+  display: flex;
+}
+
+.square {
+  font-size: 3rem;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.square.playable {
+  color: #444444;
+  cursor: pointer;
+}
+
+.square.highlight {
+  background-color: hsl(0, 100%, 50%, 0.15);
+}
+
+@media (prefers-color-scheme: light) {
+  .board {
+    border: 1px solid black;
+  }
+  .playable {
+    color: #eaeaea;
+  }
+}
