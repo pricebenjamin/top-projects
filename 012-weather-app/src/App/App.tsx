@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { Forecast } from "@components/Forecast";
 import { LocationSearch } from "@components/LocationSearch";
@@ -7,23 +7,28 @@ import { Weather } from "@components/Weather";
 import { WeatherAPI, Location } from "@utils/WeatherAPI";
 import "./App.css";
 
-const weather = new WeatherAPI();
+let API_KEY = null;
 
-interface AppProps {
-  apiKey: string | null;
+try {
+  const module = await import("../WeatherAPIKey");
+  API_KEY = module.API_KEY;
+} catch (err) {
+  console.log(err);
 }
 
-function App({ apiKey }: AppProps) {
+if (!API_KEY) {
+  API_KEY = prompt("Please enter your WeatherAPI key");
+}
+
+const weather = new WeatherAPI(API_KEY);
+
+function App() {
   const [location, setLocation] = useState<Location>({
     id: "id:2670799",
     name: "Pullman",
     region: "Washington",
     country: "United States of America",
   });
-
-  useEffect(() => {
-    weather.setKey(apiKey ?? "");
-  }, [apiKey]);
 
   return (
     <>
@@ -36,10 +41,10 @@ function App({ apiKey }: AppProps) {
         <Forecast weatherAPI={weather} location={location} days={3} />
       </div>
       <div className="api-key">
-        {apiKey === null ? (
+        {weather.getKey() === "" ? (
           <p>No API key provided</p>
         ) : (
-          <p>API Key: {apiKey}</p>
+          <p>API Key: {weather.getKey()}</p>
         )}
       </div>
     </>

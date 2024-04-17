@@ -32,9 +32,12 @@ export interface DailyWeather {
 export class WeatherAPI {
   #key: string = "";
 
-  setKey(key: string) {
+  constructor(key: string) {
     this.#key = key;
-    // check for invalid key
+  }
+
+  getKey() {
+    return this.#key;
   }
 
   async current(location: string): Promise<CurrentWeather> {
