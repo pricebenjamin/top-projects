@@ -8,16 +8,6 @@ function App() {
   const game = useRef(new TicTacToe());
   const [board, setBoard] = useState(game.current.getBoard());
 
-  function newGame() {
-    game.current = new TicTacToe();
-    setBoard(game.current.getBoard());
-  }
-
-  function playMove(move: number) {
-    game.current.playMove(move);
-    setBoard(game.current.getBoard());
-  }
-
   const winner = game.current.getOutcome();
   const winLine = game.current.getWinLine();
 
@@ -26,7 +16,13 @@ function App() {
 
   return (
     <>
-      <Header title="Tic-Tac-Toe" actions={new Map([["New Game", newGame]])} />
+      <Header
+        title="Tic-Tac-Toe"
+        onGameReset={() => {
+          game.current = new TicTacToe();
+          setBoard(game.current.getBoard());
+        }}
+      />
       <div className="content">
         <PlayerCard
           symbol="X"
@@ -34,7 +30,14 @@ function App() {
           name={xName}
           onNameChange={xSetName}
         />
-        <TicTacToeBoard {...{ board, onClick: playMove, winLine }} />
+        <TicTacToeBoard
+          board={board}
+          winLine={winLine}
+          onClick={(move: number) => {
+            game.current.playMove(move);
+            setBoard(game.current.getBoard());
+          }}
+        />
         <PlayerCard
           symbol="O"
           active={game.current.getPlayer() === "O"}

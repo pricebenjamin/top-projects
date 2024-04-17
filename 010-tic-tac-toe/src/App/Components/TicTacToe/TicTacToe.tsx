@@ -13,12 +13,10 @@ export function TicTacToeBoard({ board, onClick, winLine }: BoardProps) {
   function createSquare(index: number) {
     return (
       <Square
-        {...{
-          index,
-          value: board[index],
-          onClick,
-          highlight: winLine === undefined ? false : winLine.includes(index),
-        }}
+        index={index}
+        value={board[index]}
+        onClick={onClick}
+        highlight={winLine === undefined ? false : winLine.includes(index)}
       />
     );
   }
