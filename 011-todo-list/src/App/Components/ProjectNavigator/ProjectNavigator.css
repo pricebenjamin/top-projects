@@ -1,0 +1,46 @@
+.project-navigator {
+  width: clamp(150px, 20%, 250px);
+  background-color: rgba(255, 255, 255, 0.03);
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.project-navigator ul {
+  width: 100%;
+  list-style: none;
+}
+
+.project-navigator li {
+  padding: 0.5rem 1rem;
+  user-select: none;
+}
+
+.project-navigator li.active,
+.project-navigator li:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.project-navigator li.create-project {
+  position: sticky;
+  top: 0;
+  font-weight: 600;
+  background-color: var(--accent-color);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.project-navigator li.create-project:hover {
+  background-color: var(--accent-color-hover);
+}
+
+@media (prefers-color-scheme: light) {
+  .project-navigator {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+  .project-navigator li.active,
+  .project-navigator li:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}

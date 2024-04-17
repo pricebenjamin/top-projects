@@ -1,0 +1,112 @@
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.5rem;
+}
+
+.todo-list > .title {
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.todo-list .card {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.todo-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.todo-list th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* widths do not need to add to 100% */
+.todo-list table td.todo-status {
+  width: 5%;
+}
+
+.todo-list table td.todo-title {
+  width: 60%;
+}
+
+.todo-list table td.todo-priority {
+  width: 15%;
+}
+
+.todo-list table td.todo-delete {
+  width: 5%;
+}
+
+.todo-list table th,
+.todo-list table td {
+  padding: 5px;
+}
+
+.todo-list table thead tr {
+  text-align: left;
+}
+
+.todo-list table tbody {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.todo-list table .todo-delete,
+.todo-list table .todo-status {
+  text-align: center;
+}
+
+.todo-list table input[type="text"] {
+  appearance: none;
+  font: inherit;
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  width: 100%;
+}
+
+.todo-list table input[type="text"]:focus {
+  outline: none;
+}
+
+.todo-list th.sortable:hover,
+.todo-list table tr.active,
+.todo-list table tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.todo-list table .icon {
+  filter: invert(100%);
+  height: 1rem;
+}
+
+.todo-list table .todo-delete:hover {
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: light) {
+  .todo-list .card {
+    background-color: white;
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.1),
+      0 1px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .todo-list table tbody {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+
+  .todo-list th.sortable:hover,
+  .todo-list table tr.active,
+  .todo-list table tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .todo-list table .icon {
+    filter: invert(0);
+  }
+}

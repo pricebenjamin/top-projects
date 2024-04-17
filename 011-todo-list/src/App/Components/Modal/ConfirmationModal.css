@@ -1,0 +1,29 @@
+.confirmation-modal {
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background-color: var(--background-color);
+}
+
+.confirmation-modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.confirmation-modal .contents {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  gap: 1rem;
+}
+
+.confirmation-modal .heading {
+  font-size: 2rem;
+}
+
+.confirmation-modal .buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.confirmation-modal .buttons button {
+  flex: 1;
+}
