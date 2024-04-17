@@ -17,21 +17,6 @@ export function PlayerCard({
   const [editMode, setEditMode] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
-    onNameChange(event.target.value);
-  }
-
-  function handleEnterKey(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === "Enter") {
-      onNameChange(event.target.value);
-      toggleEditMode();
-    }
-  }
-
-  function toggleEditMode() {
-    setEditMode(!editMode);
-  }
-
   useEffect(() => {
     if (inputRef.current && editMode) {
       inputRef.current.select();
@@ -45,12 +30,17 @@ export function PlayerCard({
         ref={inputRef}
         type="text"
         value={name}
-        onChange={handleInput}
-        onKeyDown={handleEnterKey}
+        onChange={(event) => onNameChange(event.target.value)}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") {
+            onNameChange(event.target.value);
+            setEditMode(false);
+          }
+        }}
         maxLength={10}
         disabled={!editMode}
       />
-      <button onClick={toggleEditMode}>
+      <button onClick={() => setEditMode(!editMode)}>
         {editMode ? "Save" : "Change Name"}
       </button>
     </div>
