@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { Forecast } from "@components/Forecast";
 import { LocationSearch } from "@components/LocationSearch";
@@ -30,11 +30,48 @@ function App() {
     country: "United States of America",
   });
 
+  const [searchText, setSearchText] = useState("");
+  const [searchResults, setSearchResults] = useState<Location[]>([]);
+  const searchTimer = useRef<number>(null);
+
+  useEffect(() => {
+    searchTimer.current && clearTimeout(searchTimer.current);
+
+    if (!searchText) {
+      setSearchResults([]);
+      return;
+    }
+
+    let active = true;
+
+    searchTimer.current = setTimeout(() => {
+      weather
+        .search(searchText)
+        .then((results) => {
+          if (active) {
+            setSearchResults(results);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }, 200);
+
+    return () => {
+      active = false;
+    };
+  }, [searchText]);
+
   return (
     <>
       <nav>
         <Menu />
-        <LocationSearch weatherAPI={weather} onSelect={setLocation} />
+        <LocationSearch
+          searchText={searchText}
+          searchResults={searchResults}
+          onSearchTextChange={setSearchText}
+          onSelect={setLocation}
+        />
       </nav>
       <div className="content">
         <Weather weatherAPI={weather} location={location} />
