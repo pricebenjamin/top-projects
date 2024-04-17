@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 
 import { Forecast } from "@components/Forecast";
 import { LocationSearch } from "@components/LocationSearch";
-import { Menu } from "@components/Menu";
 import { Weather } from "@components/Weather";
 import {
   WeatherAPI,
@@ -10,6 +9,7 @@ import {
   CurrentWeather,
   DailyWeather,
 } from "@utils/WeatherAPI";
+import type { TemperatureUnit } from "./Types/TemperatureUnit";
 import "./App.css";
 
 let API_KEY = null;
@@ -28,6 +28,7 @@ if (!API_KEY) {
 const weather = new WeatherAPI(API_KEY ?? "");
 
 function App() {
+  const [unit, setUnit] = useState<TemperatureUnit>("F");
   const [location, setLocation] = useState<Location>({
     id: "id:2670799",
     name: "Pullman",
@@ -120,7 +121,12 @@ function App() {
   return (
     <>
       <header>
-        <Menu />
+        <button
+          className="toggle-units"
+          onClick={() => setUnit(unit === "F" ? "C" : "F")}
+        >
+          &deg;{unit === "F" ? "C" : "F"}
+        </button>
         <LocationSearch
           searchText={searchText}
           searchResults={searchResults}
@@ -129,8 +135,12 @@ function App() {
         />
       </header>
       <div className="content">
-        <Weather currentWeather={currentWeather} location={location} />
-        <Forecast forecast={forecast} />
+        <Weather
+          currentWeather={currentWeather}
+          location={location}
+          unit={unit}
+        />
+        <Forecast forecast={forecast} unit={unit} />
       </div>
       <div className="api-key">
         {weather.getKey() === "" ? (

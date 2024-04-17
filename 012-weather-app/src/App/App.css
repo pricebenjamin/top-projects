@@ -14,6 +14,11 @@ header {
   gap: 1rem;
 }
 
+button.toggle-units {
+  height: 100%;
+  width: 4rem; /* fixed width prevents resize when text changes */
+}
+
 .content {
   display: flex;
   flex-wrap: wrap;

@@ -1,18 +1,26 @@
 import { CurrentWeather, Location } from "@utils/WeatherAPI";
+import { fahrenheitToCelsius } from "@utils/ConvertTemperature";
+import type { TemperatureUnit } from "../../Types/TemperatureUnit";
 import "./Weather.css";
 
 interface WeatherProps {
   currentWeather?: CurrentWeather;
   location: Location;
+  unit: TemperatureUnit;
 }
 
-export function Weather({ currentWeather, location }: WeatherProps) {
+export function Weather({ currentWeather, location, unit }: WeatherProps) {
+  function convert(tempF: number) {
+    if (unit === "F") return tempF.toFixed(1);
+    return fahrenheitToCelsius(tempF).toFixed(1);
+  }
+
   return (
     currentWeather && (
       <div className="current-weather">
         <div className="column">
           <div className="temperature">
-            {currentWeather.temperatureF}&nbsp;&deg;F
+            {convert(currentWeather.temperatureF)}&nbsp;&deg;{unit}
           </div>
           <div className="condition">{currentWeather.condition}</div>
           <div className="last-updated">

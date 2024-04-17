@@ -4,12 +4,30 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+
+  --color: rgba(255, 255, 255, 0.87);
+  --background-color: #242424;
+  --light-background-color: #3b3b3b;
+  --input-border-color: #7a7a7a;
+  --hover-background-color: #4b4b4b;
+
+  color: var(--color);
+  background-color: var(--background-color);
 }
 
 *:not(dialog) {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+button {
+  border-radius: 0.5rem;
+  background-color: var(--light-background-color);
+  border: 1px solid var(--input-border-color);
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: var(--hover-background-color);
 }
