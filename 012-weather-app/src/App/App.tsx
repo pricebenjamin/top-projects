@@ -4,7 +4,12 @@ import { Forecast } from "@components/Forecast";
 import { LocationSearch } from "@components/LocationSearch";
 import { Menu } from "@components/Menu";
 import { Weather } from "@components/Weather";
-import { WeatherAPI, Location, CurrentWeather } from "@utils/WeatherAPI";
+import {
+  WeatherAPI,
+  Location,
+  CurrentWeather,
+  DailyWeather,
+} from "@utils/WeatherAPI";
 import "./App.css";
 
 let API_KEY = null;
@@ -87,6 +92,31 @@ function App() {
     };
   }, [location]);
 
+  const [forecast, setForecast] = useState<DailyWeather[]>();
+
+  useEffect(() => {
+    setForecast(undefined);
+
+    if (!location) return;
+
+    let active = true;
+
+    weather
+      .forecast(location.id)
+      .then((result) => {
+        if (active) {
+          setForecast([...result]);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [location]);
+
   return (
     <>
       <nav>
@@ -100,7 +130,7 @@ function App() {
       </nav>
       <div className="content">
         <Weather currentWeather={currentWeather} location={location} />
-        <Forecast weatherAPI={weather} location={location} days={3} />
+        <Forecast forecast={forecast} />
       </div>
       <div className="api-key">
         {weather.getKey() === "" ? (

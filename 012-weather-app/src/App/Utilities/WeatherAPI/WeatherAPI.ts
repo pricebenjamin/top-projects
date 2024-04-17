@@ -62,7 +62,10 @@ export class WeatherAPI {
     };
   }
 
-  async forecast(location: string, days: 1 | 2 | 3): Promise<DailyWeather[]> {
+  async forecast(
+    location: string,
+    days: 1 | 2 | 3 = 3 // limited by the free API tier
+  ): Promise<DailyWeather[]> {
     const endpoint = this.createURL("forecast.json", {
       q: location,
       days: String(days),
