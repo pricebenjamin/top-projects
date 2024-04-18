@@ -51,7 +51,7 @@ function App() {
         .catch((error) => {
           console.log(error);
         });
-    }, 200);
+    }, 500);
 
     return () => {
       active = false;
