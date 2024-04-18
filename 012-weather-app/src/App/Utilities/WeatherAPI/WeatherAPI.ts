@@ -30,6 +30,7 @@ export class WeatherAPI {
         temp_f,
         temp_c,
         condition: { text },
+        is_day,
       },
     } = (await response.json()) as API_Response_Current;
 
@@ -41,6 +42,7 @@ export class WeatherAPI {
       temperatureF: temp_f,
       temperatureC: temp_c,
       condition: text,
+      isDay: is_day === 1,
     };
   }
 

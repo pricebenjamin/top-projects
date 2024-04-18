@@ -3,6 +3,7 @@ export interface CurrentWeather {
   temperatureF: number;
   temperatureC: number;
   condition: string;
+  isDay: boolean;
 }
 
 export interface DailyWeather {

@@ -25,6 +25,7 @@ interface API_Current {
   feelslike_f: number;
   feelslike_c: number;
   condition: API_Condition;
+  is_day: number;
   // additional data is available but unused
 }
 
