@@ -21,7 +21,9 @@ interface API_Current {
   last_updated_epoch: number;
   last_updated: string;
   temp_f: number;
+  temp_c: number;
   feelslike_f: number;
+  feelslike_c: number;
   condition: API_Condition;
   // additional data is available but unused
 }
@@ -54,6 +56,9 @@ interface API_Day {
   maxtemp_f: number;
   mintemp_f: number;
   avgtemp_f: number;
+  maxtemp_c: number;
+  mintemp_c: number;
+  avgtemp_c: number;
   daily_chance_of_rain: number;
   daily_chance_of_snow: number;
   condition: API_Condition;

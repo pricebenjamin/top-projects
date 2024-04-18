@@ -11,6 +11,7 @@ type WeatherAPIMethod = "current.json" | "forecast.json" | "search.json";
 export interface CurrentWeather {
   lastUpdated: Date;
   temperatureF: number;
+  temperatureC: number;
   condition: string;
 }
 
@@ -26,6 +27,9 @@ export interface DailyWeather {
   avgTempF: number;
   minTempF: number;
   maxTempF: number;
+  avgTempC: number;
+  minTempC: number;
+  maxTempC: number;
   condition: string;
 }
 
@@ -48,6 +52,7 @@ export class WeatherAPI {
       current: {
         last_updated_epoch,
         temp_f,
+        temp_c,
         condition: { text },
       },
     } = (await response.json()) as API_Response_Current;
@@ -58,6 +63,7 @@ export class WeatherAPI {
     return {
       lastUpdated: new Date(timestamp_ms),
       temperatureF: temp_f,
+      temperatureC: temp_c,
       condition: text,
     };
   }
@@ -85,6 +91,9 @@ export class WeatherAPI {
           avgtemp_f,
           mintemp_f,
           maxtemp_f,
+          avgtemp_c,
+          mintemp_c,
+          maxtemp_c,
           condition: { text },
         },
       } = day;
@@ -96,6 +105,9 @@ export class WeatherAPI {
         avgTempF: avgtemp_f,
         minTempF: mintemp_f,
         maxTempF: maxtemp_f,
+        avgTempC: avgtemp_c,
+        minTempC: mintemp_c,
+        maxTempC: maxtemp_c,
         condition: text,
       };
     });
