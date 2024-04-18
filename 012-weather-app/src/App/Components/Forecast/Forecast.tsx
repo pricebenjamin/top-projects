@@ -1,5 +1,5 @@
-import { DailyWeather } from "@utils/WeatherAPI";
-import type { TemperatureUnit } from "../../Types/TemperatureUnit";
+import type { DailyWeather } from "App/Interfaces";
+import type { TemperatureUnit } from "App/Types";
 import "./Forecast.css";
 
 interface ForecastProps {

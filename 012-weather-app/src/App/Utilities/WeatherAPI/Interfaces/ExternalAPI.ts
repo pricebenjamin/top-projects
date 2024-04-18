@@ -1,5 +1,5 @@
-// API-defined interfaces are prefixed with API_ and should not be used
-// outside of the WeatherAPI module.
+// API-defined (external) interfaces are prefixed with API_ and should not
+// be used outside of the WeatherAPI module.
 
 export interface API_Response_Current {
   location: API_Location;

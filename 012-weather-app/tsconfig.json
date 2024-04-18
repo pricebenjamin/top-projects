@@ -19,9 +19,7 @@
     "noFallthroughCasesInSwitch": true,
     /* Resolve paths */
     "paths": {
-      "@components/*": ["./src/App/Components/*"],
-      "@utils/*": ["./src/App/Utilities/*"],
-      "@icons/*": ["./src/App/Icons/*"]
+      "App/*": ["./src/App/*"]
     }
   },
   "include": ["src"],

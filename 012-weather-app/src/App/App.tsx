@@ -1,15 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-
-import { Forecast } from "@components/Forecast";
-import { LocationSearch } from "@components/LocationSearch";
-import { Weather } from "@components/Weather";
-import {
-  WeatherAPI,
-  Location,
-  CurrentWeather,
-  DailyWeather,
-} from "@utils/WeatherAPI";
-import type { TemperatureUnit } from "./Types/TemperatureUnit";
+import { LocationSearch, Forecast, Weather } from "App/Components";
+import { WeatherAPI } from "App/Utilities";
+import type { Location, CurrentWeather, DailyWeather } from "App/Interfaces";
+import type { TemperatureUnit } from "App/Types";
 import "./App.css";
 
 let API_KEY = null;

@@ -1,4 +1,4 @@
-import { Location } from "@utils/WeatherAPI";
+import { Location } from "App/Interfaces";
 import "./LocationSearch.css";
 
 interface LocationSearchProps {

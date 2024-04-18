@@ -1,37 +1,13 @@
-import {
+import type { CurrentWeather, DailyWeather, Location } from "App/Interfaces";
+import type {
   API_Response_Current,
   API_Response_Forecast,
   API_Response_Search,
-} from "./API_Interfaces";
+} from "./Interfaces/ExternalAPI";
 
 const BASE_URL = "https://api.weatherapi.com/v1/";
 
 type WeatherAPIMethod = "current.json" | "forecast.json" | "search.json";
-
-export interface CurrentWeather {
-  lastUpdated: Date;
-  temperatureF: number;
-  temperatureC: number;
-  condition: string;
-}
-
-export interface Location {
-  id: string;
-  name: string;
-  region: string;
-  country: string;
-}
-
-export interface DailyWeather {
-  date: Date;
-  avgTempF: number;
-  minTempF: number;
-  maxTempF: number;
-  avgTempC: number;
-  minTempC: number;
-  maxTempC: number;
-  condition: string;
-}
 
 export class WeatherAPI {
   #key: string = "";

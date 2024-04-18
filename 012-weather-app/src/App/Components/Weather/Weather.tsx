@@ -1,5 +1,5 @@
-import { CurrentWeather, Location } from "@utils/WeatherAPI";
-import type { TemperatureUnit } from "../../Types/TemperatureUnit";
+import type { CurrentWeather, Location } from "App/Interfaces";
+import type { TemperatureUnit } from "App/Types";
 import "./Weather.css";
 
 interface WeatherProps {
