@@ -25,10 +25,13 @@ export function Forecast({ forecast, unit }: ForecastProps) {
                       }).format(day.date)}
                     </td>
                     <td>{day.condition}</td>
-                    <td>
-                      {(unit === "F" ? day.avgTempF : day.avgTempC).toFixed(1)}
-                      &nbsp;&deg;
-                      {unit}
+                    <td style={{ textAlign: "right" }}>
+                      {(unit === "F" ? day.maxTempF : day.maxTempC).toFixed(1)}
+                      &deg;
+                    </td>
+                    <td style={{ textAlign: "right" }}>
+                      {(unit === "F" ? day.minTempF : day.minTempC).toFixed(1)}
+                      &deg;
                     </td>
                   </tr>
                 ))}
