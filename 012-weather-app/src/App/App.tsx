@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { LocationSearch, Forecast, Weather } from "App/Components";
 import { WeatherAPI } from "App/Utilities";
 import type { Location, CurrentWeather, DailyWeather } from "App/Interfaces";
@@ -31,11 +31,8 @@ function App() {
 
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState<Location[]>([]);
-  const searchTimer = useRef<number>(null);
 
   useEffect(() => {
-    searchTimer.current && clearTimeout(searchTimer.current);
-
     if (!searchText) {
       setSearchResults([]);
       return;
@@ -43,7 +40,7 @@ function App() {
 
     let active = true;
 
-    searchTimer.current = setTimeout(() => {
+    const debounce = setTimeout(() => {
       weather
         .search(searchText)
         .then((results) => {
@@ -58,6 +55,7 @@ function App() {
 
     return () => {
       active = false;
+      clearTimeout(debounce);
     };
   }, [searchText]);
 
