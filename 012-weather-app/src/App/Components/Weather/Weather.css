@@ -31,6 +31,12 @@
   filter: invert(100%);
 }
 
+@media (prefers-color-scheme: light) {
+  .current-weather .large-icon {
+    filter: invert(20%);
+  }
+}
+
 @media (width < 500px) {
   .current-weather .large-icon {
     display: none;
