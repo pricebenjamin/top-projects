@@ -38,7 +38,7 @@ export function Weather({ currentWeather, location, unit }: WeatherProps) {
         </div>
         <div className="column">
           <h1 className="location-name">{location.name}</h1>
-          <h2 className="location-region">{location.region}</h2>
+          <p className="location-region">{location.region}</p>
         </div>
       </div>
     )
