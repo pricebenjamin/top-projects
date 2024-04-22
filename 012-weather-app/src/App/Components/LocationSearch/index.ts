@@ -1,3 +1,1 @@
-import { LocationSearch } from "./LocationSearch";
-
-export { LocationSearch };
+export { LocationSearch } from "./LocationSearch";

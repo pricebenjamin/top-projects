@@ -1,3 +1,1 @@
-import { Forecast } from "./Forecast";
-
-export { Forecast };
+export { Forecast } from "./Forecast";
