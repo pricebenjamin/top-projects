@@ -29,7 +29,7 @@ export class WeatherAPI {
         last_updated_epoch,
         temp_f,
         temp_c,
-        condition: { text },
+        condition: { text, code },
         is_day,
       },
     } = (await response.json()) as API_Response_Current;
@@ -42,6 +42,7 @@ export class WeatherAPI {
       temperatureF: temp_f,
       temperatureC: temp_c,
       condition: text,
+      code: code,
       isDay: is_day === 1,
     };
   }
