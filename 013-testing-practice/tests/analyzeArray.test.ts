@@ -1,7 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { analyzeArray } from "../src/analyzeArray";
-
-const FLOAT_PRECISION_IN_DIGITS = 8;
+import { FLOAT_PRECISION_IN_DIGITS } from "./constants";
 
 describe("analyzeArray", () => {
   it("returns an object with the following properties", () => {

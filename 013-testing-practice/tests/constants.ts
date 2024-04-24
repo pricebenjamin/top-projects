@@ -1,0 +1,1 @@
+export const FLOAT_PRECISION_IN_DIGITS = 8;

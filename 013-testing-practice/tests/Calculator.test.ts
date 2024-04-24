@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
-import { Calculator, FLOAT_PRECISION_IN_DIGITS } from "../src/Calculator";
+import { Calculator } from "../src/Calculator";
+import { FLOAT_PRECISION_IN_DIGITS } from "./constants";
 
 describe("calculator", () => {
   describe("add", () => {
