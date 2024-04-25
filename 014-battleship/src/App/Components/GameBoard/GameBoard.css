@@ -1,0 +1,9 @@
+.gameboard {
+  display: grid;
+  grid-template-columns: repeat(10, 3rem);
+  grid-template-rows: repeat(10, 3rem);
+}
+
+.gameboard.playable:hover {
+  cursor: pointer;
+}

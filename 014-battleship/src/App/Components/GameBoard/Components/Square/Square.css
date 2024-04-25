@@ -1,0 +1,23 @@
+.gameboard .square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--square-color);
+  border: 1px solid var(--square-color);
+  user-select: none;
+}
+
+.gameboard .square.occupied {
+  background-color: var(--occupied-square-color);
+}
+
+.gameboard .square.hit {
+  background-color: var(--hit-square-color);
+}
+.gameboard .square.miss {
+  background-color: var(--miss-square-color);
+}
+
+.gameboard.playable .square:hover {
+  border: var(--square-border-hover);
+}
