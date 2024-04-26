@@ -1,2 +1,2 @@
 export type { SquareStatus } from "./SquareStatus";
-export type { Ship } from "./Ship";
+export type { ShipClass, ShipOrientation } from "./Ship";

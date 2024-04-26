@@ -1,48 +1,29 @@
 import { useState } from "react";
-import { GameBoard } from "App/Components";
-import type { Ship, SquareStatus } from "App/Types";
+import { GameBoard, GameSetup } from "App/Components";
+import { Ship } from "App/Classes";
+import type { SquareStatus } from "App/Types";
+import { BOARD_SIZE } from "App/Constants";
 import "./App.css";
 
-const BOARD_SIZE = 100;
-
 export function App() {
+  const [playing, setPlaying] = useState(false);
+
   const [squares, setSquares] = useState<SquareStatus[]>(
     Array(BOARD_SIZE).fill(null)
   );
 
-  const ships: Ship[] = [
-    {
-      class: "Carrier",
-      coordinates: [0, 10, 20, 30, 40],
-    },
-    {
-      class: "Battleship",
-      coordinates: [52, 62, 72, 82],
-    },
-    {
-      class: "Destroyer",
-      coordinates: [73, 74, 75],
-    },
-    {
-      class: "Submarine",
-      coordinates: [38, 48, 58],
-    },
-    {
-      class: "Patrol Boat",
-      coordinates: [56, 57],
-    },
-  ];
+  const [deployedShips, setDeployedShips] = useState<Ship[]>([]);
+  const shipCoordinates = deployedShips.map((ship) => ship.coordinates).flat();
 
-  const shipCoordinates = ships.map((ship) => ship.coordinates).flat();
-
-  return (
-    <>
+  return playing ? (
+    <div className="flex">
       <GameBoard
         playable={true}
         squares={squares}
         onSquareClick={(index: number) => {
-          squares[index] = shipCoordinates.includes(index) ? "hit" : "miss";
-          setSquares([...squares]);
+          const nextSquares = [...squares];
+          nextSquares[index] = shipCoordinates.includes(index) ? "hit" : "miss";
+          setSquares(nextSquares);
         }}
       />
       <GameBoard
@@ -51,6 +32,13 @@ export function App() {
         shipCoordinates={shipCoordinates}
         onSquareClick={() => undefined}
       />
-    </>
+    </div>
+  ) : (
+    <GameSetup
+      squares={squares}
+      deployedShips={deployedShips}
+      setDeployedShips={setDeployedShips}
+      onGameStart={() => setPlaying(true)}
+    />
   );
 }

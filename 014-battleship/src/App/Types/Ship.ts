@@ -1,4 +1,8 @@
-export interface Ship {
-  class: "Carrier" | "Battleship" | "Destroyer" | "Submarine" | "Patrol Boat";
-  coordinates: number[];
-}
+export type ShipClass =
+  | "Carrier"
+  | "Battleship"
+  | "Destroyer"
+  | "Submarine"
+  | "Patrol Boat";
+
+export type ShipOrientation = "vertical" | "horizontal";
