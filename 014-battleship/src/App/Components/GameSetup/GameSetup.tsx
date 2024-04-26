@@ -1,7 +1,6 @@
 import { GameBoard } from "App/Components";
 import { Ship } from "App/Classes";
 import type { ShipClass, SquareStatus } from "App/Types";
-import { moveShip, rotateShip } from "App/Utilities/Ship";
 import "./GameSetup.css";
 
 interface GameSetupProps {
@@ -33,12 +32,11 @@ export function GameSetup({
   const activeShip = deployedShips.at(-1);
   const shipCoordinates = deployedShips.map((ship) => ship.coordinates).flat();
 
-  function updateActiveShip(newShip: Ship) {
-    if (!activeShip) return;
+  function updateActiveShip(ship: Ship) {
     const deployed = [...deployedShips];
 
     // NOTE(ben): activeShip should always have index -1
-    deployed.splice(-1, 1, newShip);
+    deployed.splice(-1, 1, ship);
     setDeployedShips(deployed);
   }
 
@@ -86,40 +84,35 @@ export function GameSetup({
               <>
                 <button
                   onClick={() => {
-                    const ship = rotateShip(activeShip);
-                    updateActiveShip(ship);
+                    updateActiveShip(activeShip.rotate());
                   }}
                 >
                   Rotate
                 </button>
                 <button
                   onClick={() => {
-                    const ship = moveShip(activeShip, "up");
-                    updateActiveShip(ship);
+                    updateActiveShip(activeShip.move("up"));
                   }}
                 >
                   Move Up
                 </button>
                 <button
                   onClick={() => {
-                    const ship = moveShip(activeShip, "down");
-                    updateActiveShip(ship);
+                    updateActiveShip(activeShip.move("down"));
                   }}
                 >
                   Move Down
                 </button>
                 <button
                   onClick={() => {
-                    const ship = moveShip(activeShip, "left");
-                    updateActiveShip(ship);
+                    updateActiveShip(activeShip.move("left"));
                   }}
                 >
                   Move Left
                 </button>
                 <button
                   onClick={() => {
-                    const ship = moveShip(activeShip, "right");
-                    updateActiveShip(ship);
+                    updateActiveShip(activeShip.move("right"));
                   }}
                 >
                   Move Right
