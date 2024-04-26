@@ -2,6 +2,7 @@ import { GameBoard } from "App/Components";
 import { Ship } from "App/Classes";
 import type { ShipClass, SquareStatus } from "App/Types";
 import "./GameSetup.css";
+import { ShipMovementControls } from "./Components";
 
 interface GameSetupProps {
   squares: SquareStatus[];
@@ -77,60 +78,18 @@ export function GameSetup({
             )}
           </div>
         </div>
-        <div className="controls">
-          <h2>Controls</h2>
-          <div className="flex-column controls">
-            {activeShip && (
-              <>
-                <button
-                  onClick={() => {
-                    updateActiveShip(activeShip.rotate());
-                  }}
-                >
-                  Rotate
-                </button>
-                <button
-                  onClick={() => {
-                    updateActiveShip(activeShip.move("up"));
-                  }}
-                >
-                  Move Up
-                </button>
-                <button
-                  onClick={() => {
-                    updateActiveShip(activeShip.move("down"));
-                  }}
-                >
-                  Move Down
-                </button>
-                <button
-                  onClick={() => {
-                    updateActiveShip(activeShip.move("left"));
-                  }}
-                >
-                  Move Left
-                </button>
-                <button
-                  onClick={() => {
-                    updateActiveShip(activeShip.move("right"));
-                  }}
-                >
-                  Move Right
-                </button>
-                <button
-                  onClick={() => {
-                    const deployed = [...deployedShips].filter(
-                      (ship) => !Object.is(ship, activeShip)
-                    );
-                    setDeployedShips(deployed);
-                  }}
-                >
-                  Delete
-                </button>
-              </>
-            )}
-          </div>
-        </div>
+        {activeShip && (
+          <ShipMovementControls
+            ship={activeShip}
+            onShipMove={updateActiveShip}
+            onShipDelete={() => {
+              const deployed = [...deployedShips];
+              setDeployedShips(
+                deployed.filter((ship) => !Object.is(ship, activeShip))
+              );
+            }}
+          />
+        )}
       </div>
     </>
   );
