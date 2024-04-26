@@ -31,6 +31,8 @@ function App() {
 
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState<Location[]>([]);
+  const [currentWeather, setCurrentWeather] = useState<CurrentWeather>();
+  const [forecast, setForecast] = useState<DailyWeather[]>();
 
   useEffect(() => {
     if (!searchText) {
@@ -59,8 +61,6 @@ function App() {
     };
   }, [searchText]);
 
-  const [currentWeather, setCurrentWeather] = useState<CurrentWeather>();
-
   useEffect(() => {
     setCurrentWeather(undefined);
 
@@ -83,8 +83,6 @@ function App() {
       active = false;
     };
   }, [location]);
-
-  const [forecast, setForecast] = useState<DailyWeather[]>();
 
   useEffect(() => {
     setForecast(undefined);
