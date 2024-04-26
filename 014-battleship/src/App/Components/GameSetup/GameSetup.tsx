@@ -1,8 +1,8 @@
 import { GameBoard } from "App/Components";
 import { Ship } from "App/Classes";
 import type { ShipClass, SquareStatus } from "App/Types";
+import { AwaitingDeployment, ShipMovementControls } from "./Components";
 import "./GameSetup.css";
-import { ShipMovementControls } from "./Components";
 
 interface GameSetupProps {
   squares: SquareStatus[];
@@ -56,28 +56,15 @@ export function GameSetup({
           shipCoordinates={shipCoordinates}
           onSquareClick={() => undefined}
         />
-        <div className="ships-to-deploy">
-          <h2>Left to Deploy</h2>
-          <div className="flex-column">
-            {classesToDeploy.length > 0 ? (
-              classesToDeploy.map((shipClass) => (
-                <button
-                  key={shipClass}
-                  onClick={() => {
-                    const ship = new Ship(shipClass, 0, "horizontal");
-                    const deployed = [...deployedShips];
-                    deployed.push(ship);
-                    setDeployedShips(deployed);
-                  }}
-                >
-                  {shipClass}
-                </button>
-              ))
-            ) : (
-              <button onClick={() => onGameStart()}>Play</button>
-            )}
-          </div>
-        </div>
+        <AwaitingDeployment
+          classesToDeploy={classesToDeploy}
+          onShipDeploy={(cls: ShipClass) => {
+            const ship = new Ship(cls, 0, "horizontal");
+            const deployed = [...deployedShips];
+            deployed.push(ship);
+            setDeployedShips(deployed);
+          }}
+        />
         {activeShip && (
           <ShipMovementControls
             ship={activeShip}
@@ -91,6 +78,9 @@ export function GameSetup({
           />
         )}
       </div>
+      {classesToDeploy.length === 0 && (
+        <button onClick={onGameStart}>Begin Game</button>
+      )}
     </>
   );
 }
