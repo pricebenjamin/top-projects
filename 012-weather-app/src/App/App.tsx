@@ -72,7 +72,7 @@ function App() {
       .current(location.id)
       .then((result) => {
         if (active) {
-          setCurrentWeather({ ...result });
+          setCurrentWeather(result);
         }
       })
       .catch((error) => {
@@ -95,7 +95,7 @@ function App() {
       .forecast(location.id)
       .then((result) => {
         if (active) {
-          setForecast([...result]);
+          setForecast(result);
         }
       })
       .catch((error) => {
