@@ -7,12 +7,12 @@
   user-select: none;
 }
 
-.gameboard .square.active,
-.gameboard .square.occupied {
+.gameboard .square.occupiedByActiveShip,
+.gameboard .square.occupiedByDeployedShip {
   background-color: var(--occupied-square-color);
 }
 
-.gameboard .square.active.occupied, /* overlapping ships */
+.gameboard .square.invalid,
 .gameboard .square.hit {
   background-color: var(--hit-square-color);
 }

@@ -3,17 +3,16 @@ import { GameBoard } from "App/Components";
 import { Ship } from "App/Classes";
 import type { ShipClass, SquareStatus } from "App/Types";
 import { AwaitingDeployment, ShipMovementControls } from "./Components";
+import { BOARD_SIZE } from "App/Constants";
 import "./GameSetup.css";
 
 interface GameSetupProps {
-  squares: SquareStatus[];
   deployedShips: Ship[];
   setDeployedShips: (ships: Ship[]) => void;
   onGameStart: () => void;
 }
 
 export function GameSetup({
-  squares,
   deployedShips,
   setDeployedShips,
   onGameStart,
@@ -27,16 +26,29 @@ export function GameSetup({
     "Submarine",
     "Patrol Boat",
   ];
-
   const deployedClasses = deployedShips.map((ship) => ship.class);
   const classesToDeploy = shipClasses.filter(
     (cls) => !deployedClasses.includes(cls)
   );
 
-  const shipCoordinates = deployedShips.map((ship) => ship.coordinates).flat();
+  const squares: SquareStatus[] = Array(BOARD_SIZE).fill(null);
+  const deployedShipCoordinates = deployedShips
+    .map((ship) => ship.coordinates)
+    .flat();
 
-  function updateActiveShip(ship: Ship) {
-    setActiveShip(ship.copy());
+  for (const coordinate of deployedShipCoordinates) {
+    squares[coordinate] = "occupiedByDeployedShip";
+  }
+
+  let ableToDeploy = true;
+
+  for (const coordinate of activeShip?.coordinates ?? []) {
+    if (squares[coordinate] === "occupiedByDeployedShip") {
+      squares[coordinate] = "invalid";
+      ableToDeploy = false;
+      continue;
+    }
+    squares[coordinate] = "occupiedByActiveShip";
   }
 
   return (
@@ -51,22 +63,19 @@ export function GameSetup({
         <GameBoard
           playable={false}
           squares={squares}
-          activeShip={activeShip ?? undefined}
-          shipCoordinates={shipCoordinates}
           onSquareClick={() => undefined}
         />
         {activeShip && (
           <button
             onClick={() => {
-              for (const idx of activeShip.coordinates) {
-                if (!shipCoordinates.includes(idx)) continue;
-                console.log("Cannot deploy ship. Coordinates occupied.");
+              if (!ableToDeploy) {
+                console.log(
+                  "cannot deploy ship: some coordinates already occupied"
+                );
                 return;
               }
 
-              const deployed = [...deployedShips];
-              deployed.push(activeShip);
-              setDeployedShips(deployed);
+              setDeployedShips([...deployedShips, activeShip]);
               setActiveShip(null);
             }}
           >
@@ -83,7 +92,7 @@ export function GameSetup({
         {activeShip && (
           <ShipMovementControls
             ship={activeShip}
-            onShipMove={updateActiveShip}
+            onShipMove={(ship) => setActiveShip(ship.copy())}
             onShipDelete={() => setActiveShip(null)}
           />
         )}

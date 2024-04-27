@@ -1,37 +1,30 @@
 import { Square } from "./Components";
 import type { SquareStatus } from "App/Types";
-import { Ship } from "App/Classes";
 import "./GameBoard.css";
 
 interface GameBoardProps {
-  playable: boolean;
   squares: SquareStatus[];
-  shipCoordinates?: number[];
-  activeShip?: Ship;
+  playable: boolean;
   onSquareClick: (index: number) => void;
 }
 
 export function GameBoard({
-  playable,
   squares,
-  shipCoordinates,
-  activeShip,
+  playable,
   onSquareClick,
 }: GameBoardProps) {
   return (
     <div className={`gameboard ${playable ? "playable" : ""}`}>
-      {squares.map((status, idx) => {
-        return (
-          <Square
-            key={idx}
-            index={idx}
-            status={status}
-            occupied={shipCoordinates?.includes(idx) ?? false}
-            activeShip={activeShip?.coordinates.includes(idx) ?? false}
-            onClick={onSquareClick}
-          />
-        );
-      })}
+      {squares.map((status, idx) => (
+        <Square
+          // NOTE(ben): usage of index as key: squares shall not be
+          // inserted, deleted, or reordered
+          key={idx}
+          index={idx}
+          status={status}
+          onClick={onSquareClick}
+        />
+      ))}
     </div>
   );
 }
