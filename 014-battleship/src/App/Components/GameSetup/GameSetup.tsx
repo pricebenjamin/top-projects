@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { GameBoard } from "App/Components";
 import { Ship } from "App/Classes";
 import type { ShipClass, SquareStatus } from "App/Types";
@@ -17,6 +18,8 @@ export function GameSetup({
   setDeployedShips,
   onGameStart,
 }: GameSetupProps) {
+  const [activeShip, setActiveShip] = useState<Ship | null>(null);
+
   const shipClasses: ShipClass[] = [
     "Carrier",
     "Battleship",
@@ -30,15 +33,10 @@ export function GameSetup({
     (cls) => !deployedClasses.includes(cls)
   );
 
-  const activeShip = deployedShips.at(-1);
   const shipCoordinates = deployedShips.map((ship) => ship.coordinates).flat();
 
   function updateActiveShip(ship: Ship) {
-    const deployed = [...deployedShips];
-
-    // NOTE(ben): activeShip should always have index -1
-    deployed.splice(-1, 1, ship);
-    setDeployedShips(deployed);
+    setActiveShip(ship.copy());
   }
 
   return (
@@ -53,28 +51,40 @@ export function GameSetup({
         <GameBoard
           playable={false}
           squares={squares}
+          activeShip={activeShip ?? undefined}
           shipCoordinates={shipCoordinates}
           onSquareClick={() => undefined}
         />
+        {activeShip && (
+          <button
+            onClick={() => {
+              for (const idx of activeShip.coordinates) {
+                if (!shipCoordinates.includes(idx)) continue;
+                console.log("Cannot deploy ship. Coordinates occupied.");
+                return;
+              }
+
+              const deployed = [...deployedShips];
+              deployed.push(activeShip);
+              setDeployedShips(deployed);
+              setActiveShip(null);
+            }}
+          >
+            Deploy
+          </button>
+        )}
         <AwaitingDeployment
           classesToDeploy={classesToDeploy}
-          onShipDeploy={(cls: ShipClass) => {
+          onShipActivate={(cls: ShipClass) => {
             const ship = new Ship(cls, 0, "horizontal");
-            const deployed = [...deployedShips];
-            deployed.push(ship);
-            setDeployedShips(deployed);
+            setActiveShip(ship);
           }}
         />
         {activeShip && (
           <ShipMovementControls
             ship={activeShip}
             onShipMove={updateActiveShip}
-            onShipDelete={() => {
-              const deployed = [...deployedShips];
-              setDeployedShips(
-                deployed.filter((ship) => !Object.is(ship, activeShip))
-              );
-            }}
+            onShipDelete={() => setActiveShip(null)}
           />
         )}
       </div>
