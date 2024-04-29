@@ -65,41 +65,37 @@ export function GameSetup({
           squares={squares}
           onSquareClick={() => undefined}
         />
-        {activeShip && (
-          <button
-            onClick={() => {
-              if (!ableToDeploy) {
-                console.log(
-                  "cannot deploy ship: some coordinates already occupied"
-                );
-                return;
-              }
-
-              setDeployedShips([...deployedShips, activeShip]);
-              setActiveShip(null);
+        <div className="flex-column">
+          <AwaitingDeployment
+            classesToDeploy={classesToDeploy}
+            onShipActivate={(cls: ShipClass) => {
+              const ship = new Ship(cls, 0, "horizontal");
+              setActiveShip(ship);
             }}
-          >
-            Deploy
-          </button>
-        )}
-        <AwaitingDeployment
-          classesToDeploy={classesToDeploy}
-          onShipActivate={(cls: ShipClass) => {
-            const ship = new Ship(cls, 0, "horizontal");
-            setActiveShip(ship);
-          }}
-        />
-        {activeShip && (
-          <ShipMovementControls
-            ship={activeShip}
-            onShipMove={(ship) => setActiveShip(ship.copy())}
-            onShipDelete={() => setActiveShip(null)}
           />
-        )}
+          {activeShip && (
+            <button
+              disabled={!ableToDeploy}
+              onClick={() => {
+                setDeployedShips([...deployedShips, activeShip]);
+                setActiveShip(null);
+              }}
+            >
+              Deploy
+            </button>
+          )}
+          {activeShip && (
+            <ShipMovementControls
+              ship={activeShip}
+              onShipMove={(ship) => setActiveShip(ship.copy())}
+              onShipDelete={() => setActiveShip(null)}
+            />
+          )}
+          {classesToDeploy.length === 0 && (
+            <button onClick={onGameStart}>Begin Game</button>
+          )}
+        </div>
       </div>
-      {classesToDeploy.length === 0 && (
-        <button onClick={onGameStart}>Begin Game</button>
-      )}
     </>
   );
 }

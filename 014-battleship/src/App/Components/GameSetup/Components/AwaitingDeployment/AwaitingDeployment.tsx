@@ -1,4 +1,5 @@
 import type { ShipClass } from "App/Types";
+import "./AwaitingDeployment.css";
 
 interface Props {
   classesToDeploy: ShipClass[];
@@ -7,7 +8,7 @@ interface Props {
 
 export function AwaitingDeployment({ classesToDeploy, onShipActivate }: Props) {
   return (
-    <div className="flex-column awaiting-deployment">
+    <div className="awaiting-deployment">
       {classesToDeploy.map((shipClass) => (
         <button
           key={shipClass}
