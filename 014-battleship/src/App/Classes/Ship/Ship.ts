@@ -1,5 +1,5 @@
 import type { ShipClass, ShipOrientation } from "App/Types";
-import { BOARD_HEIGHT, BOARD_WIDTH } from "App/Constants";
+import { BOARD_HEIGHT, BOARD_WIDTH, BOARD_SIZE } from "App/Constants";
 
 export class Ship {
   class: ShipClass;
@@ -15,6 +15,25 @@ export class Ship {
     this.class = cls;
     this.location = location;
     this.orientation = orientation;
+
+    // ensure ship does not overflow the board
+    if (this.orientation === "horizontal") {
+      const col = this.location % BOARD_WIDTH;
+      const overflow = col + this.size - BOARD_WIDTH;
+      if (overflow > 0) {
+        throw new Error(
+          `${orientation} ${cls} at location ${location} overflows the board`
+        );
+      }
+    } else {
+      const row = Math.floor(this.location / BOARD_WIDTH);
+      const overflow = row + this.size - BOARD_HEIGHT;
+      if (overflow > 0) {
+        throw new Error(
+          `${orientation} ${cls} at location ${location} overflows the board`
+        );
+      }
+    }
   }
 
   get size(): number {
@@ -110,5 +129,21 @@ export class Ship {
       this.orientation = "horizontal";
     }
     return this;
+  }
+
+  static random(cls: ShipClass) {
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      try {
+        const s = new Ship(
+          cls,
+          Math.floor(BOARD_SIZE * Math.random()),
+          Math.random() > 0.5 ? "horizontal" : "vertical"
+        );
+        return s;
+      } catch (err) {
+        console.log(err);
+      }
+    }
   }
 }

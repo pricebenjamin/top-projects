@@ -4,6 +4,7 @@ import { Ship } from "App/Classes";
 import type { ShipClass, SquareStatus } from "App/Types";
 import { AwaitingDeployment, ShipMovementControls } from "./Components";
 import { BOARD_SIZE } from "App/Constants";
+import { createRandomShipDeployment } from "App/Utilities";
 import "./GameSetup.css";
 
 interface GameSetupProps {
@@ -66,6 +67,13 @@ export function GameSetup({
           onSquareClick={() => undefined}
         />
         <div className="flex-column">
+          <button
+            onClick={() => {
+              setDeployedShips(createRandomShipDeployment());
+            }}
+          >
+            Random
+          </button>
           <AwaitingDeployment
             classesToDeploy={classesToDeploy}
             onShipActivate={(cls: ShipClass) => {
