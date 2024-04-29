@@ -21,17 +21,13 @@ export class Ship {
       const col = this.location % BOARD_WIDTH;
       const overflow = col + this.size - BOARD_WIDTH;
       if (overflow > 0) {
-        throw new Error(
-          `${orientation} ${cls} at location ${location} overflows the board`
-        );
+        throw new Error(`${this.toString()} overflows the board`);
       }
     } else {
       const row = Math.floor(this.location / BOARD_WIDTH);
       const overflow = row + this.size - BOARD_HEIGHT;
       if (overflow > 0) {
-        throw new Error(
-          `${orientation} ${cls} at location ${location} overflows the board`
-        );
+        throw new Error(`${this.toString()} overflows the board`);
       }
     }
   }
@@ -57,6 +53,10 @@ export class Ship {
     return this.orientation === "horizontal"
       ? coordinates.map((_, idx) => this.location + idx)
       : coordinates.map((_, idx) => this.location + idx * BOARD_WIDTH);
+  }
+
+  toString() {
+    return `${this.orientation} ${this.class} at location ${this.location}`;
   }
 
   copy() {
