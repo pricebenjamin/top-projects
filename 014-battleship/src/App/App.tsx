@@ -1,15 +1,10 @@
 import { useState, useEffect } from "react";
-import { GameBoard, GameSetup } from "App/Components";
+import { GameBoard, GameSetup, FleetStatus } from "App/Components";
 import { Ship } from "App/Classes";
-import type { SquareStatus } from "App/Types";
 import { BOARD_SIZE } from "App/Constants";
 import { createRandomShipDeployment } from "App/Utilities";
+import type { Player } from "App/Interfaces";
 import "./App.css";
-
-interface Player {
-  squares: SquareStatus[];
-  deployedShips: Ship[];
-}
 
 export function App() {
   const [playing, setPlaying] = useState(false);
@@ -93,6 +88,7 @@ export function App() {
       {winner && <h1>{winner} Wins!</h1>}
       <div className="flex">
         {/* Player's targeting board */}
+        <FleetStatus player={computer} />
         <GameBoard
           playable={turn === "player"}
           squares={computer.squares.map((status) =>
@@ -114,6 +110,7 @@ export function App() {
           squares={player.squares}
           onSquareClick={() => undefined}
         />
+        <FleetStatus player={player} />
       </div>
     </div>
   ) : (
