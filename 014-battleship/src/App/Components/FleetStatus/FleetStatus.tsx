@@ -1,4 +1,5 @@
 import { Player } from "App/Interfaces";
+import "./FleetStatus.css";
 
 interface FleetStatusProps {
   player: Player;
@@ -6,7 +7,7 @@ interface FleetStatusProps {
 
 export function FleetStatus({ player }: FleetStatusProps) {
   return (
-    <div className="remaining-ships">
+    <div className="fleet-status">
       <ul>
         {player.deployedShips.map((ship) => {
           const alive = ship.coordinates.some(

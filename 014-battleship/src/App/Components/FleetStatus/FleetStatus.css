@@ -1,0 +1,8 @@
+.fleet-status ul {
+  list-style: none;
+  border: 1px solid red;
+}
+
+.fleet-status li {
+  padding: 0.5rem 1rem;
+}
