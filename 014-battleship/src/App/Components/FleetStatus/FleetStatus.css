@@ -1,8 +1,38 @@
+.fleet-status {
+  display: flex;
+  flex-direction: column;
+}
+
+.fleet-status .score-heading {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.fleet-status .score {
+  text-align: center;
+  font-size: 8rem;
+  line-height: normal;
+}
+
+.fleet-status h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.fleet-status .active,
+.fleet-status .sunk {
+  padding: 1rem;
+  margin-top: auto;
+}
+
 .fleet-status ul {
   list-style: none;
-  border: 1px solid red;
 }
 
 .fleet-status li {
   padding: 0.5rem 1rem;
+}
+
+.fleet-status .sunk {
+  color: rgba(255, 255, 255, 0.2);
 }
