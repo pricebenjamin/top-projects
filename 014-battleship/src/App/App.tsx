@@ -4,61 +4,30 @@ import { Ship } from "App/Classes";
 import { BOARD_SIZE } from "App/Constants";
 import { createRandomShipDeployment, computeTargetSquare } from "App/Utilities";
 import type { Player } from "App/Interfaces";
+import type { SquareStatus } from "App/Types";
 import "./App.css";
 
 export function App() {
+  const [turn, setTurn] = useState<"player" | "computer">("player");
   const [playing, setPlaying] = useState(false);
 
-  const [turn, setTurn] = useState<"player" | "computer">("player");
-
   const [deployedShips, setDeployedShips] = useState<Ship[]>([]);
-  const [computerDeployedShips, setComputerDeployedShips] = useState<Ship[]>(
-    []
+  const [computerDeployedShips] = useState<Ship[]>(
+    createRandomShipDeployment()
   );
 
   const [playerTargets, setPlayerTargets] = useState<number[]>([]);
   const [computerTargets, setComputerTargets] = useState<number[]>([]);
 
   const player: Player = {
-    squares: Array(BOARD_SIZE).fill(null),
+    squares: populateSquares(deployedShips, computerTargets),
     deployedShips: deployedShips,
   };
 
   const computer: Player = {
-    squares: Array(BOARD_SIZE).fill(null),
+    squares: populateSquares(computerDeployedShips, playerTargets),
     deployedShips: computerDeployedShips,
   };
-
-  for (const p of [player, computer]) {
-    for (const ship of p.deployedShips) {
-      for (const coord of ship.coordinates) {
-        p.squares[coord] = "occupiedByDeployedShip";
-      }
-    }
-  }
-
-  // player targets
-  for (const coord of playerTargets) {
-    if (computer.squares[coord] === "occupiedByDeployedShip") {
-      computer.squares[coord] = "hit";
-      continue;
-    }
-    computer.squares[coord] = "miss";
-  }
-
-  // computer targets
-  for (const coord of computerTargets) {
-    if (player.squares[coord] === "occupiedByDeployedShip") {
-      player.squares[coord] = "hit";
-      continue;
-    }
-    player.squares[coord] = "miss";
-  }
-
-  // computer: compute initial ship deployment
-  useEffect(() => {
-    setComputerDeployedShips(createRandomShipDeployment());
-  }, []);
 
   // computer: choose target
   useEffect(() => {
@@ -127,4 +96,24 @@ function checkForWinner(player: Player, computer: Player) {
   if (!playerHasShips) return "computer";
   if (!computerHasShips) return "player";
   return null;
+}
+
+function populateSquares(ships: Ship[], targets: number[]) {
+  const squares: SquareStatus[] = Array(BOARD_SIZE).fill(null);
+
+  for (const ship of ships) {
+    for (const coord of ship.coordinates) {
+      squares[coord] = "occupiedByDeployedShip";
+    }
+  }
+
+  for (const target of targets) {
+    if (squares[target] === "occupiedByDeployedShip") {
+      squares[target] = "hit";
+      continue;
+    }
+    squares[target] = "miss";
+  }
+
+  return squares;
 }
