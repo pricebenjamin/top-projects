@@ -17,7 +17,7 @@ export function GameSetup({
   setDeployedShips,
   onGameStart,
 }: GameSetupProps) {
-  const [activeShip, setActiveShip] = useState<Ship | null>(null);
+  const [activeShip, setActiveShip] = useState<Ship | undefined>();
 
   const shipClasses: ShipClass[] = [
     "Carrier",
@@ -26,9 +26,9 @@ export function GameSetup({
     "Submarine",
     "Patrol Boat",
   ];
-  const deployedClasses = deployedShips.map((ship) => ship.class);
+
   const classesToDeploy = shipClasses.filter(
-    (cls) => !deployedClasses.includes(cls)
+    (cls) => !deployedShips.some((ship) => ship.class === cls)
   );
 
   const squares: SquareStatus[] = Array(BOARD_SIZE).fill(null);
@@ -40,15 +40,17 @@ export function GameSetup({
     squares[coordinate] = "occupiedByDeployedShip";
   }
 
-  let ableToDeploy = true;
+  let ableToDeploy = !!activeShip;
 
-  for (const coordinate of activeShip?.coordinates ?? []) {
-    if (squares[coordinate] === "occupiedByDeployedShip") {
-      squares[coordinate] = "invalid";
-      ableToDeploy = false;
-      continue;
+  if (activeShip) {
+    for (const coordinate of activeShip.coordinates) {
+      if (squares[coordinate] === "occupiedByDeployedShip") {
+        squares[coordinate] = "invalid";
+        ableToDeploy = false;
+        continue;
+      }
+      squares[coordinate] = "occupiedByActiveShip";
     }
-    squares[coordinate] = "occupiedByActiveShip";
   }
 
   return (
@@ -56,11 +58,10 @@ export function GameSetup({
       <div className="game-setup">
         {classesToDeploy.length > 0 && (
           <AwaitingDeployment
-            activeShip={activeShip ?? undefined}
+            activeShip={activeShip}
             classesToDeploy={classesToDeploy}
             onShipActivate={(cls: ShipClass) => {
-              const ship = new Ship(cls, 0, "horizontal");
-              setActiveShip(ship);
+              setActiveShip(new Ship(cls, 0, "horizontal"));
             }}
           />
         )}
@@ -70,10 +71,13 @@ export function GameSetup({
           squares={squares}
           onSquareClick={(index: number) => {
             if (activeShip?.coordinates.includes(index)) return;
+
             for (const ship of deployedShips) {
               if (!ship.coordinates.includes(index)) continue;
+
               const deployed = [...deployedShips];
               if (activeShip) deployed.push(activeShip);
+
               setDeployedShips(deployed.filter((s) => !Object.is(s, ship)));
               setActiveShip(ship);
               return;
@@ -81,15 +85,23 @@ export function GameSetup({
           }}
         />
         <ShipMovementControls
-          ship={activeShip ?? undefined}
+          ship={activeShip}
           ableToDeploy={ableToDeploy}
           ableToStartGame={classesToDeploy.length === 0}
           onShipMove={(ship) => setActiveShip(ship.copy())}
-          onShipDelete={() => setActiveShip(null)}
+          onShipDelete={() => setActiveShip(undefined)}
           onShipDeploy={() => {
             if (!activeShip) return;
-            setDeployedShips([...deployedShips, activeShip]);
-            setActiveShip(null);
+            const deployed = [...deployedShips, activeShip];
+            setDeployedShips(deployed);
+
+            const leftToDeploy = shipClasses.filter(
+              (cls) => !deployed.some((ship) => ship.class === cls)
+            );
+
+            leftToDeploy.length > 0
+              ? setActiveShip(new Ship(leftToDeploy[0], 0, "horizontal"))
+              : setActiveShip(undefined);
           }}
           onGameStart={onGameStart}
         />
