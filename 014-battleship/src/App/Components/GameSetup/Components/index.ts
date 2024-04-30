@@ -1,2 +1,2 @@
 export { ShipMovementControls } from "./ShipMovementControls";
-export { AwaitingDeployment } from "./AwaitingDeployment";
+export { DeploymentStatus } from "./DeploymentStatus";

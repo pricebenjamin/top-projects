@@ -2,7 +2,7 @@ import { useState } from "react";
 import { GameBoard } from "App/Components";
 import { Ship } from "App/Classes";
 import type { ShipClass, SquareStatus } from "App/Types";
-import { AwaitingDeployment, ShipMovementControls } from "./Components";
+import { DeploymentStatus, ShipMovementControls } from "./Components";
 import { BOARD_SIZE } from "App/Constants";
 import "./GameSetup.css";
 
@@ -56,15 +56,14 @@ export function GameSetup({
   return (
     <>
       <div className="game-setup">
-        {classesToDeploy.length > 0 && (
-          <AwaitingDeployment
-            activeShip={activeShip}
-            classesToDeploy={classesToDeploy}
-            onShipActivate={(cls: ShipClass) => {
-              setActiveShip(new Ship(cls, 0, "horizontal"));
-            }}
-          />
-        )}
+        <DeploymentStatus
+          activeShip={activeShip}
+          deployedShips={deployedShips}
+          classesToDeploy={classesToDeploy}
+          onShipActivate={(cls: ShipClass) => {
+            setActiveShip(new Ship(cls, 0, "horizontal"));
+          }}
+        />
         <GameBoard
           playable={false}
           setupMode={true}
