@@ -83,7 +83,7 @@ export function App() {
         {/* Player's targeting board */}
         <FleetStatus player={computer} />
         <GameBoard
-          playable={turn === "player"}
+          playable={winner === null && turn === "player"}
           squares={computer.squares.map((status) =>
             status === "occupiedByDeployedShip" ? null : status
           )}

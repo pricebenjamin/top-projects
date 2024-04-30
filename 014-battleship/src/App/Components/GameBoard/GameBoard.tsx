@@ -26,7 +26,7 @@ export function GameBoard({
           key={idx}
           index={idx}
           status={status}
-          onClick={onSquareClick}
+          onClick={setupMode || playable ? onSquareClick : () => undefined}
         />
       ))}
     </div>
