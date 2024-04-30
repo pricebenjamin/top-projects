@@ -3,5 +3,8 @@ import { Ship } from "App/Classes";
 
 export interface Player {
   squares: SquareStatus[];
-  deployedShips: Ship[];
+  ships: Ship[];
+  setShips: (ships: Ship[]) => void;
+  targets: number[];
+  setTargets: (targets: number[]) => void;
 }

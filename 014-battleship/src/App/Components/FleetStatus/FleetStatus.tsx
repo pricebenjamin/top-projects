@@ -9,7 +9,7 @@ export function FleetStatus({ player }: FleetStatusProps) {
   const activeShips = [];
   const sunkShips = [];
 
-  for (const ship of player.deployedShips) {
+  for (const ship of player.ships) {
     if (ship.coordinates.some((coord) => player.squares[coord] !== "hit")) {
       activeShips.push(ship);
       continue;

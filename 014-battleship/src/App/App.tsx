@@ -1,33 +1,16 @@
 import { useState, useEffect } from "react";
+import { usePlayer } from "App/Hooks";
+import { Player } from "App/Interfaces";
 import { GameBoard, GameSetup, FleetStatus } from "App/Components";
-import { Ship } from "App/Classes";
-import { BOARD_SIZE } from "App/Constants";
 import { createRandomShipDeployment, computeTargetSquare } from "App/Utilities";
-import type { Player } from "App/Interfaces";
-import type { SquareStatus } from "App/Types";
 import "./App.css";
 
 export function App() {
   const [turn, setTurn] = useState<"player" | "computer">("player");
   const [playing, setPlaying] = useState(false);
 
-  const [deployedShips, setDeployedShips] = useState<Ship[]>([]);
-  const [computerDeployedShips] = useState<Ship[]>(
-    createRandomShipDeployment()
-  );
-
-  const [playerTargets, setPlayerTargets] = useState<number[]>([]);
-  const [computerTargets, setComputerTargets] = useState<number[]>([]);
-
-  const player: Player = {
-    squares: populateSquares(deployedShips, computerTargets),
-    deployedShips: deployedShips,
-  };
-
-  const computer: Player = {
-    squares: populateSquares(computerDeployedShips, playerTargets),
-    deployedShips: computerDeployedShips,
-  };
+  const computer = usePlayer(createRandomShipDeployment());
+  const player = usePlayer([]);
 
   // computer: choose target
   useEffect(() => {
@@ -39,7 +22,7 @@ export function App() {
       );
       const target = computeTargetSquare(squares);
 
-      setComputerTargets([...computerTargets, target]);
+      player.setTargets([...player.targets, target]);
       setTurn("player");
     }, 200);
   }, [turn]);
@@ -62,7 +45,7 @@ export function App() {
               console.log("square has already been targeted");
               return;
             }
-            setPlayerTargets([...playerTargets, index]);
+            computer.setTargets([...computer.targets, index]);
             setTurn("computer");
           }}
         />
@@ -82,8 +65,8 @@ export function App() {
     </div>
   ) : (
     <GameSetup
-      deployedShips={deployedShips}
-      setDeployedShips={setDeployedShips}
+      deployedShips={player.ships}
+      setDeployedShips={player.setShips}
       onGameStart={() => setPlaying(true)}
     />
   );
@@ -96,24 +79,4 @@ function checkForWinner(player: Player, computer: Player) {
   if (!playerHasShips) return "computer";
   if (!computerHasShips) return "player";
   return null;
-}
-
-function populateSquares(ships: Ship[], targets: number[]) {
-  const squares: SquareStatus[] = Array(BOARD_SIZE).fill(null);
-
-  for (const ship of ships) {
-    for (const coord of ship.coordinates) {
-      squares[coord] = "occupiedByDeployedShip";
-    }
-  }
-
-  for (const target of targets) {
-    if (squares[target] === "occupiedByDeployedShip") {
-      squares[target] = "hit";
-      continue;
-    }
-    squares[target] = "miss";
-  }
-
-  return squares;
 }
