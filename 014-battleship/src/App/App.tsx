@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { GameBoard, GameSetup, FleetStatus } from "App/Components";
 import { Ship } from "App/Classes";
 import { BOARD_SIZE } from "App/Constants";
-import { createRandomShipDeployment } from "App/Utilities";
+import { createRandomShipDeployment, computeTargetSquare } from "App/Utilities";
 import type { Player } from "App/Interfaces";
 import "./App.css";
 
@@ -65,18 +65,12 @@ export function App() {
     if (turn !== "computer") return;
 
     setTimeout(() => {
-      let square = undefined;
-      let index: number = -1;
+      const squares = player.squares.map((status) =>
+        status === "occupiedByDeployedShip" ? null : status
+      );
+      const target = computeTargetSquare(squares);
 
-      while (square === undefined) {
-        index = Math.floor(BOARD_SIZE * Math.random());
-        square = player.squares[index];
-        if (square === "hit" || square === "miss") {
-          square = undefined;
-        }
-      }
-
-      setComputerTargets([...computerTargets, index]);
+      setComputerTargets([...computerTargets, target]);
       setTurn("player");
     }, 200);
   }, [turn]);
