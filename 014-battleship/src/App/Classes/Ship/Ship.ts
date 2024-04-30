@@ -6,12 +6,7 @@ export class Ship {
   location: number;
   orientation: ShipOrientation;
 
-  // TODO(ben): consider change to
-  //   constructor({cls, location, orientation}: IShip)
-  //   to allow named parameters
-
   constructor(cls: ShipClass, location: number, orientation: ShipOrientation) {
-    // TODO(ben): `class` is probably not a good property name
     this.class = cls;
     this.location = location;
     this.orientation = orientation;
