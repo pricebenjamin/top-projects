@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { usePlayer } from "App/Hooks";
-import { Player } from "App/Interfaces";
 import { GameBoard, GameSetup, FleetStatus } from "App/Components";
-import { createRandomShipDeployment, computeTargetSquare } from "App/Utilities";
+import {
+  createRandomShipDeployment,
+  computeTargetSquare,
+  checkForWinner,
+} from "App/Utilities";
 import "./App.css";
 
 export function App() {
@@ -70,13 +73,4 @@ export function App() {
       onGameStart={() => setPlaying(true)}
     />
   );
-}
-
-function checkForWinner(player: Player, computer: Player) {
-  const playerHasShips = player.squares.includes("occupiedByDeployedShip");
-  const computerHasShips = computer.squares.includes("occupiedByDeployedShip");
-
-  if (!playerHasShips) return "computer";
-  if (!computerHasShips) return "player";
-  return null;
 }
