@@ -19,16 +19,14 @@ export function App() {
   useEffect(() => {
     if (turn !== "computer") return;
 
-    setTimeout(() => {
-      const squares = player.squares.map((status) =>
-        status === "occupiedByDeployedShip" ? null : status
-      );
-      const target = computeTargetSquare(squares);
+    const squares = player.squares.map((status) =>
+      status === "occupiedByDeployedShip" ? null : status
+    );
+    const target = computeTargetSquare(squares);
 
-      player.setTargets([...player.targets, target]);
-      setTurn("player");
-    }, 200);
-  }, [turn]);
+    player.setTargets([...player.targets, target]);
+    setTurn("player");
+  }, [player, turn]);
 
   const winner = checkForWinner(player, computer);
 
