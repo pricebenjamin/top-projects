@@ -1,4 +1,5 @@
 .awaiting-deployment {
+  width: 10rem;
   align-self: flex-start;
   display: flex;
   flex-direction: column;
@@ -12,6 +13,7 @@
   padding: 0.5rem 1rem;
 }
 
+.awaiting-deployment button.selected,
 .awaiting-deployment button:hover {
   cursor: pointer;
   background: rgba(255, 255, 255, 0.1);

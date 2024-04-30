@@ -4,7 +4,6 @@ import { Ship } from "App/Classes";
 import type { ShipClass, SquareStatus } from "App/Types";
 import { AwaitingDeployment, ShipMovementControls } from "./Components";
 import { BOARD_SIZE } from "App/Constants";
-import { createRandomShipDeployment } from "App/Utilities";
 import "./GameSetup.css";
 
 interface GameSetupProps {
@@ -54,55 +53,46 @@ export function GameSetup({
 
   return (
     <>
-      <h1>Setup</h1>
-      <h2>
-        {activeShip
-          ? `Deploying: ${activeShip.class}`
-          : "Awaiting ship deployment"}
-      </h2>
       <div className="game-setup">
-        <GameBoard
-          playable={false}
-          squares={squares}
-          onSquareClick={() => undefined}
-        />
-        <div className="flex-column">
-          <button
-            onClick={() => {
-              setDeployedShips(createRandomShipDeployment());
-            }}
-          >
-            Random
-          </button>
+        {classesToDeploy.length > 0 && (
           <AwaitingDeployment
+            activeShip={activeShip ?? undefined}
             classesToDeploy={classesToDeploy}
             onShipActivate={(cls: ShipClass) => {
               const ship = new Ship(cls, 0, "horizontal");
               setActiveShip(ship);
             }}
           />
-          {activeShip && (
-            <button
-              disabled={!ableToDeploy}
-              onClick={() => {
-                setDeployedShips([...deployedShips, activeShip]);
-                setActiveShip(null);
-              }}
-            >
-              Deploy
-            </button>
-          )}
-          {activeShip && (
-            <ShipMovementControls
-              ship={activeShip}
-              onShipMove={(ship) => setActiveShip(ship.copy())}
-              onShipDelete={() => setActiveShip(null)}
-            />
-          )}
-          {classesToDeploy.length === 0 && (
-            <button onClick={onGameStart}>Begin Game</button>
-          )}
-        </div>
+        )}
+        <GameBoard
+          playable={false}
+          setupMode={true}
+          squares={squares}
+          onSquareClick={(index: number) => {
+            if (activeShip?.coordinates.includes(index)) return;
+            for (const ship of deployedShips) {
+              if (!ship.coordinates.includes(index)) continue;
+              const deployed = [...deployedShips];
+              if (activeShip) deployed.push(activeShip);
+              setDeployedShips(deployed.filter((s) => !Object.is(s, ship)));
+              setActiveShip(ship);
+              return;
+            }
+          }}
+        />
+        <ShipMovementControls
+          ship={activeShip ?? undefined}
+          ableToDeploy={ableToDeploy}
+          ableToStartGame={classesToDeploy.length === 0}
+          onShipMove={(ship) => setActiveShip(ship.copy())}
+          onShipDelete={() => setActiveShip(null)}
+          onShipDeploy={() => {
+            if (!activeShip) return;
+            setDeployedShips([...deployedShips, activeShip]);
+            setActiveShip(null);
+          }}
+          onGameStart={onGameStart}
+        />
       </div>
     </>
   );

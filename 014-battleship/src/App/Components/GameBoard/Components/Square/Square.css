@@ -12,6 +12,11 @@
   background-color: var(--occupied-square-color);
 }
 
+.gameboard.setup .square.occupiedByActiveShip:hover,
+.gameboard.setup .square.occupiedByDeployedShip:hover {
+  cursor: pointer;
+}
+
 .gameboard .square.invalid,
 .gameboard .square.hit {
   background-color: var(--hit-square-color);
