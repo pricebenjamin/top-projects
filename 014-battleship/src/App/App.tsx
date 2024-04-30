@@ -79,7 +79,6 @@ export function App() {
 
   return playing ? (
     <div className="flex-column">
-      {winner && <h1>{winner} Wins!</h1>}
       <div className="flex">
         {/* Player's targeting board */}
         <FleetStatus player={computer} />
@@ -106,6 +105,11 @@ export function App() {
         />
         <FleetStatus player={player} />
       </div>
+      {winner && (
+        <h1 className="winner">
+          {winner === "player" ? "You won!" : "You lost!"}
+        </h1>
+      )}
     </div>
   ) : (
     <GameSetup

@@ -13,3 +13,8 @@
   flex-direction: column;
   gap: 1rem;
 }
+
+.winner {
+  align-self: center;
+  font-size: 3rem;
+}
