@@ -19,6 +19,18 @@ export function DeploymentStatus({
 }: Props) {
   return (
     <div className="deployment-status">
+      {deployedShips.length > 0 && (
+        <>
+          <h2>Deployed</h2>
+          <div className="deployed">
+            {deployedShips.map((ship) => (
+              <button onClick={() => onSelectDeployedShip(ship)}>
+                {ship.class}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
       {classesToDeploy.length > 0 && (
         <>
           <h2>Awaiting Deployment</h2>
@@ -32,19 +44,6 @@ export function DeploymentStatus({
                 className={activeShip?.class === shipClass ? "selected" : ""}
               >
                 {shipClass}
-              </button>
-            ))}
-          </div>
-        </>
-      )}
-
-      {deployedShips.length > 0 && (
-        <>
-          <h2>Deployed</h2>
-          <div className="deployed">
-            {deployedShips.map((ship) => (
-              <button onClick={() => onSelectDeployedShip(ship)}>
-                {ship.class}
               </button>
             ))}
           </div>
