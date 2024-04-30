@@ -4,6 +4,7 @@ import { Ship } from "App/Classes";
 import type { ShipClass, SquareStatus } from "App/Types";
 import { DeploymentStatus, ShipMovementControls } from "./Components";
 import { BOARD_SIZE } from "App/Constants";
+import { createRandomShipDeployment } from "App/Utilities";
 import "./GameSetup.css";
 
 interface GameSetupProps {
@@ -56,20 +57,31 @@ export function GameSetup({
   return (
     <>
       <div className="game-setup">
-        <DeploymentStatus
-          activeShip={activeShip}
-          deployedShips={deployedShips}
-          classesToDeploy={classesToDeploy}
-          onShipActivate={(cls: ShipClass) => {
-            setActiveShip(new Ship(cls, 0, "horizontal"));
-          }}
-          onSelectDeployedShip={(ship: Ship) => {
-            const deployed = [...deployedShips];
-            if (activeShip) deployed.push(activeShip);
-            setDeployedShips(deployed.filter((s) => !Object.is(s, ship)));
-            setActiveShip(ship);
-          }}
-        />
+        <div className="flex-column">
+          <button
+            className="random-deploy"
+            onClick={() => {
+              setDeployedShips(createRandomShipDeployment());
+              setActiveShip(undefined);
+            }}
+          >
+            Random Deployment
+          </button>
+          <DeploymentStatus
+            activeShip={activeShip}
+            deployedShips={deployedShips}
+            classesToDeploy={classesToDeploy}
+            onShipActivate={(cls: ShipClass) => {
+              setActiveShip(new Ship(cls, 0, "horizontal"));
+            }}
+            onSelectDeployedShip={(ship: Ship) => {
+              const deployed = [...deployedShips];
+              if (activeShip) deployed.push(activeShip);
+              setDeployedShips(deployed.filter((s) => !Object.is(s, ship)));
+              setActiveShip(ship);
+            }}
+          />
+        </div>
         <GameBoard
           playable={false}
           setupMode={true}
