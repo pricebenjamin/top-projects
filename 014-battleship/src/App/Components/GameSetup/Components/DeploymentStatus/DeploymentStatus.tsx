@@ -7,6 +7,7 @@ interface Props {
   deployedShips: Ship[];
   classesToDeploy: ShipClass[];
   onShipActivate: (cls: ShipClass) => void;
+  onSelectDeployedShip: (ship: Ship) => void;
 }
 
 export function DeploymentStatus({
@@ -14,6 +15,7 @@ export function DeploymentStatus({
   deployedShips,
   classesToDeploy,
   onShipActivate,
+  onSelectDeployedShip,
 }: Props) {
   return (
     <div className="deployment-status">
@@ -41,7 +43,9 @@ export function DeploymentStatus({
           <h2>Deployed</h2>
           <div className="deployed">
             {deployedShips.map((ship) => (
-              <button disabled={true}>{ship.class}</button>
+              <button onClick={() => onSelectDeployedShip(ship)}>
+                {ship.class}
+              </button>
             ))}
           </div>
         </>

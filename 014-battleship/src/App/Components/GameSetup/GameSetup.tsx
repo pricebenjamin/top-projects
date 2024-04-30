@@ -63,6 +63,12 @@ export function GameSetup({
           onShipActivate={(cls: ShipClass) => {
             setActiveShip(new Ship(cls, 0, "horizontal"));
           }}
+          onSelectDeployedShip={(ship: Ship) => {
+            const deployed = [...deployedShips];
+            if (activeShip) deployed.push(activeShip);
+            setDeployedShips(deployed.filter((s) => !Object.is(s, ship)));
+            setActiveShip(ship);
+          }}
         />
         <GameBoard
           playable={false}

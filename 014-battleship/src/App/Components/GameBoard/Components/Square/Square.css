@@ -7,7 +7,10 @@
   user-select: none;
 }
 
-.gameboard .square.occupiedByActiveShip,
+.gameboard .square.occupiedByActiveShip {
+  background-color: var(--active-square-color);
+}
+
 .gameboard .square.occupiedByDeployedShip {
   background-color: var(--occupied-square-color);
 }

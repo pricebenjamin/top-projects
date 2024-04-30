@@ -12,6 +12,7 @@
   --square-border-hover: 2px solid var(--color);
 
   --occupied-square-color: rgba(64, 128, 196, 0.1);
+  --active-square-color: rgba(128, 190, 210, 0.2);
   --hit-square-color: rgba(255, 0, 0, 0.1);
   --miss-square-color: rgba(255, 255, 255, 0.1);
 
