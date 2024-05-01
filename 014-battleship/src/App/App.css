@@ -1,12 +1,11 @@
 #root {
-  margin: 0 auto;
   padding: 2rem;
 }
 
 .flex,
 .flex-wrap {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .flex-wrap {

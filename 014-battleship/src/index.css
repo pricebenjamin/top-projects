@@ -29,7 +29,9 @@
 body {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
 @media (prefers-color-scheme: light) {
