@@ -1,4 +1,5 @@
 .deployment-status {
+  width: 12rem;
   display: flex;
   flex-direction: column;
 }
