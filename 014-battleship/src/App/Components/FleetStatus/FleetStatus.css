@@ -36,3 +36,9 @@
 .fleet-status .sunk {
   color: rgba(255, 255, 255, 0.2);
 }
+
+@media (prefers-color-scheme: light) {
+  .fleet-status .sunk {
+    color: rgba(128, 0, 0, 0.3);
+  }
+}
