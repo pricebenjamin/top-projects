@@ -3,9 +3,18 @@
   padding: 2rem;
 }
 
-.flex {
+.flex,
+.flex-wrap {
   display: flex;
   gap: 1rem;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.centered {
+  justify-content: center;
 }
 
 .flex-column {

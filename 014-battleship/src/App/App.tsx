@@ -32,31 +32,35 @@ export function App() {
 
   return playing ? (
     <div className="flex-column">
-      <div className="flex">
-        {/* Player's targeting board */}
-        <FleetStatus player={computer} />
-        <GameBoard
-          playable={winner === null && turn === "player"}
-          squares={computer.squares.map((status) =>
-            status === "occupiedByDeployedShip" ? null : status
-          )}
-          onSquareClick={(index: number) => {
-            const square = computer.squares[index];
-            if (square === "hit" || square === "miss") {
-              console.log("square has already been targeted");
-              return;
-            }
-            computer.setTargets([...computer.targets, index]);
-            setTurn("computer");
-          }}
-        />
-        {/* Player's fleet */}
-        <GameBoard
-          playable={false}
-          squares={player.squares}
-          onSquareClick={() => undefined}
-        />
-        <FleetStatus player={player} />
+      <div className="flex-wrap centered">
+        <div className="flex">
+          {/* Player's targeting board */}
+          <FleetStatus player={computer} />
+          <GameBoard
+            playable={winner === null && turn === "player"}
+            squares={computer.squares.map((status) =>
+              status === "occupiedByDeployedShip" ? null : status
+            )}
+            onSquareClick={(index: number) => {
+              const square = computer.squares[index];
+              if (square === "hit" || square === "miss") {
+                console.log("square has already been targeted");
+                return;
+              }
+              computer.setTargets([...computer.targets, index]);
+              setTurn("computer");
+            }}
+          />
+        </div>
+        <div className="flex">
+          {/* Player's fleet */}
+          <GameBoard
+            playable={false}
+            squares={player.squares}
+            onSquareClick={() => undefined}
+          />
+          <FleetStatus player={player} />
+        </div>
       </div>
       {winner && (
         <h1 className="winner">
