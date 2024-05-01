@@ -5,12 +5,11 @@
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
 
-  --min-size: 350px;
-  --max-size: 45vmin;
-  height: max(var(--min-size), var(--max-size));
-  width: max(var(--min-size), var(--max-size));
+  --size: max(350px, 45vmin);
+  height: var(--size);
+  width: var(--size);
 
-  font-size: calc(0.4 * var(--max-size) / 10);
+  font-size: calc(0.4 * var(--size) / 10);
 }
 
 .gameboard.playable:hover {
