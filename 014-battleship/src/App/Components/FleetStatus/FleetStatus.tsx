@@ -25,7 +25,7 @@ export function FleetStatus({ player }: FleetStatusProps) {
         <div className="active">
           <h2>Active</h2>
           {activeShips.map((ship) => (
-            <div>{ship.class}</div>
+            <div key={ship.class}>{ship.class}</div>
           ))}
         </div>
       )}
@@ -33,7 +33,7 @@ export function FleetStatus({ player }: FleetStatusProps) {
         <div className="sunk">
           <h2>Sunk</h2>
           {sunkShips.map((ship) => (
-            <div>{ship.class}</div>
+            <div key={ship.class}>{ship.class}</div>
           ))}
         </div>
       )}

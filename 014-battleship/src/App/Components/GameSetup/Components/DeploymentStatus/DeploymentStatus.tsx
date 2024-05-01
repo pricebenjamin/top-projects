@@ -24,7 +24,10 @@ export function DeploymentStatus({
           <h2>Deployed</h2>
           <div className="deployed">
             {deployedShips.map((ship) => (
-              <button onClick={() => onSelectDeployedShip(ship)}>
+              <button
+                key={ship.class}
+                onClick={() => onSelectDeployedShip(ship)}
+              >
                 {ship.class}
               </button>
             ))}
