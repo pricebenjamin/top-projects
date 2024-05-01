@@ -1,6 +1,7 @@
 .fleet-status {
   display: flex;
   flex-direction: column;
+  padding: 0 1rem;
 }
 
 .fleet-status .score-heading {
@@ -10,13 +11,12 @@
 
 .fleet-status .score {
   text-align: center;
-  font-size: 8rem;
+  font-size: max(4rem, 15vmin);
   line-height: 100%;
 }
 
 .fleet-status .active,
 .fleet-status .sunk {
-  padding: 0 1rem;
   margin-top: auto;
 }
 
@@ -25,7 +25,7 @@
 }
 
 .fleet-status li {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0;
 }
 
 .fleet-status .sunk {
