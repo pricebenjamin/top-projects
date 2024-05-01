@@ -136,8 +136,8 @@ export class Ship {
           Math.random() > 0.5 ? "horizontal" : "vertical"
         );
         return s;
-      } catch (err) {
-        console.log(err);
+      } catch (_) {
+        continue;
       }
     }
   }
