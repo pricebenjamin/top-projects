@@ -15,10 +15,10 @@ export function computeTargetSquare(
   for (const [idx, status] of squares.entries()) {
     if (status === "hit" || status === "miss") continue;
 
-    const [r, c] = coordinate(idx);
+    const [row, col] = coordinate(idx);
 
-    // checkerboard squares always have a change of being chosen
-    if ((r % 2 === 0 && c % 2 === 0) || (r % 2 === 1 && c % 2 === 1)) {
+    // checkerboard squares always have a chance of being chosen
+    if ((row % 2 === 0 && col % 2 === 0) || (row % 2 === 1 && col % 2 === 1)) {
       possibleTargets.push(idx);
     }
 
@@ -29,16 +29,16 @@ export function computeTargetSquare(
      *   [0  1  0]
      */
     const neighbors = [
-      [1, r - 1, c],
-      [1, r, c - 1],
-      [1, r, c + 1],
-      [1, r + 1, c],
+      [1, row - 1, col],
+      [1, row, col - 1],
+      [1, row, col + 1],
+      [1, row + 1, col],
     ];
 
-    for (const [value, row, col] of neighbors) {
-      if (row < 0 || row >= BOARD_HEIGHT) continue;
-      if (col < 0 || col >= BOARD_WIDTH) continue;
-      if (squares[index(row, col)] !== "hit") continue;
+    for (const [value, neighborRow, neighborCol] of neighbors) {
+      if (neighborRow < 0 || neighborRow >= BOARD_HEIGHT) continue;
+      if (neighborCol < 0 || neighborCol >= BOARD_WIDTH) continue;
+      if (squares[index(neighborRow, neighborCol)] !== "hit") continue;
 
       possibleTargets.push(...Array(value * multiplier).fill(idx));
     }
