@@ -23,9 +23,14 @@
   margin-bottom: 1rem;
 }
 
+.forecast table th,
 .forecast table td {
   padding: 0.5rem;
   vertical-align: top;
+}
+
+.forecast table th {
+  text-align: left;
 }
 
 .forecast .try-again {

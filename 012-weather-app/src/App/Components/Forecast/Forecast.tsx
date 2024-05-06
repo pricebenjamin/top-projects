@@ -14,16 +14,21 @@ export function Forecast({ forecast, unit }: ForecastProps) {
         <div className="card">
           {forecast.length > 0 ? (
             <table>
-              <caption>Forecast</caption>
               <tbody>
+                <tr>
+                  <th>{/* Day of Week */}</th>
+                  <th>Forecast</th>
+                  <th>High</th>
+                  <th>Low</th>
+                </tr>
                 {forecast.map((day) => (
                   <tr className="daily-weather" key={day.date.valueOf()}>
-                    <td>
+                    <th scope="row">
                       {Intl.DateTimeFormat("en-US", {
                         weekday: "long",
                         timeZone: "UTC",
                       }).format(day.date)}
-                    </td>
+                    </th>
                     <td>{day.condition}</td>
                     <td style={{ textAlign: "right" }}>
                       {(unit === "F" ? day.maxTempF : day.maxTempC).toFixed(1)}
