@@ -16,7 +16,7 @@ export function Weather({ currentWeather, location, unit }: WeatherProps) {
         <div className="column">
           <img
             src={weatherIconLookup(currentWeather.code, currentWeather.isDay)}
-            alt="Sunny"
+            alt="" /* this icon is decorative */
             className="large-icon"
           />
         </div>
