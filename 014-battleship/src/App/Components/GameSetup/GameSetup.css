@@ -1,0 +1,8 @@
+.game-setup {
+  display: flex;
+  gap: 2rem;
+}
+
+.game-setup .random-deploy {
+  padding: 0.5rem;
+}

@@ -1,0 +1,39 @@
+.fleet-status {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+}
+
+.fleet-status .score-heading {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.fleet-status .score {
+  text-align: center;
+  font-size: max(4rem, 15vmin);
+  line-height: 100%;
+}
+
+.fleet-status .active,
+.fleet-status .sunk {
+  margin-top: auto;
+}
+
+.fleet-status ul {
+  list-style: none;
+}
+
+.fleet-status li {
+  padding: 0.5rem 0;
+}
+
+.fleet-status .sunk {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+@media (prefers-color-scheme: light) {
+  .fleet-status .sunk {
+    color: rgba(128, 0, 0, 0.3);
+  }
+}

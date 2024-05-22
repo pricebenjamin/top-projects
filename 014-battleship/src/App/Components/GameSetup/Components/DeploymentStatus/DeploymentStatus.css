@@ -1,0 +1,39 @@
+.deployment-status {
+  width: 12rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.deployment-status .awaiting-deployment,
+.deployment-status .active-ship,
+.deployment-status .deployed {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--square-color);
+  margin-bottom: 1rem;
+}
+
+.deployment-status h2 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.deployment-status button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0.5rem 1rem;
+}
+
+.deployment-status button.selected,
+.deployment-status button:hover {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-color-scheme: light) {
+  .deployment-status button.selected,
+  .deployment-status button:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
