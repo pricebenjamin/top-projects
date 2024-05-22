@@ -1,0 +1,46 @@
+.forecast {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.forecast .card {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+}
+
+.forecast table {
+  border-collapse: collapse;
+}
+
+.forecast table caption {
+  text-align: left;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.forecast table th,
+.forecast table td {
+  padding: 0.5rem;
+  vertical-align: top;
+}
+
+.forecast table th {
+  text-align: left;
+}
+
+.forecast .try-again {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+@media (prefers-color-scheme: light) {
+  .forecast .card {
+    background-color: #ffffff;
+  }
+}

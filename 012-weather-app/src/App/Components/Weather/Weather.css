@@ -1,0 +1,44 @@
+.current-weather {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.current-weather .column {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.current-weather .temperature {
+  font-size: 2rem;
+}
+
+.current-weather .last-updated {
+  opacity: 0.5;
+}
+
+.current-weather .column:has(.large-icon) {
+  flex: 0 0 auto;
+}
+
+.current-weather .large-icon {
+  min-width: 6rem;
+  filter: invert(100%);
+}
+
+@media (prefers-color-scheme: light) {
+  .current-weather .large-icon {
+    filter: invert(20%);
+  }
+}
+
+@media (width < 500px) {
+  .current-weather .large-icon {
+    display: none;
+  }
+}
