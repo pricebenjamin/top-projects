@@ -10,4 +10,5 @@ export default defineConfig({
       App: path.resolve(__dirname, "src/App"),
     },
   },
+  base: "/top-projects/014-battleship/dist/",
 });
