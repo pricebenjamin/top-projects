@@ -14,4 +14,5 @@ export default defineConfig({
       "@app": path.resolve(__dirname, "src/App"),
     },
   },
+  base: "/top-projects/011-todo-list/dist/",
 });

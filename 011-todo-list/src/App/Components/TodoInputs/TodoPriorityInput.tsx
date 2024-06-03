@@ -13,7 +13,12 @@ export function TodoPriorityInput({
   return (
     <select
       value={priority}
-      onChange={(event) => onChange(event.target.value)}
+      onChange={(event) => {
+        const value = event.target.value;
+        if (value === "high" || value === "normal" || value === "low") {
+          onChange(value);
+        }
+      }}
       className="todo-priority"
     >
       <option value="high">High</option>
