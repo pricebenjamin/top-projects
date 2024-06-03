@@ -33,7 +33,7 @@ export function PlayerCard({
         onChange={(event) => onNameChange(event.target.value)}
         onKeyDown={(event) => {
           if (event.key === "Enter") {
-            onNameChange(event.target.value);
+            onNameChange(event.currentTarget.value);
             setEditMode(false);
           }
         }}

@@ -10,4 +10,5 @@ export default defineConfig({
       "@components": path.resolve(__dirname, "src/App/Components"),
     },
   },
+  base: "/top-projects/010-tic-tac-toe/dist/",
 });
